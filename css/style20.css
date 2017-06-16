@@ -46,12 +46,12 @@ float:left;
 }
 
 .login h2 {
+	margin: 0px 0px 15px 0px;
 	display: block;
 	padding: 15px 0;
-	margin-bottom: 40px;
 	border-bottom: 1px solid #649bbd;
 	color: #FFF;
-	font: 200 2em 'Roboto Condensed', 'Open Sans', Arial, 'Helvetica Neue', Sans-serif, Verdana;
+	font: 200 1em 'Roboto Condensed', 'Open Sans', Arial, 'Helvetica Neue', Sans-serif, Verdana;
 	text-align: center;
 	text-shadow: 0 2px 0 rgba(0,0,0, 0.15);
 	background: #74b5dd;
@@ -101,7 +101,7 @@ float:left;
 	margin-bottom: 12px;
 	color: #353942;
 	font-weight: 700;
-	font-size: 1.6em;
+	font-size: 1.1em;
 }
 
 .login input + label {
