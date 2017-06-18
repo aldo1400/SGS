@@ -48,10 +48,10 @@ a.cerrar{
 
 
 .size{
-	max-width: 400px;
-	max-height: 170px;
-	min-width: 400px;
-	min-height: 170px;
+	max-width: 600px;
+	max-height: 400px;
+	min-width: 410px;
+	min-height: 380px;
 	resize: none;
 
 }

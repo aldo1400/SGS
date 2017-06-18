@@ -18,7 +18,7 @@ session_name('permiso');
 
 if(!$_SESSION)
 {
-header("location:index.html");
+header("location:index.php");
 
 }
 $nombre_admin=$_SESSION['nombre_docente'];
@@ -61,6 +61,43 @@ include('conexion.php');
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="js/main.js"></script>
+	
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+
+<script>
+ $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '< Ant',
+ nextText: 'Sig >',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+ dateFormat: 'yy/mm/dd',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+$(function () 
+{
+$("#fecha").datepicker();
+});
+</script>
+
+	
+	
 <style>
 body {
     font-family: 'Roboto';font-size: 16px;
@@ -83,7 +120,7 @@ body {
 
 <body>
 
-    <div class="brand"><img src="img/logounjbg.png" width="200" height="200">UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN</div>
+    <div class="brand">UNJBG</div>
     <div class="address-bar">Sistema de acceso para editar silabus</div>
 
     <!-- Navigation -->
@@ -98,25 +135,68 @@ body {
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">UNJBG</a>
+               
+			   <?php
+
+session_start();
+session_name('permiso');
+
+if(!$_SESSION)
+{
+?>
+						<a class="navbar-brand" href="index.php">unjbg</a>
+                        
+                    
+<?
+}
+else
+{
+
+if(!$_SESSION['nombre_docente'])
+{
+$nombre_docente_verificado=$_SESSION['nombre_doc'];
+?>
+						<a class="navbar-brand" href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>"><?php echo $nombre_docente_verificado ?></a>
+                       
+                    
+<?					
+}
+else
+{
+$nombre_admin=$_SESSION['nombre_docente'];
+?>
+
+					<a class="navbar-brand" href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?>"><?php echo $nombre_admin ?></a>
+                        
+						
+                    
+
+<?
+}
+
+}
+?>
+			   
+			   
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Inicio</a>
+                        <a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> ">Mi perfil</a>
+					</li>
+					
+                    <li>
+                        <a href="about.php">Noticias</a>
                     </li>
                     <li>
-                        <a href="about.html">Noticias</a>
+                        <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="blog.html">Blog</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contactanos</a>
+                        <a href="contact.php">Contactanos</a>
                     </li>
 					<li>
-                        <a href="silabos.html">Silabos</a>
+                        <a href="silabo.php">Silabos</a>
                     </li>
                 </ul>
             </div>
@@ -162,7 +242,7 @@ a:link
 			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
 			
 			
-			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Asignaturas</a></li>
+			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Asignación de curso</a></li>
 			
 			
 			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Crear docente</a></li>
@@ -230,11 +310,8 @@ a:link
 
 
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="js/main.js"></script>
-
+	
+	
 
 
 <br>
@@ -346,35 +423,261 @@ $id_profesor = $_GET['nombre_profesor'];//no es el nombre es el id del docente
         $i++;
 
       ?>
-     CODIGO DOCENTE		:	<?php echo $Cod_docente; ?>
-	  <BR>
-	  NOMBRE DOCENTE 	:	<?php echo  $nombre; ?>
+     <TABLE cellpadding=5 >
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CÓDIGO DOCENTE :</TH>
+		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Cod_docente; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOMBRE         :</TH>
+		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo  $nombre; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APELLIDO       :</TH>
+		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $apellido; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI            :</TH>
+		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $dni; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIRECCIÓN      :</TH>
+		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo  $direccion; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TIPO           :</TH>
+		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $tipo; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-MAIL         :</TH>
+		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $email; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FECHA NAC.     :</TH>
+		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $fnacimiento; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TELÉFONO       :</TH>
+		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $telefono; ?></TD> </TR>
+	</TABLE>
+	
 	  <br>
-	 APELLIDO		:	<?php echo $apellido; ?>
-	  <br>
-	  DNI	:	<?php echo $dni; ?>
-	  <BR>
-	  DIRECCION	:	<?php echo  $direccion; ?>
-	  <BR>
-	  TIPO		:	<?php echo $tipo; ?>
-	  <BR>
-	  EMAIL				:	<?php echo $email; ?>
-	  <BR>
-	  FNACIMIENTO			:	<?php echo $fnacimiento; ?>
-	  <BR>
-	  TELEFONO			:	<?php echo $telefono; ?>
-	  <br>
-	  <br>
+	  
+	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar_admin">EDITAR DATOS</button>
+	  
+	  <!---------------------ventana modal editar docente--------------------------------------------->
+	  <div class="container">
+  <!-- Trigger the modal with a button -->
+  <!-- Modal -->
+  <style>
+  
+  .modal-content
+  {
+  color:#000;
+  }
+  
+  
+  </style>
+  <div class="modal fade" id="myModal_editar_admin" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edita docente</h4>
+        </div>
+		
+		
+        <div class="modal-body">
+		
+		<form action="#" method="post" class="EDITAR_ADMIN"  >
+	   
+    <div class="contentform">
+    	<div id="sendmessage"> Has creado correctamente al docente </div>
+		
+		<div class="form-group">
+      <label class="control-label col-sm-4" for="CODIGO_DOCENTE">Código docente:</label>
+      <div class="col-sm-4">
+        <p class="form-control-static" style="color:#000;"><?php echo $Cod_docente; ?></p>
+      </div>
+    </div>
+	
+	
+	<label class="control-label col-sm-8" for="email" align="left" >Nombre docente:</label>
+	<br>
+	<br>
+	
+	
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="nombre_docente_edita" type="text" class="form-control" name="nombre_docente_edita"   data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné."  placeholder="Nombre" value="<?php echo $nombre;?>" required />
+    </div>
+	
+	<br>
+	
+	<label class="control-label col-sm-4" for="email" align="left" >Apellidos:</label>
+	<br>
+	<br>
+	
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="apellido_edita" type="text" class="form-control" name="apellido_edita" placeholder="Apellido" value="<?php echo $apellido;?>"  required />
+    </div>
+	<br>
+	
+	
+	<label class="control-label col-sm-8" for="email" align="left" >DNI:</label>
+	<br>
+	<br>
+	
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="DNI_edita" type="text" class="form-control" name="DNI_edita"  data-rule="maxlen:8" required pattern="[0-9]{8}" placeholder="DNI" value="<?php echo $dni;?>"  required />
+    </div>
+	<br>
+	
+	<label class="control-label col-sm-4" for="email" align="left" >Dirección:</label>
+	<br>
+	<br>
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	  
+	   <input id="direccion_edita" type="text" class="form-control" name="direccion_edita"  placeholder="Direccion" value="<?php echo $direccion;?>"  required />
+	   
+	   
+    </div>
+	<br>
+	
+	<label class="control-label col-sm-6" for="email" align="left" >Tipo:</label>
+	<br>
+	<br>
+	
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	  
+	  <select name="tipo_edita" id="tipo_edita" class="form-control" required />
+				
+				<option value="<?php echo $tipo;?>"><?php echo $tipo;?></option>
+				
+				<option value="docente">docente</option>
+				<option value="admin">admin</option>
+				
+				</select>
+    </div>
+	<br>
+	
+	<label class="control-label col-sm-4" for="email" align="left" >Email:</label>
+	<br>
+	<br>
+	
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="email_edita" type="email" class="form-control" name="email_edita" placeholder="Email" data-rule="email" data-msg="Vérifiez votre saisie sur les champs : Le champ 'E-mail' est obligatoire." value="<?php echo $email;?>" required/>
+    </div>
+	<br>
+	
+	
+	<!----<p>Tipo</p>----->
+	
+	<label class="control-label col-sm-4" for="email" align="left" >Fecha nacimiento:</label>
+	<br>
+	<br>
+	
+	<div class="input-group ">
+	
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="f_nacimiento_edita" type="text" class="form-control" name="f_nacimiento_edita" placeholder="Fecha nacimiento"  value="<?php echo $fnacimiento;?>" required />
+    </div>
+	<br>
+	
+	
+	
+	<!----<p>Tipo</p>----->
+	
+	<label class="control-label col-sm-4" for="email" align="left" >Contraseña</label>
+	<br>
+	<br>
+	
+	<div class="input-group ">
+	
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="password_edita" type="text" class="form-control" name="password_edita" placeholder="Contraseña"  value="<?php echo $password;?>" required />
+    </div>
+	<br>
+	
+	
+	
+	
+	<label class="control-label col-sm-4" for="email" align="left" >Teléfono:</label>
+	<br>
+	<br>
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	  
+	   <input id="telefono_edita" type="text" class="form-control" name="telefono_edita"  placeholder="telefono" value="<?php echo $telefono;?>"  required />
+	   
+	   
+    </div>
+	<br>
+	
+	
+	
+
+	</div>
+
+	<!--------------BOTON CREAR DOCENTE---------------------------------->
+ 
+<button type="submit" name="update_admin" class="bouton-contact" >GUARDAR CAMBIOS</button> 
+
+
+</form>
+		
+		
+		  
+        </div>
+		
+		
+        
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+<?php
+
+//esta funcion nos ayudara a guardar los cambios de los datos del docente en la base de datos al momento de editarlo
+if(isset($_POST['update_admin']))
+{
+        include('conexion.php');
+		
+		$nombre_docente_edita=$_POST["nombre_docente_edita"];
+		
+        $apellido_edita=$_POST["apellido_edita"];
+		
+        $dni_edita=$_POST["DNI_edita"];
+		
+        $direccion_edita=$_POST["direccion_edita"];
+		
+		$tipo_edita=$_POST["tipo_edita"];
+		
+        $email_edita=$_POST["email_edita"];
+		
+        $fnacimiento_edita=$_POST["f_nacimiento_edita"];
+		
+		$password_edita=$_POST["password_edita"];
+		
+		$telefono_edita=$_POST["telefono_edita"];
+
+		$actualizar="UPDATE docente set nombre='$nombre_docente_edita',apellido='$apellido_edita',dni='$dni_edita',direccion='$direccion_edita',
+		tipo='$tipo_edita',email='$email_edita',fnacimiento='$fnacimiento_edita',password='$password_edita',telefono_docente='$telefono_edita'
+
+		WHERE Cod_docente='$Cod_docente'";
+		
+		
+		$ejecutar_actu_admin=mysqli_query($con,$actualizar);
+
+      }?>
+		
+  
+		
+	
+	  <!---------------------ventana modal editar docente--------------------------------------------->
+	  
+	  
+	  
+	  
+	  
+	  
 	  <center>
-	  <input  type="button"  value="RECARGAR DATOS" name="boton_recargar" onclick="document.location.reload();" align="center">
+	  <BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " >Recargar datos</button>
 	  <!-------boton recargar pagina---------------->
-	  <style>
-	  .boton_recargar
-	  {
 	  
-	  
-	  }
-	  </style>
 	  </center>
 	  <br>
 	  <br>
@@ -460,8 +763,7 @@ if(isset($_POST['update']))
 	  
 	 
 <br><br>
-	<br>
-	<br>
+	
 	
 	<!---------------estilo del menu desplegable---------------------------------------->
 	
@@ -521,146 +823,18 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
 	
 	
 	<!----------Esta zona es el menu desplegable donde se encuentra el editar docente y donde salen  los cursos que él dicta(dentro de ellos saldra su sumilla y la fecha de entrega)------------>
-	
+	<div class="panel panel-default">
+	<div class="panel-heading">Cursos asignados
+	<br>
+	</div>
+	<br>
 	
 	<div class="container demo">
 
     
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <i class="more-less glyphicon glyphicon-plus"></i>
-                        Editar profesor
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              
-				<div class="panel-body">
-				
-				<?php  ?>
-				
-	 <form action=" " method="post" class="CREACION_PENDIENTE">
-	    <h1><center>EDITAR PROFESOR</center></h1>
-
-    <div class="contentform">
-    	<div id="sendmessage"> Has creado correctamente al docente </div>
-    	<div class="leftcontact">
-
-		
-		<div class="form-group">
-			<label class="control-label col-sm-4" for="CODIGO_DOCENTE">Codigo docente:</label>
-			<div class="col-sm-4">
-			<p class="form-control-static"><?php echo $row[0]; ?></p>
-			</div>
-		</div>
-
-			<div class="form-group">
-            <p>Nombres <span>*</span></p>
-            <span class="icon-case"><img src="img/male.png" height="15"><i class="fa fa-user"></i></span>
-				<input type="text" name="nombres_crea" id="nombres_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Prénom' doit être renseigné." value="<?php echo $row[2] ?>" required/>
-                <div class="validation"></div>
-			</div>
-
-			      <div class="form-group">
-			        <p>Apellidos<span>*</span></p>
-			        <span class="icon-case"><img src="img/male.png" height="15"><i class="fa fa-male"></i></span>
-				        <input type="text" name="apellidos_crea" id="apellidos_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Nom' doit être renseigné." value="<?php echo $row[3] ?>" required/>
-                <div class="validation"></div>
-       </div>
-
-
-
-			<div class="form-group">
-			<p>DNI <span>*</span></p>
-			<span class="icon-case"><img src="img/dni.svg" height="18"><i class="fa fa-home"></i></span>
-				<input type="text" name="dni_crea" id="dni_crea" data-rule="maxlen:8" required pattern="[0-9]{8}"  data-msg="Vérifiez votre saisie sur les champs : Le champ 'Société' doit être renseigné." value="<?php echo $row[4] ?>"/>
-                <div class="validation"></div>
-			</div>
-
-			<div class="form-group">
-			<p>Dirección <span>*</span></p>
-			<span class="icon-case"><img src="img/direccion_fisica.png" height="15"><i class="fa fa-location-arrow"></i></span>
-				<input type="text" name="direccion_crea" id="direccion_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Adresse' doit être renseigné." value="<?php echo $row[5] ?>" required />
-                <div class="validation"></div>
-			</div>
-
-			
-			<div class="form-group">
-			<p>Tipo<span>*</span></p>
-			<span class="icon-case"><img src="img/tipo_usuario.png" height="18"><i class="fa fa-phone"></i></span>
-				<select name="tipo_crea" id="tipo_crea"  required />
-				<option value="<?php echo $row[5];?>"><?php echo $row[6];?></option>
-				<option value="docente">docente</option>
-				<option value="admin">admin</option>
-				</select>
-
-                <div class="validation"></div>
-			</div>
-			
-			
-
-			
-			<div class="form-group">
-			<p>E-mail <span>*</span></p>
-			<span class="icon-case"><img src="img/message_icon.png" height="15"><i class="fa fa-envelope-o"></i></span>
-                <input type="email" name="email_crea" id="email_crea" data-rule="email" data-msg="Vérifiez votre saisie sur les champs : Le champ 'E-mail' est obligatoire." value="<?php echo $row[7] ?>" required />
-                <div class="validation"></div>
-			</div>
-
-			
-
-
-	</div>
-
-	<div class="rightcontact">
-			
-			<div class="form-group">
-			<p>Fecha Nacimiento <span>*</span></p>
-			<span class="icon-case"><img src="img/nacimiento.png" height="18"><i class="fa fa-map-marker"></i></span>
-				<input type="text" name="fecha_nacimiento_crea" id="fecha_nacimiento_crea" placeholder="dd-mm-aaaa" required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné." value="<?php echo $row[8] ?>"/>
-                <div class="validation"></div>
-			</div>
-			
-			
-	<div class="form-group">
-			<p>Telefono <span>*</span></p>
-			<span class="icon-case"><img src="img/direccion_fisica.png" height="15"><i class="fa fa-location-arrow"></i></span>
-				<input type="text" name="telefono_crea" id="telefono_crea" data-rule="required" required pattern="[0-9]*" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Adresse' doit être renseigné." value="<?php echo $row[10] ?>" required />
-                <div class="validation"></div>
-			</div>
-			
-			
-			
-			
-			<!----------------------------------------------------PASSWORD---------------------------
-			<div class="form-group">
-			<p>Contraseña <span>*</span></p>
-			<span class="icon-case"><img src="img/contraseña.png" height="15"><i class="fa fa-building-o"></i></span>
-				<input type="text" name="password_crea" id="password_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné." value="<?php echo $row[10] ?>"  required/>
-                <div class="validation"></div>
-			</div>
-			------------------------------------>
-			
-	</div>
-	</div>
-
-
-<button type="submit" name="update" class="bouton-contact">Guardar cambios</button>
-
-
-</form>
-				
-                    
-                
-				<!----------------------FIN DE AREA DOCENTE------------------------------------------->
-				
-				</div>
-            </div>
-        </div>
+        
 		<?php
 		
 		
@@ -688,17 +862,38 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
 				
 				  aqui se podran los detalles del curso
 				  
-				  <p>Fecha limite <span>*</span></p>
-			<span class="icon-case"><img src="" height="15"><i class="fa fa-building-o"></i></span>
-				<input type="text" name="fecha_limite" id="fecha_limite" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné."  />
+				  <!-----<p>Fecha limite <span>*</span></p>
+			<span class="icon-case"><span class="glyphicon glyphicon-calendar"></span></span>
+				<input type="text" name="fecha_limite" id="fecha_limite" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné."  />-------------->
+				<br>
+					
+		
+        <form action="" method="post" class="form-inline" role="form">
+        		<p><label class="control-label col-sm-3" for="fecha limite">Fecha limite:</label></p>
+		<div class="input-group col-sm-4" >
+		<input type="hidden" value="<?echo  $CURSOS['cod_asignatura'] ?>" id="cod_asig" name="cod_asig" >
+		<input type="hidden" value="<?echo  $id_profesor ?>" id="interno_docente1" name="interno_docente1" >
+ <input type="text" id="fecha" value="<?echo  $CURSOS['fecha_limite'] ?>" name="fecha" />
+ </div>
+ <button type="submit" name="fecha_limite_asignación" class="btn btn-success btn-lg" >GUARDAR CAMBIOS</button>
+		</form>
+
+    
+				
+		   
                 <div class="validation"></div>
 				
 				<br>
 				<br>
 				<br>
 			<p>OBSERVACIONES <span>*</span></p>
-			<span class="icon-case"><img src="" height="18"><i class="fa fa-map-marker"></i></span>
-				<textarea type="text" name="observaciones" id="observaciones" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné." /></textarea>
+			<style>
+			.observaciones1{
+			resize:none;
+			}
+			</style>
+			<span class="icon-case"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+				<textarea type="text" CLASS="observaciones1"name="observaciones" id="observaciones" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné." /></textarea>
                 <div class="validation"></div>
 			
 
@@ -716,9 +911,28 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
     
 </div><!-- container -->
 	
-	
+	</div>
+
 		</div>
   
+  <?php
+  if(isset($_POST['fecha_limite_asignación']))
+{
+        
+		include('conexion.php');
+        $cod_asig=$_POST["cod_asig"];
+		//echo $cod_asig;
+		$fecha=$_POST["fecha"];
+		//echo $fecha;
+		$int_docente=$_POST["interno_docente1"];
+        //echo $int_docente;
+		$CONSULTAR_ID_ASIG="update dicta set fecha_limite='$fecha' where interno_docente='$int_docente' and cod_asignatura='$cod_asig'";
+		
+		$execute=mysqli_query($con,$CONSULTAR_ID_ASIG);
+		
+
+      }?>
+	  
 	<br>
 	<br>
 	<br>
@@ -784,7 +998,7 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
             </div>
         </div>
 
-<link type="text/css" href="./css/style_admin_creacion.css" rel="stylesheet" />
+<link type="text/css" href="./css/style_admin_creacion_asignatura.css" rel="stylesheet" />
 
 
 
@@ -808,7 +1022,7 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
     </footer>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

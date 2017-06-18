@@ -51,7 +51,7 @@ if ($nick_form==$nick && $passwd_form==$passwd)#Si los datos son enviados son co
 	if ($tipo2=="docente")
 	{
 	
-	$_SESSION['nombre_docente']=$nick;
+	$_SESSION['nombre_doc']=$nick;
 	$_SESSION['contra_docente']=$passwd;
 ?>
 	
@@ -91,11 +91,11 @@ else{}
 if ($nick_form!=$nick || $passwd_form!=$passwd)#Si los datos son enviados no son correctos, significa que el usuario o  password son c}incorrectos y la pagina se redirige a index.php
 {
 session_destroy();
-$url="Location:index.html";
+$url="Location:index.php";
 header($url);	
 ?>
 	<script language="JavaScript">
-		location.href="index.html";
+		location.href="index.php";
 	</script>
 <?
 }
@@ -103,7 +103,7 @@ if ($nick_form==" " || $passwd_form==" ")#si no se enviaron datos ,la pagina se 
 {
 ?>
 	<script language="JavaScript">
-		location.href="index.html";
+		location.href="index.php";
 	</script>
 <?
 }

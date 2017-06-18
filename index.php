@@ -1,5 +1,11 @@
 
+<?
+session_start();
+$_SESSION["permiso_s"];
+$_SESSION=array();
+session_destroy();
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +18,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 <!--------------titulo de la pagina------------->
-    <title>Universidad Nacional -   JORGE BASADRE GROHMANN</title>
+    <title>Universidad Nacional - JORGE BASADRE GROHMANN</title>
 
 <!----------------Aqui llamamos a la funcion de boostrap que nos ayudara a que nuestr pagina se acomode a un celular,tablet,etc---------->
     <!-- Bootstrap Core CSS -->
@@ -23,7 +29,7 @@
     <!-- Custom CSS -->
     <link href="css/business-casual.css" rel="stylesheet">
 	
-	<link type="text/css" href="./css/style20.css" rel="stylesheet" />
+	<link type="text/css" href="./css/style20_index.css" rel="stylesheet" />
 
 	
 
@@ -56,8 +62,9 @@
 <body>
 <!--------------------TITULO Y SUBTITULO PRINCIPAL  DE LA PAGINA-------------------->
 
-   <div class="brand"><img class="img-rounded" src="img/logo-unjbg.png" alt="UNJBG" width="12%" height="10%" align="left">UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN</div>
-    <div class="address-bar">Sistema de acceso para editar silabus</div>
+   <div class="brand"><img class="img-rounded" src="img/logo-unjbg.png" alt="UNJBG" width="10%" height="10%" align="left">UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN</div>
+    <div class="address-bar">Sistema de acceso para editar sílabos</div>
+	
 
 	<!--------------------PANEL DE NAVEGACION, ZONA DONDE SE ENCUENTRA EL MENU HORIZONTAL BLANCO---------------------------------------->
     <!-- Navigation -->
@@ -72,25 +79,25 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">UNJBG</a>
+                <a class="navbar-brand" href="index.php">UNJBG</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Inicio</a> <!----OPCION DE HOME- MENU HORIZONTAL , CON SU RESPECTIVO LINK , ES DECIR ,A QUE PAGINA SE TRASLADA SI HACES CLIC AHI----->
+                        <a href="index.php">Inicio</a> <!----OPCION DE HOME- MENU HORIZONTAL , CON SU RESPECTIVO LINK , ES DECIR ,A QUE PAGINA SE TRASLADA SI HACES CLIC AHI----->
                     </li>
                     <li>
-                        <a href="about.html">Noticias</a> <!-------------------->
+                        <a href="about.php">Noticias</a> <!-------------------->
                     </li>
                     <li>
-                        <a href="blog.html">Blog</a>  <!-------------------->
+                        <a href="blog.php">Blog</a>  <!-------------------->
                     </li>
                     <li>
-                        <a href="contact.html">Contactanos</a> <!-------------------->
+                        <a href="contact.php">Contáctanos</a> <!-------------------->
                     </li>
 					<li>
-                        <a href="silabos.html">Silabos</a> <!-------------------->
+                        <a href="silabos.php">Sílabos</a> <!-------------------->
                     </li>
                 </ul>
             </div>
@@ -106,7 +113,7 @@
 
         <div class="row">
             <div class="box">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="row">
                     <div class="col-lg-12 text-center" style="height: 370px;">
                         <div id="carousel-example-generic" class="carousel slide">
@@ -142,7 +149,7 @@
                 </div> 
             </div>  
  
-            <div class="col-md-4">                    
+            <div class="col-md-5">                    
                 <div class="wrapper123">
 
                     <form action="login.php" method="post" class="login" onsubmit="return validar()">
@@ -169,10 +176,13 @@
                     <h1 class="brand-name"> <center> UNJBG</center></h1>
                     <hr class="tagline-divider">
                     <h2>
+					<h6><center>Esta página fue creada por los estudiantes de la escuela de ESIS</center></h6>
             <small>
                 <strong></strong>
             </small>
         </h2>
+		
+
     </div>
 
              </div>
@@ -181,25 +191,7 @@
 
     </div> 
 
-				
-
-
 	
-
-	
-	
-
-	<div class="wrapper1234">
-    	Esta página fue creada por los estudiantes de Esis
-	</div>
-
-
-
-
-
-
-
-
     </div>
     <!-- /.container -->
 

@@ -92,7 +92,7 @@ body {
  
  <!--------------título de la pagina------------------->
  
-    <div class="brand">UNJBG</div>
+    <div class="brand"><img src="img/logounjbg.png" width="200" height="200">UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN</div>
     <div class="address-bar">Sistema de acceso para editar silabus</div>
 
 	
@@ -191,112 +191,6 @@ $nombre_admin=$_SESSION['nombre_docente'];
                 <div class="col-lg-12 text-center">
 
 
-<div class="wrapper123">
-
-		<br>
-		<br>
-		
-		
-		
-		
-		<div class="contenedor-menu">
-		
-		
-		
-
- 
- 
-
-
-<style type="text/css">   
-a:link   
-{   
- text-decoration:none;   
-}   
-</style>
-
-
-
-		<li class="btn-menu">Administración<i class="icono fa fa-bars"></i></li>
-		<ul class="menu">
-		
-			<li><a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
-			
-			
-			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
-				<ul>
-		<?php
-		
-		
-		
-		$ID_DOC = $_GET['nombre_doc'];
-
-include('conexion.php');
-
-$extraer_interno_docente="select interno_docente from docente  where Cod_docente='$ID_DOC'";
-		$EJECUCION_ID=mysqli_query($con,$extraer_interno_docente);
-		$interno_docente1= mysqli_fetch_array($EJECUCION_ID);
-		
-		$interno_docente=$interno_docente1['interno_docente'];
-		
-		//En esta zona haremos que se creen tantos submenus como cursos tenga el docente seleecionado, por ejemplo si el docnete tiene 6 cursos asignados , aparecen 6 submenus con los nombre de los cursos, de maner dinamica.
-		
-		$CONSULTAR_CURSOS="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.interno_docente='$interno_docente'";
-		$EJECUCION_CURSOS=mysqli_query($con,$CONSULTAR_CURSOS);
-		
-		$i=0;
-		while($CURSOS = mysqli_fetch_array($EJECUCION_CURSOS))
-		{
-		
-			$nombre=$CURSOS['nomb_asignatura'];
-			$id_asignatura=$CURSOS['cod_asignatura'];
-			
-			
-			$fecha=$CURSOS['fecha_dicta'];
-			 $parte = explode("-", $fecha);
-			//echo $parte[0];//año asignado //
-			$fecha_sistema=getdate();
-			//echo $fecha_sistema['year'];
-			
-			 
-			 
-			
-			$i++;
-			if($fecha_sistema['year']==$parte[0])
-			{
-			?>
-	  
-	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
-	  
-		
-		
-        <li><a href="silabo_crear.php?nombre_asig=<?php echo $id_asignatura ?>"><img src="img/flecha.png" width="30" height="30" name="flecha"><?php echo $nombre; ?></a></li>
-	
-		<?php }} ?>
-		
-				
-     
-	  <style>
-	  
-	  .flecha
-	  {
-	  margin-right:10px;
-	  margin-left:15px;
-	  }
-	  
-	  </style>
-
- 
- 		
-					
-					
-				</ul>
-			</li>
-			
-		</ul>
-	</div>
-
-
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -305,144 +199,228 @@ $extraer_interno_docente="select interno_docente from docente  where Cod_docente
 
 
 
-<br>
 
-
-		
-		
-		<br>
-		
- 
-	  
-	  
-<!-----------------------FIN DE NOMBRE DE PROFESORES------------------->
-
-
-<style>
-/*
-#menu ul {
-    list-style-type: none;
-    margin: 0px;
-    padding: 3px;
-    width: 200px;
-    font-family: Arial, sans-serif;
-    font-size: 12pt;
-}
-
-
-#menu ul li {
-    background-color: #fff;
-}
-
-#menu ul li a {
-    color: #000;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: block;
-    padding: 10px 10px 10px 20px;
-	font-size: 8pt;
-}
-
-
-
-
-#menu ul li a:hover {
-    background: #C70039;
-    border-left: 10px solid #333;
-    color: #fff;
-}
-
-*/
-</style>
-
-
-	</div>
-
-
-
-<div class="wrapper1234">
-
-<!-------LINK CERRAR SESION, LLAMA AL ARCHIVO LOGOUT.PHP QUE DESTRUIRA LA SESION Y POR ENDE SE REDIRIGIRA A INDEX---------------------->
-
-<div class="pull-right">
-<a href="logout.php" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-off"></span> Cerrar sesión</a>
-</div>
-
-
-<br>
-<br>
 <br>
 
 <!----------------------EN ESTA PARTE MUESTRO LOS DATOS DEL ADMINISTRADOR QUE ES EXTRAIDO DE LA BASE DE DATOS ---------------------------->
 
 
-<div class="contenedor_presenta">
-<img src="img/profesor.jpg" width="200" height="200" align="RIGHT"><!-----IMAGEN DEL PROFESOR---------------->
+<style>
+body{font: 14px "Open Sans", serif; background-color: #fdfdfd; float: left; height: 100%; position: relative; width: 100%;}
+
+*{margin: 0; padding: 0; box-sizing: border-box;}
+a{text-decoration: none;}
+li{list-style: none;}
+h2{font-size: 24px; font-weight: 600; margin-bottom: 20px;}
+
+.container{margin: 0 auto; max-width: 900px;}
+
+.row{float: left; width: 100%;}
+/* accordion css */
+.accordions{padding: 20px 0;}
+.accordions li{padding: 6px 0 6px 22px;}
+.accordion-Heading {font-size: 18px; text-transform: uppercase; color: #333; position: relative; padding: 0 10px; font-weight: 600; cursor: pointer;}
+.accordion-Heading span{position: absolute; width: 22px; text-align: center; height: 22px; border: 1px solid #333; border-radius: 50%; left: -22px; top: 1px;}
+.accordion-Heading i.acc-minus{background-color: #333; height: 3px; transition: 0.3s; left: 5px; margin-top: 8px; position: absolute; vertical-align: top; width: 11px;}
+.accordion-Heading i.acc-minus.close{transition: 0.3s; margin-top: 5px; top: 3px; z-index: -1; transform: rotate(90deg); -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg);}
+.acc-description{display: none; padding: 0 10px;}
+.acc-description p{font-size: 13px; line-height: 22px; margin-top: 15px;}
+.acc-description p:first-child{margin-top: 0;}
+/* accordion css */
+
+</style>
 
 
-
-<?php
-      $consulta ="SELECT * FROM docente where Cod_docente='$nombre_docente_verificado' ";
-      $ejecutar= mysqli_query($con,$consulta);
-	  
-	  $ejecutar2= mysqli_query($con,$consulta);
-	  
-	  
-      $i=0;
-      while($fila = mysqli_fetch_array($ejecutar))
-      {
-		 $Cod_docente=$fila['Cod_docente'];
-		 $nombre=$fila['nombre'];
-		 $apellido=$fila['apellido'];
-		 $dni=$fila['dni'];
-		 $direccion=$fila['direccion'];
-		 $tipo=$fila['tipo'];
-		 $email=$fila['email'];
-		 $fnacimiento=$fila['fnacimiento'];
-		 $telefono=$fila['telefono_docente'];
-		 $password=$fila['password'];
-		 
-		
-        $i++;
-
-      ?>
+<div class="container">    
+    <ul class="accordions on-clicks row">
+    	<h2>SEMESTRE ACADEMICO</h2>
+		<select name="tipo" id="tipo">
+    <option>2017-I</option>
+    <option>2017-II</option>
+</select>
+<BR>
+<BR>
+    	<li>
+        	<h3 class="accordion-Heading" href="javascript: void(0);"><span><i class="acc-minus close"></i><i class="acc-minus"></i></span>I. DATOS GENERALES</h3>
+			
+            <div class="acc-description">
+            	<div class="form-group">
+      <label for="facultad">1.1 Facultad:</label>
+      <input type="text" class="form-control" id="facultad" name="facultad">
+    </div>
 	
-	<TABLE cellpadding=5 >
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CÓDIGO DOCENTE :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Cod_docente; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOMBRE         :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo  $nombre; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APELLIDO       :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $apellido; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI            :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $dni; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIRECCIÓN      :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo  $direccion; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TIPO           :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $tipo; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-MAIL         :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $email; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FECHA NAC.     :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $fnacimiento; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TELÉFONO       :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $telefono; ?></TD> </TR>
-	</TABLE>
+	   <div class="form-group">
+      <label for="escuela">1.2 Escuela:</label>
+      <input type="text" class="form-control" id="escuela" name="escuela">
+    </div>
 	
-     
-	  
-      <br>  
-	  
+	   <div class="form-group">
+      <label for="asig">1.3 Asignatura:</label>
+      <input type="text" class="form-control" id="asig" name="asig">
+    </div>
+	
+	   <div class="form-group">
+      <label for="codigo">1.4 Codigo:</label>
+      <input type="text" class="form-control" id="codigo" name="codigo">
+    </div>
+	
+	   <div class="form-group">
+      <label for="pre_re">1.5 Pre-requisito:</label>
+      <input type="text" class="form-control" id="pre_re" name="pre_re">
+    </div>
+	
+	   <div class="form-group">
+      <label for="c_acad">1.6 Ciclo academico:</label>
+      <input type="text" class="form-control" id="c_acad" name="c_acad">
+    </div>
+	
+	   <div class="form-group">
+      <label for="s_acad">1.7 Semetre Academico:</label>
+      <input type="text" class="form-control" id="s_acad" name="s_acad">
+    </div>
+	
+	   <div class="form-group">
+      <label>1.8 Horas semanales : 
+            <ul>
+              <li>Teoria:</li>
+              <li>Practica:</li>
+              <li>Laboratorio:</li>
+            </ul> 
+        </label>
+       </div>
+	
+	   <div class="form-group">
+      <label for="creditos">1.9 Créditos</label>
+      <input type="text" class="form-control" id="creditos" name="creditos">
+    </div>
+	
+	   <div class="form-group">
+      <label for="t_asig">1.10 Tipo de asignatura:</label>
+      <input type="text" class="form-control" id="t_asig" name="t_asig">
+    </div>
+	
+	   <div class="form-group">
+      <label for="docente">1.11 Docente:</label>
+      <input type="text" class="form-control" id="docente" name="docente">
+    </div>
+	
+	    <div class="form-group">
+    <label for="email">1.12 Email :</label>
+    <input type="email" class="form-control" id="email">
+  </div>
+            </div>
+        </li>
+        <li>
+        	<h3 class="accordion-Heading" href="javascript: void(0);"><span><i class="acc-minus close"></i><i class="acc-minus"></i></span>II. SUMILLA</h3>
+            <div class="acc-description">
+  <div class="form-group">
+      <textarea id="Field4" name="Field4" spellcheck="true" rows="10" cols="50" tabindex="4" class="form-control"></textarea>
+    </div>
+            </div>
+        </li>
+        <li>
+        	<h3 class="accordion-Heading" href="javascript: void(0);"><span><i class="acc-minus close"></i><i class="acc-minus"></i></span>III. COMPETENCIAS DE LA ASIGNATURA</h3>
+            <div class="acc-description">
+            	<div class="form-group">
+		<label for="compe">3.1 COMPETENCIA :</label>
+		<input type="text" class="form-control" id="compe">
+        
+    </div >
+    
+     <div>
+        <label>3.2 Evidencia: </label>
+        <select name="tipo" id="">
+            <option>Prueba de entrada</option>
+            <option>Examenes escritos</option>
+            <option>Informes de Laboratorio</option>
+            <option value="">Evaluacion de proyecto</option>
+            <option value="">otro...</option>
+        </select>
+    </div>
+            </div>
+        </li>
+        <li>
+        	<h3 class="accordion-Heading" href="javascript: void(0);"><span><i class="acc-minus close"></i><i class="acc-minus"></i></span>IV. UNIDADES DIDACTICAS</h3>
+            <div class="acc-description">
+            <div>
+        <label>Numero de Unidades: <input type="" id="credi" name="credi" /></label>
+    </div>
 
-      <?php } ?>
-	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar_admin">EDITAR DATOS</button>
-	  <BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " >Recargar datos</button>
-	  
-	  
-	  <BR>
-	  <!------------------------------------FIN DE MOSTRAR DATOS DEL DOCENTE ADMINISTRADOR------------------------------------------------>
-	  
-	 
+            </div>
+        </li>
+      
+    </ul>
+    
+  
 </div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+	
+	var clk = 0;
+	
+	/* on click accordion jquery */
+	$(".on-clicks .accordion-Heading").click(function(){
+		if(clk == 0){
+			$(".on-clicks .acc-description").slideUp(300);
+			$(this).next(".acc-description").slideDown(300);
+			$(this).children("span").children(".acc-minus").eq(0).removeClass("close");
+			$(this).addClass("active");
+			clk++;
+		}
+		else{
+			if($(this).hasClass("active")){
+				$(this).next(".acc-description").slideUp(300);
+				$(this).children("span").children(".acc-minus").eq(0).addClass("close");
+				$(this).removeClass("active");
+				clk--;
+			} else {
+				$(".on-clicks .acc-description").slideUp(300);
+				$(".on-clicks .accordion-Heading.active").children("span").children(".acc-minus").eq(0).addClass("close");
+				$(".on-clicks .accordion-Heading ").removeClass("active");
+				$(this).next(".acc-description").slideDown(300);
+				$(this).children("span").children(".acc-minus").eq(0).removeClass("close");
+				$(this).addClass("active");
+				clk++;
+			}
+		}
+	});
+	/* on click accordion jquery end */
+	
+	/* on mouseover accordion jquery */
+	$(".on-mouseover .accordion-Heading").mouseover(function(){
+		if(clk == 0){
+			$(".on-mouseover .acc-description").slideUp(300);
+			$(this).next(".acc-description").slideDown(300);
+			$(this).children("span").children(".acc-minus").eq(0).removeClass("close");
+			$(this).addClass("active");
+			clk++;
+		}
+		else{
+			if($(this).hasClass("active")){
+				$(this).next(".acc-description").slideUp(300);
+				$(this).children("span").children(".acc-minus").eq(0).addClass("close");
+				$(this).removeClass("active");
+				clk--;
+			} else {
+				$(".on-mouseover .acc-description").slideUp(300);
+				$(".on-mouseover .accordion-Heading.active").children("span").children(".acc-minus").eq(0).addClass("close");
+				$(".on-mouseover .accordion-Heading ").removeClass("active");
+				$(this).next(".acc-description").slideDown(300);
+				$(this).children("span").children(".acc-minus").eq(0).removeClass("close");
+				$(this).addClass("active");
+				clk++;
+			}
+		}
+	});
+	/* on mouseover accordion jquery end */
+});
+</script>
+
+
+
+<!-----menu de cursos--------------------->
 
 <div class="container demo">
 <style>
@@ -552,7 +530,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
     	<div id="sendmessage"> Has creado correctamente al docente </div>
 		
 		<div class="form-group">
-      <label class="control-label col-sm-4" for="CODIGO_DOCENTE">Código docente:</label>
+      <label class="control-label col-sm-4" for="CODIGO_DOCENTE">Codigo docente:</label>
       <div class="col-sm-4">
         <p class="form-control-static"><?php echo $Cod_docente; ?></p>
       </div>
@@ -571,7 +549,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 	
 	<br>
 	
-	<label class="control-label col-sm-4" for="email" align="left" >Apellidos:</label>
+	<label class="control-label col-sm-4" for="email" align="left" >Apellido:</label>
 	<br>
 	<br>
 	
@@ -614,7 +592,6 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 	  <select name="tipo_edita" id="tipo_edita" class="form-control" required />
 				
 				<option value="<?php echo $tipo;?>"><?php echo $tipo;?></option>
-				
 				<option value="docente">docente</option>
 				<option value="admin">admin</option>
 				</select>
@@ -631,7 +608,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
     </div>
 	<br>
 	
-	
+	<br>
 	<!----<p>Tipo</p>----->
 	
 	<label class="control-label col-sm-4" for="email" align="left" >Fecha nacimiento:</label>
@@ -647,7 +624,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 	
 	
 	
-	
+	<br>
 	<!----<p>Tipo</p>----->
 	
 	<label class="control-label col-sm-4" for="email" align="left" >Contraseña</label>
@@ -661,11 +638,11 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
     </div>
 	<br>
 	
+	<br>
 	
 	
 	
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Teléfono:</label>
+	<label class="control-label col-sm-4" for="email" align="left" >Telefono:</label>
 	<br>
 	<br>
 	<div class="input-group ">
@@ -694,7 +671,9 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
         </div>
 		
 		
-        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
       
     </div>
@@ -815,7 +794,7 @@ if(isset($_POST['update_admin']))
             </div>
         </div>
 
-<link type="text/css" href="./css/style_admin_creacion_asignatura.css" rel="stylesheet" />
+<link type="text/css" href="./css/style_admin_creacion.css" rel="stylesheet" />
 
 
 
