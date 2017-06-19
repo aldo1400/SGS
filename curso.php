@@ -6,7 +6,7 @@ EN ESTE ARCHIVO SE MOSTRARA  LOS DATOS DE LOS CURSOS Y LA OPCION DE AGREGAR DOCE
 
 
 
-<!-------------ESTE ES UN METODO DE SEGURIDAD, YO HE CREADO EN LOGIN.PHP dos variables de sesion, es decir variables que estaran presentes en todos los archivos, las podemos llamar y utilizar su valor, si estas variables estan vacias significa que no se logeo correctamnete el docente o admin, por lo tanto se redirigire a index.html----------------->
+<!-------------ESTE ES UN METODO DE SEGURIDAD, YO HE CREADO EN LOGIN.PHP dos variables de sesion, es decir variables que estaran presentes en todos los archivos, las podemos llamar y utilizar su valor, si estas variables estan vacias significa que no se logeo correctamnete el docente o admin, por lo tanto se redirigire a index.html---------------->
 
 
 <?php
@@ -292,7 +292,7 @@ a:link
 
       ?>
 	  
-	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
+	  <!-------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE-->
 	  
       <?php
 		
@@ -349,27 +349,27 @@ a:link
 		
 		
 
-<!--------------------MENU MI PERFIL, ASIGNATURAS---------------------------------------->
+<!--------------------MENU MI PERFIL, ASIGNATURAS------------------------>
 
 	
 	
-<!--------------------FIN DE MENU MI PERFIL, ASIGNATURAS---------------------------------------->
+<!--------------------FIN DE MENU MI PERFIL, ASIGNATURAS-------------------->
 	
 	<br>
 	<br>
 	
-<!------------------------------MENU LATERAL DOCENTES, crear docente  ------------------------------------------------->
+<!------------------------------MENU LATERAL DOCENTES, crear docente  ------------------------------------------------>
 
 	
 	
-<!------------------------------FIN DE MENU LATERAL DOCENTES,crear docente  ------------------------------------------------->
+<!------------------------------FIN DE MENU LATERAL DOCENTES,crear docente  ------------------------------------------------>
 
 
-<!---------funcion para mostrar la lista de  los docentes actualizados ----------------------------------------->
+<!---------funcion para mostrar la lista de  los docentes actualizados ---------------------------------------->
 
     
 
-<!--------- fin de funcion para mostrar la lista de  los docentes actualizados ----------------------------------------->  
+<!-------- fin de funcion para mostrar la lista de  los docentes actualizados ---------------------------------------->  
 
 <style>
 /*
@@ -517,7 +517,7 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	   $i++;
 
       ?>
-	  <!---------SE MUESTRAN DATOS DEL CURSO------------>
+	  <!--------SE MUESTRAN DATOS DEL CURSO------------>
 	  
 	  <div class="pull-right">
 		<a href="javascript:window.history.go(0);" class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-refresh"></span> Actualizar información</a>
@@ -553,7 +553,7 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	  echo $fila4['nombre']; 
 	  
 	  ?>
-	  <!------<button type="button" class="btn btn-lg btn-danger"  >X</button>-------------->
+	  <!------<button type="button" class="btn btn-lg btn-danger"  >X</button>------------>
 	  
 	  
 	  <!---------
@@ -562,7 +562,7 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 			<a class="delete" id="delete<?php echo $fila4['interno_docente'] ?>" >Eliminar Curso</a>
 			
 		</div>
-	  ------------------>
+	  -------------->
 	
 
 	  <?php
@@ -599,15 +599,12 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	
 	<!--------------->
 	
-	
-	
-
 
 	
 	
 	
 	
-<!--------------INICIO DE VENTANA MODAL EDITAR CURSO--------------------------------->
+<!----------INICIO DE VENTANA MODAL EDITAR CURSO---------------------->
 <?php
 	include('conexion.php');//CADENA DE CONEXION
 
@@ -660,7 +657,7 @@ include('conexion.php');//CADENA DE CONEXION
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">  ASIGNATURA</h4>
-		 <!-------- <h1><center>CREAR ASIGNATURA</center></h1>------------->
+		 <!-------- <h1><center>CREAR ASIGNATURA</center></h1>-------->
         </div>
 		
         <div class="modal-body" style="color:#000;"  >
@@ -827,17 +824,17 @@ include('conexion.php');//CADENA DE CONEXION
 	
 	
 	
-	<!----<p>Tipo</p>----->
+	<!----<p>Tipo</p>---->
 	
 	
 	
 	
 	
 
-<!---------------INICIO ZONA DERECHA------------------------->
+<!---------------INICIO ZONA DERECHA------------------------>
 	</div>
 
-	<!--------------BOTON CREAR DOCENTE---------------------------------->
+	<!--------------BOTON CREAR DOCENTE-------------------------------->
  
 <button type="submit" name="update_curso" class="bouton-contact" >GUARDAR CAMBIOS</button> 
 
@@ -919,7 +916,7 @@ include('conexion.php');//CADENA DE CONEXION
 
 
 
-<!--------------FIN DE VENTANA MODAL EDITAR CURSO--------------------------------->
+<!---FIN DE VENTANA MODAL EDITAR CURSO------>
 
 
 	

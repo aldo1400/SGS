@@ -203,7 +203,7 @@ a:link
 			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
 			
 			
-			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Asignación de curso</a></li>
+			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Plan de estudios</a></li>
 			
 			
 			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Crear docente</a></li>
@@ -459,12 +459,10 @@ if($link_valor=='I')//si selecciono primer semestre
                           <tr>  
                                
 							   
-							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
+							   <td width="60%"><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
-
-						 
+								<td width="20%" ><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_editar">editar</button></td>
                           </tr>  
                           <?php  
 										
@@ -493,10 +491,10 @@ if($link_valor=='I')//si selecciono primer semestre
                           <tr>  
                                
 							   
-							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
+							   <td width="60%"><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_editar">editar</button></td>
 
 						 
                           </tr>  
@@ -526,10 +524,11 @@ if($link_valor=='I')//si selecciono primer semestre
                           <tr>  
                                
 							   
-							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
+							   <td width="60%"><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn"><?php echo $fila["nomb_asignatura"]; ?></td> 
+
+								<td width="20%" ><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_editar">editar</button></td>
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
 
 						 
                           </tr>  
@@ -562,10 +561,10 @@ if($link_valor=='I')//si selecciono primer semestre
                           <tr>  
                                
 							   
-							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
+							   <td width="60%"><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_editar">editar</button></td>
 
 						 
                           </tr>  
@@ -573,7 +572,6 @@ if($link_valor=='I')//si selecciono primer semestre
 						  
 								
 							}
-									
 									
 									
 								else
@@ -601,10 +599,10 @@ if($link_valor=='I')//si selecciono primer semestre
                           <tr>  
                                
 							   
-							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
+							   <td width="60%"><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_editar">editar</button></td>
 
 						 
                           </tr>  
@@ -635,7 +633,7 @@ if($link_valor=='I')//si selecciono primer semestre
       
       ?>
 	  
-	  <!-------------MUESTRO EN PANTALLA LOS CURSOS DEL PRIMER SEMESTRE COMO LINKS--------------------------->
+	  <!-------------MUESTRO EN PANTALLA LOS CURSOS DEL PRIMER SEMESTRE COMO LINKS-------------------------->
 	  
 
 
@@ -700,10 +698,10 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
                           <tr>  
                                
 							   
-							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
+							   <td width="60%"><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_editar">editar</button></td>
 
 						 
                           </tr>  
@@ -734,10 +732,10 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
                           <tr>  
                                
 							   
-							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
+							   <td width="60%"><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_editar">editar</button></td>
 
 						 
                           </tr>  
@@ -767,10 +765,10 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
                           <tr>  
                                
 							   
-							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
+							   <td width="60%"><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_editar">editar</button></td>
 
 						 
                           </tr>  
@@ -803,10 +801,10 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
                           <tr>  
                                
 							   
-							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
+							   <td width="60%"><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_editar">editar</button></td>
 
 						 
                           </tr>  
@@ -842,10 +840,10 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
                           <tr>  
                                
 							   
-							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
+							   <td width="60%"><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_editar">editar</button></td>
 
 						 
                           </tr>  
@@ -877,7 +875,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
       
       ?>
 	  
-	  <!-------------MUESTRO EN PANTALLA LOS CURSOS DEL PRIMER SEMESTRE COMO LINKS--------------------------->
+	  <!-------------MUESTRO EN PANTALLA LOS CURSOS DEL PRIMER SEMESTRE COMO LINKS------------------------>
 	  
 
 
@@ -923,7 +921,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">CREACIÓN DE ASIGNATURA</h4>
-		 <!-------- <h1><center>CREAR ASIGNATURA</center></h1>------------->
+		 <!-------- <h1><center>CREAR ASIGNATURA</center></h1>------------>
         </div>
 		
         <div class="modal-body" style="color:#000;"  >
@@ -950,7 +948,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 	</style>
 	<div class="contentform">
 	
-<!------------el formulario esta dividido en dos zonas, la primera zona que vamos a ver es la izquierda----------------------------->
+<!------------el formulario esta dividido en dos zonas, la primera zona que vamos a ver es la izquierda---------------------------->
 		<br>
 	<label class="control-label col-sm-8" for="email" align="left"> Nombre asignatura:</label>
 	
@@ -1123,10 +1121,10 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 				</select>
     </div>
 	<br>
-	------------->
+	------------>
 	
 	
-	<!----<p>Tipo</p>----->
+	<!----<p>Tipo</p>---->
 	
 	
 	
@@ -1149,6 +1147,15 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
   
   <textarea class="form-control" rows="10" id="sumilla_crea"></textarea>
 </div>
+
+
+
+
+
+
+
+
+
 
 <!---------------INICIO ZONA DERECHA------------------------->
 	</div>
@@ -1239,8 +1246,320 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 				
 
 
-<!------Fin del combobox, donde el docente selecciona el semestre academico, donde esta la asignatura que necesita----------->
+<!------Fin del combobox, donde el docente selecciona el semestre academico, donde esta la asignatura que necesita---------->
+<!----------INICIO DE VENTANA MODAL EDITAR CURSO---------------------->
+<?php
+	include('conexion.php');//CADENA DE CONEXION
 
+      if(isset($_POST['ELIMINAR_curso']))
+	  {
+        
+        
+		$eliminar_asig="DELETE from asignatura
+
+		WHERE cod_asignatura='$v1'";
+		
+		$ejecutar_eliminar=mysqli_query($con,$eliminar_asig);
+		
+        if($ejecutar_eliminar)
+		
+		{
+          echo "fallo";
+        }
+      }
+     ?>
+	 
+
+<?
+
+
+include('conexion.php');//CADENA DE CONEXION
+
+      
+		$buscar_asig="select * from asignatura  where cod_asignatura='$v1'";
+        $ejecutar_buscar = mysqli_query($con,$buscar_asig);
+        $array_curso=mysqli_fetch_array($ejecutar_buscar);
+	  
+
+?>
+
+<div class="container">
+  
+  <!-- Trigger the modal with a button -->
+  
+
+  <!-- Modal -->
+  
+  <div class="modal fade" id="myModal_editar" role="dialog" style="color:#000;">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+	  
+	  
+      <div class="modal-content" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">  ASIGNATURA</h4>
+		 <!-------- <h1><center>CREAR ASIGNATURA</center></h1>-------->
+        </div>
+		
+        <div class="modal-body" style="color:#000;"  >
+		
+		<form action="#" method="post" class="CREACION_PENDIENTE"  >
+	   
+    <div class="contentform">
+    	<div id="sendmessage"> Has creado correctamente al docente </div>
+	<label class="control-label col-sm-8" for="email" align="left"> Nombre asignatura:</label>
+	
+	<br>
+	<br>
+	
+<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="nomb_asignatura_crea" type="text" class="form-control" name="nomb_asignatura_crea" placeholder="Nombre Curso" value="<?php echo $array_curso[0];?>"  required >
+	  
+    </div>
+	
+	<br>
+	
+	
+	
+	<label class="control-label col-sm-6" for="email" align="left" >Código asignatura:</label>
+	<br>
+	<br>
+	
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="cod_asignatura_crea" type="text" class="form-control" name="cod_asignatura_crea" placeholder="codigo asignatura" value="<?php echo $array_curso[5];?>" required>
+    </div>
+	<br>
+	
+	
+	
+	
+	<label class="control-label col-sm-4" for="email" align="left" >Semestre:</label>
+	<br>
+	<br>
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	  
+	   <select name="semestre_academico_crea" id="semestre_academico_crea" class="form-control" required >
+				
+				<option value="<?php echo $array_curso[4];?>"><?php echo $array_curso[4];?></option>
+				<option value="I">I</option>
+				<option value="II">II</option>
+				</select>
+    </div>
+	
+	<br>
+	
+	<label class="control-label col-sm-4" for="email" align="left" >Facultad:</label>
+	<br>
+	<br>
+	
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	  
+	  <select name="facultad_crea" id="facultad_crea" class="form-control" required >
+				
+				<option value="<?php echo $array_curso[7];?>"><?php echo $array_curso[7];?></option>
+				<option value="FAIN">FAIN</option>
+				<option value="FACI">FACI</option>
+				<option value="FCJE">FCJE</option>
+				<option value="FCAG">FCAG</option>
+				<option value="FACS">FACS</option>
+				<option value="FECH">FECH</option>
+				<option value="FIAG">FIAG</option>
+				
+				</select>
+			
+    </div>
+	<br>
+	
+	
+	<label class="control-label col-sm-4" for="email" align="left">Escuela :</label>
+	<br>
+	<br>
+	
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="escuela_crea" type="text" class="form-control" name="escuela_crea" placeholder="Escuela" value="<?php echo $array_curso[10];?>" required>
+    </div>
+	<br>
+	
+	
+	
+	
+	<label class="control-label col-sm-5" for="email" align="left" >Ciclo académico:</label>
+	<br>
+	<br>
+	
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="ciclo_academico_crea" type="text" class="form-control" name="ciclo_academico_crea" placeholder="Ciclo academico" value="<?php echo $array_curso[6];?>" required>
+    </div>
+	<br>
+	
+	
+	
+	<label class="control-label col-sm-4" for="email" align="left" >Pre requisito:</label>
+	<br>
+	<br>
+	
+	<div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="pre_requisito_crea" type="text" class="form-control" name="pre_requisito_crea" placeholder="Pre requisito" value="<?php echo $array_curso[2];?>"  required>
+    </div>
+	<br>
+	
+	
+	<label class="control-label col-sm-3" for="email" align="left" >Número de créditos:</label>
+	
+	<div class="col-sm-3" >
+	
+	
+	<div class="input-group ">
+      
+      <input id="nro_creditos_crea" type="text" class="form-control" name="nro_creditos_crea" required pattern="[0-9]" placeholder="# creditos" value="<?php echo $array_curso[3];?>"  required>
+    </div>
+	</div>
+	
+	
+	
+	<label class="control-label col-sm-3" for="email" align="left" >Horas teoría:</label>
+	
+	<div class="col-sm-3" >
+	
+	<div class="input-group ">
+	
+      
+      <input id="horas_teoria_crea" type="text" class="form-control" name="horas_teoria_crea" placeholder="Horas teoria"  value="<?php echo $array_curso[8];?>" required>
+    </div>
+	</div>
+	<br>
+	<br>
+	<br>
+	
+	
+	<label class="control-label col-sm-3" for="email" align="left" >Horas práctica:</label>
+	
+	<div class="col-sm-3" >
+	
+	<div class="input-group ">
+      
+      <input id="horas_practica_crea" type="text" class="form-control" name="horas_practica_crea" required pattern="[0-9]"  data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné."  placeholder="Horas practica" value="<?php echo $array_curso[1];?>" required>
+    </div>
+	
+	</div>
+	
+	
+	
+	<label class="control-label col-sm-3" for="email" align="left" >Horas laboratorio:</label>
+	
+	<div class="col-sm-3" >
+	
+	<div class="input-group ">
+      
+      <input id="horas_laboratorio_crea" type="text" class="form-control" name="horas_laboratorio_crea"  value="<?php echo $array_curso[9];?>" required>
+    </div>
+	
+	</div>
+	
+	
+	
+	<!----<p>Tipo</p>---->
+	
+	
+	
+	
+	
+
+<!---------------INICIO ZONA DERECHA------------------------>
+	</div>
+
+	<!--------------BOTON CREAR DOCENTE-------------------------------->
+ 
+<button type="submit" name="update_curso" class="bouton-contact" >GUARDAR CAMBIOS</button> 
+
+
+</form>
+
+<?php
+	include('conexion.php');//CADENA DE CONEXION
+
+      if(isset($_POST['update_curso']))
+	  {
+        $nomb_asignatura_edita=$_POST["nomb_asignatura_crea"];
+		//echo $nomb_asignatura;
+        $horas_practica_edita=$_POST["horas_practica_crea"];
+		//echo $horas_practica;
+        $pre_requisito_edita=$_POST["pre_requisito_crea"];
+		//echo $pre_requisito;
+        $nro_creditos_edita=$_POST["nro_creditos_crea"];
+		//echo $nro_creditos;
+        $semestre_academico_edita=$_POST["semestre_academico_crea"];
+		//echo $semestre_academico;
+        $cod_asignatura_edita=$_POST["cod_asignatura_crea"];
+		//echo $cod_asignatura;
+        $ciclo_academico_edita=$_POST["ciclo_academico_crea"];
+		//echo $ciclo_academico;
+        $facultad_edita=$_POST["facultad_crea"];
+		//echo $facultad;
+        $horas_teoria_edita=$_POST["horas_teoria_crea"];
+		//echo $horas_teoria;
+		$escuela_edita=$_POST["escuela_crea"];
+		//echo $escuela_edita;
+		$horas_laboratorio_edita=$_POST["horas_laboratorio_crea"];
+		//echo $horas_laboratorio_edita;
+		
+		$actualizar_asig="UPDATE asignatura set 
+		nomb_asignatura='$nomb_asignatura_edita',
+		horas_practica='$horas_practica_edita',
+		pre_requisito='$pre_requisito_edita',
+		nro_creditos='$nro_creditos_edita',
+		semestre_academico='$semestre_academico_edita',
+		cod_asignatura='$cod_asignatura_edita',
+		ciclo_academico='$ciclo_academico_edita',
+		facultad='$facultad_edita',
+		horas_teoria='$horas_teoria_edita',
+		escuela='$escuela_edita',
+		horas_laboratorio='$horas_laboratorio_edita'
+
+		WHERE cod_asignatura='$cod_asignatura_edita'";
+		
+		
+		$ejecutar_actualizar=mysqli_query($con,$actualizar_asig);
+		
+        if($ejecutar_actualizar)
+		
+		{
+          
+        }
+      }
+     ?>
+
+		
+		
+		
+		
+        </div>
+        <div class="modal-footer">
+          
+		  
+        </div>
+      </div>
+	  
+      
+    </div>
+  </div>
+  
+ 
+  
+</div>
+
+
+
+<!---FIN DE VENTANA MODAL EDITAR CURSO------>
 
 
 
@@ -1248,7 +1567,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 		
 <BR>
 <BR>
-<!--------aqui--------------->
+<!-----aqui-------------->
 
 </div>
 

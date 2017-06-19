@@ -204,7 +204,7 @@ a:link
 			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
 			
 			
-			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Asignación de curso</a></li>
+			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Plan de estudios</a></li>
 			
 			
 			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Crear docente</a></li>

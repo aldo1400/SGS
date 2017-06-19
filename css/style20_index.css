@@ -8,8 +8,11 @@ a.link_cerrar_sesion
 background-color:#fff;
 color:#000;
 }
+.col h6{
+	text-transform: overcase;
+}
 .nav a{
-	font-weight: 300;
+	font-weight: 200;
 	font-size: 1em;
 }
 
