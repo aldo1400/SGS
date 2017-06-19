@@ -4,7 +4,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-06-2017 a las 00:53:58
+-- Tiempo de generación: 19-06-2017 a las 16:53:53
 -- Versión del servidor: 10.1.22-MariaDB
 -- Versión de PHP: 5.2.17
 
@@ -404,6 +404,45 @@ CREATE TABLE IF NOT EXISTS `silabo` (
   PRIMARY KEY (`cod_silabo`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `silabo`
+--
+
+INSERT INTO `silabo` (`cod_silabo`, `datos_inf`, `capacidades`, `evaluacion`, `competencias`, `prog_contenido`, `estrategia_dinamica`, `descripcion`, `sumilla_silabo`, `archivo`) VALUES
+('se00114', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Seminariodeetica14.pdf'),
+('an00214', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'AnalisisdesistemasII14.pdf'),
+('au00314', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Auditoriadesistemas14.pdf'),
+('el00414', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Electromagnetismoyoptica14.pdf'),
+('es00514', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Estadistica14.pdf'),
+('es00614', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Estadistica214.pdf'),
+('fi00714', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Fisicageneral14.pdf'),
+('fi00814', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Fisicageneral214.pdf'),
+('fi00914', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Fisicamoderna14.pdf'),
+('fi01014', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Fisicamoderna214.pdf'),
+('fo01114', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Formulaciondeproyectos14.pdf'),
+('fu01214', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Fundamentosdeprogramacion14.pdf'),
+('in01314', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ingenieriadesoftware14.pdf'),
+('in01414', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ingenieriadesoftware214.pdf'),
+('in01514', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ingenieriaeconomica14.pdf'),
+('le01614', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Lenguaje14.pdf'),
+('ma01714', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MateII14.pdf'),
+('ma01814', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MatematicadiscretaI14.pdf'),
+('ma01914', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MatematicadiscretaII14.pdf'),
+('ma02014', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MatematicaI14.pdf'),
+('ma02114', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MatematicaI214.pdf'),
+('ma02314', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MatematicaIV14.pdf'),
+('me02414', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Metodologiadelainvestigacion14.pdf'),
+('me02514', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Metodosnumericos14.pdf'),
+('al02614', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Algoritmosyprogramacionparalela14.pdf'),
+('re02714', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Realidadnacional14.pdf'),
+('re02814', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Redes14.pdf'),
+('si02914', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Sistemasdeinformacion14.pdf'),
+('si03014', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Sistemasoperativos14.pdf'),
+('te03114', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Teoriageneraldesistemas14.pdf'),
+('te03214', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Teoriageneraldesistemas214.pdf'),
+('te03314', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TesisI14.pdf'),
+('ma02214', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MatematicaIII14');
+
 -- --------------------------------------------------------
 
 --
@@ -413,10 +452,47 @@ CREATE TABLE IF NOT EXISTS `silabo` (
 CREATE TABLE IF NOT EXISTS `usa` (
   `cod_silabo` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `cod_asignatura` char(18) COLLATE utf8_unicode_ci NOT NULL,
-  `fecha_uso` date DEFAULT NULL,
+  `fecha_uso` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`cod_silabo`,`cod_asignatura`),
   KEY `R_7` (`cod_asignatura`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `usa`
+--
+
+INSERT INTO `usa` (`cod_silabo`, `cod_asignatura`, `fecha_uso`) VALUES
+('an00214', '051127', '2014'),
+('el00414', '021109', '2014'),
+('es00514', '031120', '2014'),
+('es00614', '031120', '2014'),
+('fi00714', '011102', '2014'),
+('fi00814', '011102', '2014'),
+('fi00914', '031116', '2014'),
+('fi01014', '031116', '2014'),
+('fo01114', '061138', '2014'),
+('fu01214', '011103', '2014'),
+('in01314', '061133', '2014'),
+('in01414', '061133', '2014'),
+('in01514', '051132', '2014'),
+('le01614', '011106', '2014'),
+('ma01714', '021112', '2014'),
+('ma01814', '011104', '2014'),
+('ma01914', '021111', '2014'),
+('ma02014', '011105', '2014'),
+('ma02114', '011105', '2014'),
+('ma02214', '031119', '2014'),
+('ma02314', '041125', '2014'),
+('me02414', '021108', '2014'),
+('me02514', '031118', '2014'),
+('al02614', '041123', '2014'),
+('re02714', '021114', '2014'),
+('se00114', '011101', '2014'),
+('si02914', '071141', '2014'),
+('si03014', '051129', '2014'),
+('te03114', '031115', '2014'),
+('te03214', '031115', '2014'),
+('te03314', '091150', '2014');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
