@@ -143,10 +143,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contactanos</a>
+                        <a href="contact.php">Contáctanos</a>
                     </li>
 					<li>
-                        <a href="silabo.php">Silabo</a>
+                        <a href="silabo.php">Sílabo</a>
                     </li>
                 </ul>
             </div>

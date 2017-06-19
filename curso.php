@@ -149,7 +149,7 @@ body {
 <body>
 
     <div class="brand">UNJBG</div>
-    <div class="address-bar">Sistema de acceso para editar silabus</div>
+    <div class="address-bar">Sistema de acceso para editar sílabos</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -220,10 +220,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contactanos</a>
+                        <a href="contact.php">Contáctanos</a>
                     </li>
 					<li>
-                        <a href="silabos.php">Silabos</a>
+                        <a href="silabos.php">Sílabos</a>
                     </li>
                 </ul>
             </div>
@@ -300,7 +300,7 @@ a:link
 		{
 		?>
 		
-        <li><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>">Ing.<?php echo $nombre; ?></a></li>
+        <li style="text-align:left;" ><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png"  width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
 		
 		
 		<?php
@@ -524,36 +524,44 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	</div>
 		<br>
 		<br>
-	  <br>
-	   CÓDIGO ASIGNATURA		:	<?php echo $cod_asignatura; ?>
-	   <br>
-      NOMBRE DEL CURSO 		:	<?php echo $nombre; /*echo $i;*/  ?>
-	  <BR>
-	  PRE-REQUISITO			:	<?php echo $pre_requisito; ?>
-	  <br>
-	  SEMESTRE ACADÉMICO	:	<?php echo $semestre_academico; ?>
-	  <BR>
-	 
-	  FACULTAD				:	<?php echo $facultad; ?>
-	  <br>
-	  NÚMERO DE CREDITOS	:	<?php echo $nro_creditos; ?>
-	  <BR>
-	  HORAS TEORÍA			:	<?php echo $horas_teoria; ?>
-	  <br>
-	  HORAS DE PRACTICA 	:	<?php echo $horas_practica; ?>
-	  <BR>
-	  HORAS LABORATORIO		:	<?PHP echo $horas_laboratorio; ?>
-      <br>  
-	  DOCENTES				:	
-	  
-	  <br>
-	  <?php while ($fila4 = mysqli_fetch_array($ejecutar4) )   //PROFESORES ASIGNADOS AL CURSO
+		<br>
+		
+	  <TABLE style="text-align: left; position: relative; left: 200px" >
+	<TR><TH>&nbsp;&nbsp;CÓDIGO ASIGNATURA :</TH>
+		<TD>&nbsp;&nbsp;&nbsp;<?php echo $cod_asignatura; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;NOMBRE DEL CURSO :</TH>
+		<TD>&nbsp;&nbsp;&nbsp;<?php echo  $nombre; /*echo $i;*/ ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;PRE-REQUISITO      :</TH>
+		<TD>&nbsp;&nbsp;&nbsp;<?php echo $pre_requisito; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;SEMESTRE ACADÉMICO :</TH>
+		<TD>&nbsp;&nbsp;&nbsp;<?php echo $semestre_academico; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;FACULTAD      :</TH>
+		<TD>&nbsp;&nbsp;&nbsp;<?php echo  $facultad; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;NÚMERO DE CREDITOS           :</TH>
+		<TD>&nbsp;&nbsp;&nbsp;<?php echo $nro_creditos; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;HORAS TEORÍA         :</TH>
+		<TD>&nbsp;&nbsp;&nbsp;<?php echo $horas_teoria; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;HORAS DE PRACTICA     :</TH>
+		<TD>&nbsp;&nbsp;&nbsp;<?php echo $horas_practica; ?></TD> </TR>
+	<TR><TH>&nbsp;&nbsp;HORAS LABORATORIO       :</TH>
+		<TD>&nbsp;&nbsp;&nbsp;<?php echo $horas_laboratorio; ?></TD> </TR>
+	
+	<TR><TH>&nbsp;&nbsp;DOCENTES       :</TH>
+		<TD><?php while ($fila4 = mysqli_fetch_array($ejecutar4) )   //PROFESORES ASIGNADOS AL CURSO
 	  
 	  {
+	  ?>
+	  &nbsp;&nbsp;&nbsp;
+	  <?
 	  echo $fila4['nombre']; 
 	  
 	  ?>
+<<<<<<< HEAD
 	  <!------<button type="button" class="btn btn-lg btn-danger"  >X</button>------------>
+=======
+
+	  <!------<button type="button" class="btn btn-lg btn-danger"  >X</button>-------------->
+>>>>>>> 68025b6309b2e67fd4d6863aa9171ca742c70c1b
 	  
 	  
 	  <!---------
@@ -571,12 +579,17 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	  }
 	  
 	  ?>
-	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar"><span class="glyphicon glyphicon-pencil"></span>EDITAR CURSO</button>
+	  	<TR><TH font size="30">&nbsp;&nbsp;ACCIONES       :</TH>
+		<TD>
+		<br>
+		
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar"><span class="glyphicon glyphicon-pencil"></span>EDITAR CURSO</button>
+		<br>
 	  
 	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>AGREGAR DOCENTE</button>
+	  <br>
 	 
 	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-pencil"></span>MODIFICAR SUMILLA</button>
-	  
 	  <STYLE>
 	  .hola
 	  {
@@ -584,11 +597,9 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	  }
 	  </STYLE>
 	  <form href="asignaturas.php" method="post" class="hola"  >
-	  <button type="submit" name="ELIMINAR_curso" class="btn btn-danger btn-lg" onclick="return confirm('Estás seguro que deseas eliminar el registro?');">ELIMINAR CURSO</button>
-	  </form>
-	  
-	  
-	
+	  <button style="position: absolute; left:195px; " type="submit" name="ELIMINAR_curso" class="btn btn-danger btn-lg" onclick="return confirm('Estás seguro que deseas eliminar el registro?');">ELIMINAR CURSO</button>
+	  </form></TD> </TR>
+	</TABLE>
 	  <br>
 	  
 	 
@@ -1216,7 +1227,7 @@ if(isset($_POST['sumilla_enviar']))
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p>version 1.0 &copy;  2017</p>
+                    <p>versión 1.0 &copy;  2017</p>
                 </div>
             </div>
         </div>

@@ -93,7 +93,7 @@ body {
  <!--------------título de la pagina------------------->
  
     <div class="brand">UNJBG</div>
-    <div class="address-bar">Sistema de acceso para editar silabus</div>
+    <div class="address-bar">Sistema de acceso para editar sílabos</div>
 
 	
 	<!-----------------MENU DE NAVEGACION HOME, NOTICIAS BLOG CONTACTANOS--------------------------------->
@@ -166,10 +166,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contactanos</a>
+                        <a href="contact.php">Contáctanos</a>
                     </li>
 					<li>
-                        <a href="silabo.php">Silabos</a>
+                        <a href="silabo.php">Sílabos</a>
                     </li>
                 </ul>
             </div>
@@ -270,7 +270,7 @@ $extraer_interno_docente="select interno_docente from docente  where Cod_docente
 	  
 		
 		
-        <li><a href="silabo_crear.php?nombre_asig=<?php echo $id_asignatura ?>"><img src="img/flecha.png" width="30" height="30" name="flecha"><?php echo $nombre; ?></a></li>
+        <li style="text-align:left;" ><a href="silabo_crear.php?nombre_asig=<?php echo $id_asignatura ?>"><img src="img/flecha.png" width="30" height="30" name="flecha"><?php echo $nombre; ?></a></li>
 	
 		<?php }} ?>
 		
@@ -488,7 +488,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 				
 				  aqui se podran los detalles del curso
 				  
-				  <p>Fecha limite <span>*</span></p>
+				  <p>Fecha límite <span>*</span></p>
 			<span class="icon-case"><img src="" height="15"><i class="fa fa-building-o"></i></span>
 				<input type="text" name="fecha_limite" id="fecha_limite" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné."  />
                 <div class="validation"></div>
@@ -540,7 +540,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Mis datos</h4>
         </div>
 		
 		
@@ -832,7 +832,7 @@ if(isset($_POST['update_admin']))
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p>version 1.0 &copy;  2017</p>
+                    <p>versión 1.0 &copy;  2017</p>
                 </div>
             </div>
         </div>
