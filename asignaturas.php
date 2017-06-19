@@ -444,8 +444,7 @@ if($link_valor=='I')//si selecciono primer semestre
 						  while($indice_asi<1)
 						  {
 						  
-						  ?> <tr> <th> <?php echo  'Primer año';?> </th> </tr>
-						  <?php 
+						  ?> <tr> <th> <?php echo  'Primer año';?> </th> </tr><?php 
                           while($fila = mysqli_fetch_array($ejecutar))  
                           {  
 						  
@@ -475,7 +474,7 @@ if($link_valor=='I')//si selecciono primer semestre
 							}
 							
 							
-						?> <tr> <th > <center><?php echo  'Segundo año';?> </center> </th> </tr> <?php 
+						?> <tr> <th > <center><?php echo  'Segundo año';?> </th> </tr> <?php 
 						
 						
 							 $consulta ="SELECT * FROM asignatura where semestre_academico='I' order by cod_asignatura ASC";
