@@ -36,7 +36,7 @@
 <body>
 
     <div class="brand"><img src="img/logounjbg.png" width="200" height="200">UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN</div>
-    <div class="address-bar">Sistema de acceso para editar silabus</div>
+    <div class="address-bar">Sistema de acceso para editar sílabos</div>
 
     <!-- Navigation -->
     
@@ -142,7 +142,7 @@
     	<div class="leftcontact">
 		
 		<div class="form-group">
-			<p>Codigo docente <span>*</span></p>	
+			<p>Código docente <span>*</span></p>	
 			<span class="icon-case"><i class="fa fa-comment-o"></i></span>
                 <input type="text" name="codigo_crea" id="codigo_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Sujet' doit être renseigné."/>
                 <div class="validation"></div>

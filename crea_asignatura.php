@@ -73,7 +73,7 @@ include('conexion.php');//CADENA DE CONEXION
 <body>
 
     <div class="brand"><img src="img/logounjbg.png" width="200" height="200">UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN</div>
-    <div class="address-bar">Sistema de acceso para editar silabus</div>
+    <div class="address-bar">Sistema de acceso para editar sílabos</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -93,7 +93,7 @@ include('conexion.php');//CADENA DE CONEXION
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.html">Inicio</a>
                     </li>
                     <li>
                         <a href="about.html">Noticias</a>
@@ -102,7 +102,7 @@ include('conexion.php');//CADENA DE CONEXION
                         <a href="blog.html">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.html">Contactanos</a>
+                        <a href="contact.html">Contáctanos</a>
                     </li>
                 </ul>
             </div>
@@ -240,7 +240,7 @@ include('conexion.php');//CADENA DE CONEXION
 	
 	<br>
 	
-	<label class="control-label col-sm-4" for="email" align="left" >Horas practica:</label>
+	<label class="control-label col-sm-4" for="email" align="left" >Horas práctica:</label>
 	<br>
 	<br>
 	
@@ -263,7 +263,7 @@ include('conexion.php');//CADENA DE CONEXION
 	<br>
 	
 	
-	<label class="control-label col-sm-4" for="email" align="left" >Numero de creditos:</label>
+	<label class="control-label col-sm-4" for="email" align="left" >Numero de créditos:</label>
 	<br>
 	<br>
 	
@@ -282,7 +282,7 @@ include('conexion.php');//CADENA DE CONEXION
     </div>
 	<br>
 	
-	<label class="control-label col-sm-4" for="email" align="left" >Codigo asignatura:</label>
+	<label class="control-label col-sm-4" for="email" align="left" >Código asignatura:</label>
 	<br>
 	<br>
 	
@@ -292,7 +292,7 @@ include('conexion.php');//CADENA DE CONEXION
     </div>
 	<br>
 	
-	<label class="control-label col-sm-4" for="email" align="left" >Ciclo academico:</label>
+	<label class="control-label col-sm-4" for="email" align="left" >Ciclo académico:</label>
 	<br>
 	<br>
 	

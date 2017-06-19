@@ -66,9 +66,9 @@ open('https://goo.gl/forms/g1UOtza3jbMrnaRG2','','top=300,left=300,width=600,hei
 <!-- The JavaScript Source!! http://javascript.internet.com -->
 
 <!-- Begin
-var expDays = 1; // n�mero de d�as que debe durar la cookie
+var expDays = 1; // n??mero de d??as que debe durar la cookie
 
-var page = "https://goo.gl/forms/g1UOtza3jbMrnaRG2";//aqu� debes poner la direccion de la pagina que se va a abrir
+var page = "https://goo.gl/forms/g1UOtza3jbMrnaRG2";//aqu?? debes poner la direccion de la pagina que se va a abrir
 
 var windowprops = "width=300,height=200,location=no,toolbar=no,menubar=no,scrollbars=no,resizable=yes";
 //En la linea anterior, puedes modificar las propiedades de la ventana
@@ -148,7 +148,7 @@ SetCookie('count', count, exp);
 
 ----->
 
-<!----------------------------------FUNCION PARA EVITAR QUE SE RECARGE EL BOTON DE ATRAS CUANDO SE CIERRE SESIÓN---------------------------------->
+<!----------------------------------FUNCION PARA EVITAR QUE SE RECARGE EL BOTON DE ATRAS CUANDO SE CIERRE SESI??N---------------------------------->
 <script Language="JavaScript">
 if(history.forward(1))
 {
@@ -242,7 +242,7 @@ history.replace(index.php);
 	<div id="buttons">
 		<ul>
 			<li class="first">
-			 <a href="#"  title=""><img src="images/Home.png" width="40" height="28" align="center" />   Home</a></li>
+			 <a href="#"  title=""><img src="images/Home.png" width="40" height="28" align="center" />   Inicio</a></li>
 			<li><a href="#" title="">  </a></li>
 			<li><a href="galeria/galeria.html" title=""><img src="images/camara_icono.png" width="40" height="30" align="center" />  Galeria</a></li>
 			<li><a href="#" title="">Acerca de nosotros</a></li>
@@ -267,7 +267,7 @@ history.replace(index.php);
             <div>
                 <div class="slide-image"><A HREF="https://goo.gl/forms/g1UOtza3jbMrnaRG2" target="_blank"><img src="FUNCIONARIO_ICONO.png" width="300" height="250" alt="Slide #0 image" /></div>
                 <div class="slide-text">
-                    <a href="https://goo.gl/forms/g1UOtza3jbMrnaRG2" target="_blank"><h2>SERVIDOR PUBLICO 2017</h2></a>
+                    <a href="https://goo.gl/forms/g1UOtza3jbMrnaRG2" target="_blank"><h2>SERVIDOR PúBLICO 2017</h2></a>
                     <p>En este formulario sera llenado por el funcionario que propone al servidor publico </p>
 
             
@@ -300,7 +300,7 @@ history.replace(index.php);
 			<div>
                 <div class="slide-image"><A HREF="https://goo.gl/forms/Puts4kXi9S5kTonv1" target="_blank"><img src="images/servicios_publicos_slide.png" width="300" height="250" alt="Slide #3 image" /></div>
                 <div class="slide-text">
-                    <a href="https://goo.gl/forms/Puts4kXi9S5kTonv1" target="_blank"><h2>TALLER REGIONAL “ACCESO A LOS SERVICIOS PÚBLICOS AGRARIOS”</h2></a>
+                    <a href="https://goo.gl/forms/Puts4kXi9S5kTonv1" target="_blank"><h2>TALLER REGIONAL “ACCESO A LOS SERVICIOS P??BLICOS AGRARIOS”</h2></a>
                     <p> Agregar descripción </p>
 
             
@@ -312,7 +312,7 @@ history.replace(index.php);
             <div>
                 <div class="slide-image slide-image-right"><A HREF="https://goo.gl/forms/ffEod7EieZJdWvEQ2" target="_blank"><img src="images/quinua_slide.png" width="300" height="250" alt="Slide #4 image" /></div>
                 <div class="slide-text">
-                    <A HREF="https://goo.gl/forms/ffEod7EieZJdWvEQ2" target="_blank"><h2>CONFERENCIA: "ALTERNATIVAS DE SOLUCIÓN EN EL CULTIVO DE LA QUINUA PARA LA EXPORTACIÓN"</h2></A>
+                    <A HREF="https://goo.gl/forms/ffEod7EieZJdWvEQ2" target="_blank"><h2>CONFERENCIA: "ALTERNATIVAS DE SOLUCI??N EN EL CULTIVO DE LA QUINUA PARA LA EXPORTACI??N"</h2></A>
                     <p>Agregar descripción</p>
 
             
@@ -345,7 +345,7 @@ history.replace(index.php);
             <div>
                 <div class="slide-image slide-image-right"><A HREF="https://goo.gl/forms/sdrPUNbYrfvmWoTF3" target="_blank"><img src="images/asistencia_sin_autorizacion.png" width="300" height="250" alt="Slide #5 image" /></div>
                 <div class="slide-text">
-                    <A HREF="https://goo.gl/forms/sdrPUNbYrfvmWoTF3" target="_blank"><h2>REGISTRO Y CONTROL DE SALIDA DE PERSONAL SIN AUTORIZACIÓN DRAT</h2></A>
+                    <A HREF="https://goo.gl/forms/sdrPUNbYrfvmWoTF3" target="_blank"><h2>REGISTRO Y CONTROL DE SALIDA DE PERSONAL SIN AUTORIZACI??N DRAT</h2></A>
                     <p>Agregar descripción</p>
 
             
@@ -468,8 +468,8 @@ history.replace(index.php);
        		<input type="checkbox" id="check4">
        		<label for="check4">Unidad de tesoreria</label>
             <ul>
-              <li><a href="">Área de Pagaduria</a></li>
-              <li><a href="">Área de Conciliaciones</a></li>
+              <li><a href="">??rea de Pagaduria</a></li>
+              <li><a href="">??rea de Conciliaciones</a></li>
              </ul>
              </div>
              
@@ -676,10 +676,10 @@ history.replace(index.php);
 <!-- footer begins -->
 <!--------------------------------------------------------------------SECCION PIE DE PAGINA------------------------------------------------------------------------>
 <div id="footer">
-  <p>DRAT 2017 - Derechos Reservados | Área de Tecnología de la Información </p>
+  <p>DRAT 2017 - Derechos Reservados | ??rea de Tecnología de la Información </p>
 		<p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="http://validator.w3.org/check/referer" title="This page validates as XHTML 1.0 Transitional"><abbr title="eXtensible HyperText Markup Language">XHTML</abbr></a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="This page validates as CSS"><abbr title="Cascading Style Sheets">CSS</abbr></a></p></div>
 <!-- footer ends -->
 </div>
 </div>
-<div style="text-align: center; font-size: 0.75em;">Diseño descargado desde <a href="http://www.misplantillas.com/">plantillas web gratis y profesionales</a>.</div></body>
+<div style="text-align: center; font-size: 0.75em;">Dise??o descargado desde <a href="http://www.misplantillas.com/">plantillas web gratis y profesionales</a>.</div></body>
 </html>

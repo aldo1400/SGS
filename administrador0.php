@@ -131,7 +131,7 @@ body {
  <!--------------título de la pagina------------------->
  
     <div class="brand">UNJBG</div>
-    <div class="address-bar">Sistema de acceso para editar silabus</div>
+    <div class="address-bar">Sistema de acceso para editar sílabos</div>
 
 	
 	<!-----------------MENU DE NAVEGACION HOME, NOTICIAS BLOG CONTACTANOS--------------------------------->
@@ -209,10 +209,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contactanos</a>
+                        <a href="contact.php">Contáctanos</a>
                     </li>
 					<li>
-                        <a href="silabo.php">Silabo</a>
+                        <a href="silabo.php">Sílabo</a>
                     </li>
                 </ul>
             </div>
@@ -617,7 +617,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
                 <div class="panel-body">
 				
 				  <form action="" method="post" class="form-inline" role="form">
-        		<p><label class="control-label col-sm-3" for="fecha limite">Fecha limite:</label></p>
+        		<p><label class="control-label col-sm-3" for="fecha limite">Fecha límite:</label></p>
 		<div class="input-group col-sm-4" >
 		<input type="hidden" value="<?echo  $CURSOS['cod_asignatura'] ?>" id="cod_asig" name="cod_asig" >
 		<input type="hidden" value="<?echo  $interno_docente ?>" id="interno_docente1" name="interno_docente1" >
@@ -701,7 +701,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 		<form action="#" method="post" class="EDITAR_ADMIN"  >
 	   
     <div class="contentform">
-    	<div id="sendmessage"> Has creado correctamente al docente </div>
+    	<div id="sendmessage"> Se ha creado correctamente al docente </div>
 		
 		<div class="form-group">
       <label class="control-label col-sm-4" for="CODIGO_DOCENTE">Código docente:</label>

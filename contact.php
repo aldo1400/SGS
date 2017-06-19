@@ -143,10 +143,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contactanos</a>
+                        <a href="contact.php">Contáctanos</a>
                     </li>
 					 <li>
-                        <a href="silabo.php">Silabos</a>
+                        <a href="silabo.php">Sílabos</a>
                     </li>
                 </ul>
             </div>
@@ -161,7 +161,7 @@ $nombre_admin=$_SESSION['nombre_docente'];
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Contactanos
+                    <h2 class="intro-text text-center">Contáctanos
                         <strong>Unjbg</strong>
                     </h2>
                     <hr>
@@ -171,13 +171,13 @@ $nombre_admin=$_SESSION['nombre_docente'];
                     <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com.pe/maps/place/Universidad+Nacional+Jorge+Basadre+Grohmann/@-18.0251828,-70.2505031,15z/data=!4m5!3m4!1s0x0:0xbd7b1220077c70b!8m2!3d-18.0251828!4d-70.2505031"></iframe>
                 </div>
                 <div class="col-md-4">
-                    <p>Telefono:
+                    <p>Teléfono:
                         <strong>(052) 583000</strong>
                     </p>
                     <p>Email:
                         <strong><a href="mailto:www.unjbg.edu.pe">www.unjbg.edu.pe</a></strong>
                     </p>
-                    <p>Direccion:
+                    <p>Dirección:
                         <strong>Avenida Miraflores S/N,
 
                             <br>Miraflores, Tacna 23000</strong>
@@ -193,7 +193,7 @@ $nombre_admin=$_SESSION['nombre_docente'];
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p>Version 1.0 &copy; 2017</p>
+                    <p>Versión 1.0 &copy; 2017</p>
                 </div>
             </div>
         </div>
