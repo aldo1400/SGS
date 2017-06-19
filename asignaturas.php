@@ -85,7 +85,7 @@ body {
 <body>
 
     <div class="brand">UNJBG</div>
-    <div class="address-bar">Sistema de acceso para editar silabus</div>
+    <div class="address-bar">Sistema de acceso para editar sílabos</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -158,7 +158,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contactanos</a>
+                        <a href="contact.php">Contáctanos</a>
+                    </li>
+					<li>
+                        <a href="silabo.php">Sílabo</a>
                     </li>
                 </ul>
             </div>
@@ -377,7 +380,7 @@ a:link
 <!------Aqui se encuentra el combobox, donde el docente selecciona el semestre academico, donde esta la asignatura que necesita----------->
 
 <div class="pull-left">
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>  CREAR ASIGNATURA</button>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>  Crear asignatura</button>
 
 </div>
 <div class="pull-right">
@@ -1156,7 +1159,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 
 	<!--------------BOTON CREAR DOCENTE---------------------------------->
  
-<button type="submit" name="insert_asignatura" class="bouton-contact" >CREAR</button> 
+<button type="submit" name="insert_asignatura" class="bouton-contact" >Crear</button> 
 
 
 </form>

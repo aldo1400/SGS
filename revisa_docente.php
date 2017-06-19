@@ -121,7 +121,7 @@ body {
 <body>
 
     <div class="brand">UNJBG</div>
-    <div class="address-bar">Sistema de acceso para editar silabus</div>
+    <div class="address-bar">Sistema de acceso para editar sílabos</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -193,10 +193,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contactanos</a>
+                        <a href="contact.php">Contáctanos</a>
                     </li>
 					<li>
-                        <a href="silabo.php">Silabos</a>
+                        <a href="silabo.php">Sílabos</a>
                     </li>
                 </ul>
             </div>
@@ -869,7 +869,7 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
 					
 		
         <form action="" method="post" class="form-inline" role="form">
-        		<p><label class="control-label col-sm-3" for="fecha limite">Fecha limite:</label></p>
+        		<p><label class="control-label col-sm-3" for="fecha limite">Fecha límite:</label></p>
 		<div class="input-group col-sm-4" >
 		<input type="hidden" value="<?echo  $CURSOS['cod_asignatura'] ?>" id="cod_asig" name="cod_asig" >
 		<input type="hidden" value="<?echo  $id_profesor ?>" id="interno_docente1" name="interno_docente1" >

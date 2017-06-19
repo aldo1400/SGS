@@ -92,8 +92,8 @@ body {
  
  <!--------------título de la pagina------------------->
  
-    <div class="brand"><img src="img/logounjbg.png" width="200" height="200">UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN</div>
-    <div class="address-bar">Sistema de acceso para editar silabus</div>
+    <div class="brand"><img src="img/logounjbg.png" width="200" height="200">UNJBG</div>
+    <div class="address-bar">Sistema de acceso para editar sílabos</div>
 
 	
 	<!-----------------MENU DE NAVEGACION HOME, NOTICIAS BLOG CONTACTANOS--------------------------------->
@@ -166,10 +166,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contactanos</a>
+                        <a href="contact.php">Contáctanos</a>
                     </li>
 					<li>
-                        <a href="silabo.php">Silabos</a>
+                        <a href="silabo.php">Sílabos</a>
                     </li>
                 </ul>
             </div>
@@ -241,7 +241,7 @@ $DATOS_ASIGNA=mysqli_fetch_array($consulta);
 
 <div class="container">    
     <ul class="accordions on-clicks row">
-    	<h2>SEMESTRE ACADEMICO</h2>
+    	<h2>SEMESTRE ACADéMICO</h2>
 		<select name="tipo" id="tipo">
     <option>2017-I</option>
     <option>2017-II</option>
@@ -268,7 +268,7 @@ $DATOS_ASIGNA=mysqli_fetch_array($consulta);
     </div>
 	
 	   <div class="form-group">
-      <label for="codigo">1.4 Codigo:</label>
+      <label for="codigo">1.4 Código:</label>
       <input type="text" class="form-control" id="codigo" name="codigo" value="<?echo $DATOS_ASIGNA['cod_asignatura'];?>">
     </div>
 	
@@ -278,20 +278,20 @@ $DATOS_ASIGNA=mysqli_fetch_array($consulta);
     </div>
 	
 	   <div class="form-group">
-      <label for="c_acad">1.6 Ciclo academico:</label>
+      <label for="c_acad">1.6 Ciclo académico:</label>
       <input type="text" class="form-control" id="c_acad" name="c_acad" value="<?echo $DATOS_ASIGNA['ciclo_academico'];?>">
     </div>
 	
 	   <div class="form-group">
-      <label for="s_acad">1.7 Semestre Academico:</label>
+      <label for="s_acad">1.7 Semestre Académico:</label>
       <input type="text" class="form-control" id="s_acad" name="s_acad" value="<?echo $DATOS_ASIGNA['semestre_academico'];?>">
     </div>
 	
 	   <div class="form-group">
       <label>1.8 Horas semanales : 
             <ul>
-              <li>Teoria:</li>
-              <li>Practica:</li>
+              <li>Teoría:</li>
+              <li>Práctica:</li>
               <li>Laboratorio:</li>
             </ul> 
         </label>
@@ -348,10 +348,10 @@ $DATOS_ASIGNA=mysqli_fetch_array($consulta);
             </div>
         </li>
         <li>
-        	<h3 class="accordion-Heading" href="javascript: void(0);"><span><i class="acc-minus close"></i><i class="acc-minus"></i></span>IV. UNIDADES DIDACTICAS</h3>
+        	<h3 class="accordion-Heading" href="javascript: void(0);"><span><i class="acc-minus close"></i><i class="acc-minus"></i></span>IV. UNIDADES DIDÁCTICAS</h3>
             <div class="acc-description">
             <div>
-        <label>Numero de Unidades: <input type="" id="credi" name="credi" /></label>
+        <label>Número de Unidades: <input type="" id="credi" name="credi" /></label>
     </div>
 
             </div>
@@ -819,7 +819,7 @@ if(isset($_POST['update_admin']))
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p>version 1.0 &copy;  2017</p>
+                    <p>versión 1.0 &copy;  2017</p>
                 </div>
             </div>
         </div>

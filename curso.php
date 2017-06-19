@@ -149,7 +149,7 @@ body {
 <body>
 
     <div class="brand">UNJBG</div>
-    <div class="address-bar">Sistema de acceso para editar silabus</div>
+    <div class="address-bar">Sistema de acceso para editar sílabos</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -220,10 +220,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contactanos</a>
+                        <a href="contact.php">Contáctanos</a>
                     </li>
 					<li>
-                        <a href="silabos.php">Silabos</a>
+                        <a href="silabos.php">Sílabos</a>
                     </li>
                 </ul>
             </div>
@@ -1226,7 +1226,7 @@ if(isset($_POST['sumilla_enviar']))
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p>version 1.0 &copy;  2017</p>
+                    <p>versión 1.0 &copy;  2017</p>
                 </div>
             </div>
         </div>

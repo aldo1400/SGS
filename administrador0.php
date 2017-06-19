@@ -131,7 +131,7 @@ body {
  <!--------------título de la pagina------------------->
  
     <div class="brand">UNJBG</div>
-    <div class="address-bar">Sistema de acceso para editar silabus</div>
+    <div class="address-bar">Sistema de acceso para editar sílabos</div>
 
 	
 	<!-----------------MENU DE NAVEGACION HOME, NOTICIAS BLOG CONTACTANOS--------------------------------->
@@ -209,10 +209,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contactanos</a>
+                        <a href="contact.php">Contáctanos</a>
                     </li>
 					<li>
-                        <a href="silabo.php">Silabo</a>
+                        <a href="silabo.php">Sílabo</a>
                     </li>
                 </ul>
             </div>
@@ -517,7 +517,7 @@ if($_FILES['foto1']['type'] == 'image/png' OR $_FILES['foto1']['type'] == 'image
 		{
 $tips = 'jpg';
 $type = array('image/jpeg' => 'jpg');
-$name = $nombre_admin.'Foto-perfi'.'.'.$tips;
+$name = $nombre_admin.'Foto-perfil'.'.'.$tips;
 $destino1 =  "imagenes/".$name;
 copy($ruta1,$destino1);
 
