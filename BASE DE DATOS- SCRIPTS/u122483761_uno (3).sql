@@ -4,7 +4,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-06-2017 a las 00:50:54
+-- Tiempo de generación: 19-06-2017 a las 00:53:58
 -- Versión del servidor: 10.1.22-MariaDB
 -- Versión de PHP: 5.2.17
 
