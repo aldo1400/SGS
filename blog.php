@@ -143,7 +143,7 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contáctanos</a>
+                        <a href="contact.php">Contactanos</a>
                     </li>
 					<li>
                         <a href="silabo.php">Silabos</a>
@@ -173,7 +173,7 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <small>mayo 14, 2017</small>
                     </h2>
                     <p>FELIZ DIA MAMA</p>
-                    <a href="#" class="btn btn-default btn-lg">Continuar</a>
+                    <a href="#" class="btn btn-default btn-lg">Read More</a>
                     <hr>
                 </div>
                 <div class="col-lg-12 text-center">

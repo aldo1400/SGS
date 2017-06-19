@@ -85,7 +85,7 @@ body {
 <body>
 
     <div class="brand">UNJBG</div>
-    <div class="address-bar">Sistema de acceso para editar sílabos</div>
+    <div class="address-bar">Sistema de acceso para editar silabus</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -158,7 +158,7 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contáctanos</a>
+                        <a href="contact.php">Contactanos</a>
                     </li>
                 </ul>
             </div>
@@ -235,7 +235,7 @@ a:link
 		{
 		?>
 		
-        <li><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png" width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
+        <li style="text-align:left;" ><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png" width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
 		
 		
 		<?php
@@ -377,7 +377,7 @@ a:link
 <!------Aqui se encuentra el combobox, donde el docente selecciona el semestre academico, donde esta la asignatura que necesita----------->
 
 <div class="pull-left">
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>  Crear asignatura</button>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>  CREAR ASIGNATURA</button>
 
 </div>
 <div class="pull-right">
@@ -403,7 +403,7 @@ a:link
 			
 		
 		</div>
-<button type="submit" name="SEMESTRE" class="btn btn-success btn-lg">Buscar</button>
+<button style="position: relative; bottom: 8px" type="submit" name="SEMESTRE" class="btn btn-success btn-lg">BUSCAR</button>
 
 </form>
 
@@ -475,7 +475,7 @@ if($link_valor=='I')//si selecciono primer semestre
 							}
 							
 							
-						?> <tr> <th > <center><?php echo  'Segundo año';?> </center> </th> </tr> <?php 
+						?> <tr> <th > <?php echo  'Segundo año';?>  </th> </tr> <?php 
 						
 						
 							 $consulta ="SELECT * FROM asignatura where semestre_academico='I' order by cod_asignatura ASC";
@@ -1156,7 +1156,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 
 	<!--------------BOTON CREAR DOCENTE---------------------------------->
  
-<button type="submit" name="insert_asignatura" class="bouton-contact" >Crear</button> 
+<button type="submit" name="insert_asignatura" class="bouton-contact" >CREAR</button> 
 
 
 </form>

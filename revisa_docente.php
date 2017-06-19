@@ -121,7 +121,7 @@ body {
 <body>
 
     <div class="brand">UNJBG</div>
-    <div class="address-bar">Sistema de acceso para editar sílabos</div>
+    <div class="address-bar">Sistema de acceso para editar silabus</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -193,10 +193,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contáctanos</a>
+                        <a href="contact.php">Contactanos</a>
                     </li>
 					<li>
-                        <a href="silabo.php">Sílabos</a>
+                        <a href="silabo.php">Silabos</a>
                     </li>
                 </ul>
             </div>
@@ -274,7 +274,7 @@ a:link
 		{
 		?>
 		
-        <li><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png" width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
+        <li style="text-align:left;" ><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png" width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
 		
 		
 		<?php
@@ -860,7 +860,7 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
             <div id="collapse<?php echo $indice;?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?php echo $indice;?>">
                 <div class="panel-body">
 				
-				  aquí se podran los detalles del curso
+				  aqui se podran los detalles del curso
 				  
 				  <!-----<p>Fecha limite <span>*</span></p>
 			<span class="icon-case"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -869,7 +869,7 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
 					
 		
         <form action="" method="post" class="form-inline" role="form">
-        		<p><label class="control-label col-sm-3" for="fecha limite">Fecha límite:</label></p>
+        		<p><label class="control-label col-sm-3" for="fecha limite">Fecha limite:</label></p>
 		<div class="input-group col-sm-4" >
 		<input type="hidden" value="<?echo  $CURSOS['cod_asignatura'] ?>" id="cod_asig" name="cod_asig" >
 		<input type="hidden" value="<?echo  $id_profesor ?>" id="interno_docente1" name="interno_docente1" >

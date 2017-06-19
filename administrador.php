@@ -85,7 +85,7 @@ body {
 <body>
 
     <div class="brand">UNJBG</div>
-    <div class="address-bar">Sistema de acceso para editar sílabos</div>
+    <div class="address-bar">Sistema de acceso para editar silabus</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -155,10 +155,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contáctanos</a>
+                        <a href="contact.php">Contactanos</a>
                     </li>
 					<li>
-                        <a href="silabo.php">Sílabos</a>
+                        <a href="silabo.php">Silabos</a>
                     </li>
                 </ul>
             </div>
@@ -236,7 +236,7 @@ a:link
 		{
 		?>
 		
-        <li><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png" width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
+        <li style="text-align:left;" ><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png" width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
 		
 		
 		<?php

@@ -131,7 +131,7 @@ body {
  <!--------------título de la pagina------------------->
  
     <div class="brand">UNJBG</div>
-    <div class="address-bar">Sistema de acceso para editar sílabos</div>
+    <div class="address-bar">Sistema de acceso para editar silabus</div>
 
 	
 	<!-----------------MENU DE NAVEGACION HOME, NOTICIAS BLOG CONTACTANOS--------------------------------->
@@ -209,10 +209,10 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contáctanos</a>
+                        <a href="contact.php">Contactanos</a>
                     </li>
 					<li>
-                        <a href="silabo.php">Sílabo</a>
+                        <a href="silabo.php">Silabo</a>
                     </li>
                 </ul>
             </div>
@@ -298,7 +298,7 @@ a:link
 		{
 		?>
 		
-        <li><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png" width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
+        <li style="text-align:left;"><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png"  width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
 		
 		
 		<?php
@@ -442,9 +442,10 @@ a:link
 
       ?>
 	<div>
-   <img src="<?php echo $ruta_imagen; ?>" width="300" height="300" alt="" align="RIGHT" />
+   <img src="<?php echo $ruta_imagen; ?>" width="250" height="250" alt="" align="RIGHT" />
 </div>
 
+<br>
 	<TABLE cellpadding=5 >
 	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CÓDIGO DOCENTE :</TH>
 		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Cod_docente; ?></TD> </TR>
@@ -465,30 +466,44 @@ a:link
 	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TELÉFONO       :</TH>
 		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $telefono; ?></TD> </TR>
 	</TABLE>
-	
-     
+	<br>
+	<br>
+   
+      
 	 
-
-      <br>  
-	  
-
       <?php } ?>
-	  
-	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar_admin">Editar datos</button>
-	  
-	  <BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " >Recargar datos</button>
-	  <br>
-	  
-	  
-	  <div>
-	  <form action="" method="post" enctype="multipart/form-data">
+	    <style>
+input[type=file] {
+    display: block;
+	width:60%;
+}
+.form-inline-2
+{
+    max-width: 300px;
+    width: 50%;
 
+}
+
+</style>
+
+	<div align="right">
+	  <form action="" method="post" enctype="multipart/form-data" class="form-inline-2" role="form">
 <input name="foto1" type="file" id="foto1"  >
-
-<input name="guardar2" type="submit" value="Subir foto" />
+<input name="guardar2" type="submit" class="btn btn-success btn-lg" value="subir foto"/>
 
 </form>
 </div>
+
+	 
+
+	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar_admin">Editar datos</button>
+	  
+	  <BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " >Recargar datos</button>
+	  
+	  <br>
+	  
+	  
+	  
 
 <?	
 				  			  			  
@@ -502,7 +517,7 @@ if($_FILES['foto1']['type'] == 'image/png' OR $_FILES['foto1']['type'] == 'image
 		{
 $tips = 'jpg';
 $type = array('image/jpeg' => 'jpg');
-$name = $nombre_admin.'Foto-perfil'.'.'.$tips;
+$name = $nombre_admin.'Foto-perfi'.'.'.$tips;
 $destino1 =  "imagenes/".$name;
 copy($ruta1,$destino1);
 
@@ -617,7 +632,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
                 <div class="panel-body">
 				
 				  <form action="" method="post" class="form-inline" role="form">
-        		<p><label class="control-label col-sm-3" for="fecha limite">Fecha límite:</label></p>
+        		<p><label class="control-label col-sm-3" for="fecha limite">Fecha limite:</label></p>
 		<div class="input-group col-sm-4" >
 		<input type="hidden" value="<?echo  $CURSOS['cod_asignatura'] ?>" id="cod_asig" name="cod_asig" >
 		<input type="hidden" value="<?echo  $interno_docente ?>" id="interno_docente1" name="interno_docente1" >
@@ -701,7 +716,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 		<form action="#" method="post" class="EDITAR_ADMIN"  >
 	   
     <div class="contentform">
-    	<div id="sendmessage"> Se ha creado correctamente al docente </div>
+    	<div id="sendmessage"> Has creado correctamente al docente </div>
 		
 		<div class="form-group">
       <label class="control-label col-sm-4" for="CODIGO_DOCENTE">Código docente:</label>
@@ -935,24 +950,7 @@ if(isset($_POST['update_admin']))
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 
 
                     <h2 class="brand-before">
