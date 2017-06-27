@@ -475,34 +475,36 @@ a:link
 	    <style>
 input[type=file] {
     display: block;
-	width:60%;
+	width:100%;
 }
 .form-inline-2
 {
     max-width: 300px;
-    width: 50%;
+    width: 60%;
+	margin:0;
+	overflow: hidden;
 
 }
 
 </style>
 
-	<div align="right">
-	  <form action="" method="post" enctype="multipart/form-data" class="form-inline-2" role="form">
-<input name="foto1" type="file" id="foto1"  >
-<input name="guardar2" type="submit" class="btn btn-success btn-lg" value="subir foto"/>
-
-</form>
-</div>
+	
 
 	 
 
-	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar_admin">Editar datos</button>
+	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar_admin" style=" position: relative; left:-150px">Editar datos</button>
 	  
-	  <BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " >Recargar datos</button>
+	  <BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " style=" position: relative; left:-130px">Recargar datos</button>
+	  
 	  
 	  <br>
-	  
-	  
+	  <div align="rigth" style=" position: relative; left:380px; top:-50px">
+	  <form action="" method="post" enctype="multipart/form-data" class="form-inline-2" role="form">
+<input name="foto1" type="file" id="foto1"  ><input name="guardar2" type="submit" class="btn btn-success btn-lg" value="subir foto"/>
+
+</form>
+
+	  </div>
 	  
 
 <?	

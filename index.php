@@ -27,7 +27,7 @@ session_destroy();
 	
 <!----------------Aqui llamamos a la hoja de estilo que modifica las carcteristicas de la pagina como color, tamaño,etc---------->
     <!-- Custom CSS -->
-    <link type="text/css" href="css/business-casual.css" rel="stylesheet"/>
+    <link href="css/business-casual.css" rel="stylesheet">
 	
 	<link type="text/css" href="./css/style20_index.css" rel="stylesheet" />
 
@@ -97,7 +97,7 @@ session_destroy();
                         <a href="contact.php">Contáctanos</a> <!-------------------->
                     </li>
 					<li>
-                        <a href="silabos.php">Sílabos</a> <!-------------------->
+                        <a href="silabo.php">Sílabos</a> <!-------------------->
                     </li>
                 </ul>
             </div>
@@ -199,7 +199,7 @@ session_destroy();
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p>versión 1.0.7 &copy;  2017</p>
+                    <p>versión 1.0 &copy;  2017</p>
                 </div>
             </div>
         </div>

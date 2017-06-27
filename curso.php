@@ -6,7 +6,7 @@ EN ESTE ARCHIVO SE MOSTRARA  LOS DATOS DE LOS CURSOS Y LA OPCION DE AGREGAR DOCE
 
 
 
-<!-------------ESTE ES UN METODO DE SEGURIDAD, YO HE CREADO EN LOGIN.PHP dos variables de sesion, es decir variables que estaran presentes en todos los archivos, las podemos llamar y utilizar su valor, si estas variables estan vacias significa que no se logeo correctamnete el docente o admin, por lo tanto se redirigire a index.html---------------->
+<!-------------ESTE ES UN METODO DE SEGURIDAD, YO HE CREADO EN LOGIN.PHP dos variables de sesion, es decir variables que estaran presentes en todos los archivos, las podemos llamar y utilizar su valor, si estas variables estan vacias significa que no se logeo correctamnete el docente o admin, por lo tanto se redirigire a index.html----------------->
 
 
 <?php
@@ -268,7 +268,7 @@ a:link
 			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
 			
 			
-			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Asignación de curso</a></li>
+			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Plan de estudios</a></li>
 			
 			
 			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Crear docente</a></li>
@@ -292,7 +292,7 @@ a:link
 
       ?>
 	  
-	  <!-------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE-->
+	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
 	  
       <?php
 		
@@ -349,27 +349,27 @@ a:link
 		
 		
 
-<!--------------------MENU MI PERFIL, ASIGNATURAS------------------------>
+<!--------------------MENU MI PERFIL, ASIGNATURAS---------------------------------------->
 
 	
 	
-<!--------------------FIN DE MENU MI PERFIL, ASIGNATURAS-------------------->
+<!--------------------FIN DE MENU MI PERFIL, ASIGNATURAS---------------------------------------->
 	
 	<br>
 	<br>
 	
-<!------------------------------MENU LATERAL DOCENTES, crear docente  ------------------------------------------------>
+<!------------------------------MENU LATERAL DOCENTES, crear docente  ------------------------------------------------->
 
 	
 	
-<!------------------------------FIN DE MENU LATERAL DOCENTES,crear docente  ------------------------------------------------>
+<!------------------------------FIN DE MENU LATERAL DOCENTES,crear docente  ------------------------------------------------->
 
 
-<!---------funcion para mostrar la lista de  los docentes actualizados ---------------------------------------->
+<!---------funcion para mostrar la lista de  los docentes actualizados ----------------------------------------->
 
     
 
-<!-------- fin de funcion para mostrar la lista de  los docentes actualizados ---------------------------------------->  
+<!--------- fin de funcion para mostrar la lista de  los docentes actualizados ----------------------------------------->  
 
 <style>
 /*
@@ -517,7 +517,7 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	   $i++;
 
       ?>
-	  <!--------SE MUESTRAN DATOS DEL CURSO------------>
+	  <!---------SE MUESTRAN DATOS DEL CURSO------------>
 	  
 	  <div class="pull-right">
 		<a href="javascript:window.history.go(0);" class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-refresh"></span> Actualizar información</a>
@@ -526,42 +526,38 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 		<br>
 		<br>
 		
-	  <TABLE style="text-align: left; position: relative; left: 200px" >
-	<TR><TH>&nbsp;&nbsp;CÓDIGO ASIGNATURA :</TH>
-		<TD>&nbsp;&nbsp;&nbsp;<?php echo $cod_asignatura; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;NOMBRE DEL CURSO :</TH>
-		<TD>&nbsp;&nbsp;&nbsp;<?php echo  $nombre; /*echo $i;*/ ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;PRE-REQUISITO      :</TH>
-		<TD>&nbsp;&nbsp;&nbsp;<?php echo $pre_requisito; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;SEMESTRE ACADÉMICO :</TH>
-		<TD>&nbsp;&nbsp;&nbsp;<?php echo $semestre_academico; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;FACULTAD      :</TH>
-		<TD>&nbsp;&nbsp;&nbsp;<?php echo  $facultad; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;NÚMERO DE CREDITOS           :</TH>
-		<TD>&nbsp;&nbsp;&nbsp;<?php echo $nro_creditos; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;HORAS TEORÍA         :</TH>
-		<TD>&nbsp;&nbsp;&nbsp;<?php echo $horas_teoria; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;HORAS DE PRACTICA     :</TH>
-		<TD>&nbsp;&nbsp;&nbsp;<?php echo $horas_practica; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;HORAS LABORATORIO       :</TH>
-		<TD>&nbsp;&nbsp;&nbsp;<?php echo $horas_laboratorio; ?></TD> </TR>
+	  <TABLE style="text-align: left; position: relative; left: 150px" >
+	<TR><TH>CÓDIGO ASIGNATURA :</TH>
+		<TD>&nbsp;<?php echo $cod_asignatura; ?></TD> </TR>
+	<TR><TH>NOMBRE DEL CURSO :</TH>
+		<TD>&nbsp;<?php echo  $nombre; /*echo $i;*/ ?></TD> </TR>
+	<TR><TH>PRE-REQUISITO      :</TH>
+		<TD>&nbsp;<?php echo $pre_requisito; ?></TD> </TR>
+	<TR><TH>SEMESTRE ACADÉMICO :</TH>
+		<TD>&nbsp;<?php echo $semestre_academico; ?></TD> </TR>
+	<TR><TH>FACULTAD      :</TH>
+		<TD>&nbsp;<?php echo  $facultad; ?></TD> </TR>
+	<TR><TH>NÚMERO DE CREDITOS           :</TH>
+		<TD>&nbsp;<?php echo $nro_creditos; ?></TD> </TR>
+	<TR><TH>HORAS TEORÍA         :</TH>
+		<TD>&nbsp;<?php echo $horas_teoria; ?></TD> </TR>
+	<TR><TH>HORAS DE PRACTICA     :</TH>
+		<TD>&nbsp;<?php echo $horas_practica; ?></TD> </TR>
+	<TR><TH>HORAS LABORATORIO       :</TH>
+		<TD>&nbsp;<?php echo $horas_laboratorio; ?></TD> </TR>
 	
-	<TR><TH>&nbsp;&nbsp;DOCENTES       :</TH>
+	<TR><TH>DOCENTES       :</TH>
 		<TD><?php while ($fila4 = mysqli_fetch_array($ejecutar4) )   //PROFESORES ASIGNADOS AL CURSO
 	  
 	  {
 	  ?>
-	  &nbsp;&nbsp;&nbsp;
+	  &nbsp;
 	  <?
 	  echo $fila4['nombre']; 
 	  
 	  ?>
-<<<<<<< HEAD
-	  <!------<button type="button" class="btn btn-lg btn-danger"  >X</button>------------>
-=======
 
 	  <!------<button type="button" class="btn btn-lg btn-danger"  >X</button>-------------->
->>>>>>> 68025b6309b2e67fd4d6863aa9171ca742c70c1b
 	  
 	  
 	  <!---------
@@ -570,7 +566,7 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 			<a class="delete" id="delete<?php echo $fila4['interno_docente'] ?>" >Eliminar Curso</a>
 			
 		</div>
-	  -------------->
+	  ------------------>
 	
 
 	  <?php
@@ -579,17 +575,17 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	  }
 	  
 	  ?>
-	  	<TR><TH font size="30">&nbsp;&nbsp;ACCIONES       :</TH>
+	  	<TR><TH font size="30">ACCIONES       :</TH>
 		<TD>
 		<br>
 		
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar"><span class="glyphicon glyphicon-pencil"></span>EDITAR CURSO</button>
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar"><span class="glyphicon glyphicon-pencil" style="position: relative; width: 70px"></span>EDITAR CURSO</button>
 		<br>
 	  
-	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>AGREGAR DOCENTE</button>
+	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus" style="position: relative; width: 30px"></span>AGREGAR DOCENTE</button>
 	  <br>
 	 
-	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-pencil"></span>MODIFICAR SUMILLA</button>
+	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-pencil" style="position: relative; width: 20px"></span>MODIFICAR SUMILLA</button>
 	  <STYLE>
 	  .hola
 	  {
@@ -610,12 +606,15 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	
 	<!--------------->
 	
+	
+	
+
 
 	
 	
 	
 	
-<!----------INICIO DE VENTANA MODAL EDITAR CURSO---------------------->
+<!--------------INICIO DE VENTANA MODAL EDITAR CURSO--------------------------------->
 <?php
 	include('conexion.php');//CADENA DE CONEXION
 
@@ -668,7 +667,7 @@ include('conexion.php');//CADENA DE CONEXION
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">  ASIGNATURA</h4>
-		 <!-------- <h1><center>CREAR ASIGNATURA</center></h1>-------->
+		 <!-------- <h1><center>CREAR ASIGNATURA</center></h1>------------->
         </div>
 		
         <div class="modal-body" style="color:#000;"  >
@@ -835,17 +834,17 @@ include('conexion.php');//CADENA DE CONEXION
 	
 	
 	
-	<!----<p>Tipo</p>---->
+	<!----<p>Tipo</p>----->
 	
 	
 	
 	
 	
 
-<!---------------INICIO ZONA DERECHA------------------------>
+<!---------------INICIO ZONA DERECHA------------------------->
 	</div>
 
-	<!--------------BOTON CREAR DOCENTE-------------------------------->
+	<!--------------BOTON CREAR DOCENTE---------------------------------->
  
 <button type="submit" name="update_curso" class="bouton-contact" >GUARDAR CAMBIOS</button> 
 
@@ -927,7 +926,7 @@ include('conexion.php');//CADENA DE CONEXION
 
 
 
-<!---FIN DE VENTANA MODAL EDITAR CURSO------>
+<!--------------FIN DE VENTANA MODAL EDITAR CURSO--------------------------------->
 
 
 	
@@ -982,6 +981,7 @@ include('conexion.php');//CADENA DE CONEXION
 				<input type="checkbox" name="valores[]" value="<?php echo $name?>" class="checks"  >
 				<?php
 						echo "$name<br><br><br>";
+					
 					}
 				?>
 				<style>

@@ -229,11 +229,15 @@ a:link
 		
 		
 		
-		$ID_DOC = $_GET['nombre_doc'];
+		$Cod_asignatura_enviada=$_GET['nombre_asig'];
 
 include('conexion.php');
 
+
+$ID_DOC = $nombre_docente_verificado;
+
 $extraer_interno_docente="select interno_docente from docente  where Cod_docente='$ID_DOC'";
+
 		$EJECUCION_ID=mysqli_query($con,$extraer_interno_docente);
 		$interno_docente1= mysqli_fetch_array($EJECUCION_ID);
 		
@@ -377,64 +381,55 @@ $extraer_interno_docente="select interno_docente from docente  where Cod_docente
 
 
 <div class="contenedor_presenta">
-<img src="img/profesor.jpg" width="200" height="200" align="RIGHT"><!-----IMAGEN DEL PROFESOR---------------->
-
 
 
 <?php
-      $consulta ="SELECT * FROM docente where Cod_docente='$nombre_docente_verificado' ";
-      $ejecutar= mysqli_query($con,$consulta);
-	  
-	  $ejecutar2= mysqli_query($con,$consulta);
-	  
-	  
-      $i=0;
-      while($fila = mysqli_fetch_array($ejecutar))
+      
+	  $consulta2 ="SELECT * FROM asignatura  where cod_asignatura='$Cod_asignatura_enviada'";
+
+$ejecutar2= mysqli_query($con,$consulta2);
+	   
+	   
+	   while($fila = mysqli_fetch_array($ejecutar2))
       {
-		 $Cod_docente=$fila['Cod_docente'];
-		 $nombre=$fila['nombre'];
-		 $apellido=$fila['apellido'];
-		 $dni=$fila['dni'];
-		 $direccion=$fila['direccion'];
-		 $tipo=$fila['tipo'];
-		 $email=$fila['email'];
-		 $fnacimiento=$fila['fnacimiento'];
-		 $telefono=$fila['telefono_docente'];
-		 $password=$fila['password'];
-		 
+		$nombre=$fila['nomb_asignatura'];
+		 $horas_practica=$fila['horas_practica'];
+		 $pre_requisito=$fila['pre_requisito'];
+		 $nro_creditos=$fila['nro_creditos'];
+		 $semestre_academico=$fila['semestre_academico'];
+		 $cod_asignatura=$fila['cod_asignatura'];
+		 $facultad=$fila['facultad'];
+		 $horas_teoria=$fila['horas_teoria'];
+		 $horas_laboratorio=$fila['horas_laboratorio'];
+		 ?>
+		 <TABLE style="text-align: left; position: relative; left: 150px" >
+	<TR><TH>CÓDIGO ASIGNATURA :</TH>
+		<TD>&nbsp;<?php echo $cod_asignatura; ?></TD> </TR>
+	<TR><TH>NOMBRE DEL CURSO :</TH>
+		<TD>&nbsp;<?php echo  $nombre;  ?></TD> </TR>
+	<TR><TH>PRE-REQUISITO      :</TH>
+		<TD>&nbsp;<?php echo $pre_requisito; ?></TD> </TR>
+	<TR><TH>SEMESTRE ACADÉMICO :</TH>
+		<TD>&nbsp;<?php echo $semestre_academico; ?></TD> </TR>
+	<TR><TH>FACULTAD      :</TH>
+		<TD>&nbsp;<?php echo  $facultad; ?></TD> </TR>
+	<TR><TH>NÚMERO DE CREDITOS           :</TH>
+		<TD>&nbsp;<?php echo $nro_creditos; ?></TD> </TR>
+	<TR><TH>HORAS TEORÍA         :</TH>
+		<TD>&nbsp;<?php echo $horas_teoria; ?></TD> </TR>
+	<TR><TH>HORAS DE PRACTICA     :</TH>
+		<TD>&nbsp;<?php echo $horas_practica; ?></TD> </TR>
+	<TR><TH>HORAS LABORATORIO       :</TH>
+		<TD>&nbsp;<?php echo $horas_laboratorio; ?></TD> </TR>
+		 </TABLE>
+		<?
+}
 		
-        $i++;
-
-      ?>
-	
-	<TABLE cellpadding=5 >
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CÓDIGO DOCENTE :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Cod_docente; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOMBRE         :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo  $nombre; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APELLIDO       :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $apellido; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI            :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $dni; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIRECCIÓN      :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo  $direccion; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TIPO           :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $tipo; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-MAIL         :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $email; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FECHA NAC.     :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $fnacimiento; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TELÉFONO       :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $telefono; ?></TD> </TR>
-	</TABLE>
-	
-     
+	 ?>
+	 
+	 
+	  <a class="btn btn-info btn-lg" href="silabo_crear.php?nombre_asig=<?php echo $cod_asignatura ?>">EDITAR SILABO</a>
 	  
-      <br>  
-	  
-
-      <?php } ?>
-	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar_admin">EDITAR DATOS</button>
 	  <BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " >Recargar datos</button>
 	  
 	  
@@ -458,18 +453,25 @@ height:100%;
 
 		<?php
 		
-		$ID_ADMIN = $_GET['nombre_admin'];
-
-$extraer_interno_admin="select interno_docente from docente  where Cod_docente='$ID_ADMIN'";
-		$EJECUCION_ID=mysqli_query($con,$extraer_interno_admin);
-		$interno_docente= mysqli_fetch_array($EJECUCION_ID);
 		
+$ID_DOC = $nombre_docente_verificado;
+
+include('conexion.php');
+
+$extraer_interno_docente="select interno_docente from docente  where Cod_docente='$ID_DOC'";
+		$EJECUCION_ID=mysqli_query($con,$extraer_interno_docente);
+		$interno_docente1= mysqli_fetch_array($EJECUCION_ID);
+		$interno_docente2=$interno_docente1['interno_docente'];
 		
 		//En esta zona haremos que se creen tantos submenus como cursos tenga el docente seleecionado, por ejemplo si el docnete tiene 6 cursos asignados , aparecen 6 submenus con los nombre de los cursos, de maner dinamica.
 		include('conexion.php');
-		$CONSULTAR_CURSOS="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where dicta.interno_docente='$interno_docente'";
+		$fecha_sistema=getdate();
+		
+		$CONSULTAR_CURSOS="select * from dicta where interno_docente='$interno_docente2' and cod_asignatura='$Cod_asignatura_enviada' ";
+		
 		$EJECUCION_CURSOS=mysqli_query($con,$CONSULTAR_CURSOS);
 		$indice=1;
+		
 		while($CURSOS = mysqli_fetch_array($EJECUCION_CURSOS))
 		{
 		$indice++;
@@ -479,26 +481,26 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $indice;?>" aria-expanded="false" aria-controls="collapse<?php echo $indice;?>">
                         <i class="more-less glyphicon glyphicon-plus"></i>
-                        <?php echo $CURSOS['nomb_asignatura']?> 
+                        <?php echo $CURSOS['cod_asignatura']?> 
                     </a>
                 </h4>
             </div>
             <div id="collapse<?php echo $indice;?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?php echo $indice;?>">
                 <div class="panel-body">
 				
-				  aqui se podran los detalles del curso
 				  
-				  <p>Fecha límite <span>*</span></p>
-			<span class="icon-case"><img src="" height="15"><i class="fa fa-building-o"></i></span>
-				<input type="text" name="fecha_limite" id="fecha_limite" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné."  />
-                <div class="validation"></div>
-				
+				  <p>Fecha límite : <?echo  $CURSOS['fecha_limite'];?><span></span></p>
+			
 				<br>
-				<br>
-				<br>
+				<style>
+			.observaciones1{
+			resize:none;
+			}
+			</style>
+			
 			<p>OBSERVACIONES <span>*</span></p>
 			<span class="icon-case"><img src="" height="18"><i class="fa fa-map-marker"></i></span>
-				<textarea type="text" name="observaciones" id="observaciones" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné." /></textarea>
+				<textarea type="text" name="observaciones" id="observaciones" class="observaciones1" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné." /></textarea>
                 <div class="validation"></div>
 			
 
@@ -508,10 +510,8 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 <br>
 <br>
             </div>
-			<br>
-<br>
-<br>
-<br>
+			
+
         </div>
 		<?php } ?>
 		
@@ -530,178 +530,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 	
 	
 	
-	<div class="container">
-  <!-- Trigger the modal with a button -->
-  <!-- Modal -->
-  <div class="modal fade" id="myModal_editar_admin" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Mis datos</h4>
-        </div>
-		
-		
-        <div class="modal-body">
-		
-		<form action="#" method="post" class="EDITAR_ADMIN"  >
-	   
-    <div class="contentform">
-    	<div id="sendmessage"> Has creado correctamente al docente </div>
-		
-		<div class="form-group">
-      <label class="control-label col-sm-4" for="CODIGO_DOCENTE">Código docente:</label>
-      <div class="col-sm-4">
-        <p class="form-control-static"><?php echo $Cod_docente; ?></p>
-      </div>
-    </div>
 	
-	
-	<label class="control-label col-sm-8" for="email" align="left" >Nombre docente:</label>
-	<br>
-	<br>
-	
-	
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="nombre_docente_edita" type="text" class="form-control" name="nombre_docente_edita"   data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné."  placeholder="Nombre" value="<?php echo $nombre;?>" required />
-    </div>
-	
-	<br>
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Apellidos:</label>
-	<br>
-	<br>
-	
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="apellido_edita" type="text" class="form-control" name="apellido_edita" placeholder="Apellido" value="<?php echo $apellido;?>"  required />
-    </div>
-	<br>
-	
-	
-	<label class="control-label col-sm-8" for="email" align="left" >DNI:</label>
-	<br>
-	<br>
-	
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="DNI_edita" type="text" class="form-control" name="DNI_edita"  data-rule="maxlen:8" required pattern="[0-9]{8}" placeholder="DNI" value="<?php echo $dni;?>"  required />
-    </div>
-	<br>
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Dirección:</label>
-	<br>
-	<br>
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	  
-	   <input id="direccion_edita" type="text" class="form-control" name="direccion_edita"  placeholder="Direccion" value="<?php echo $direccion;?>"  required />
-	   
-	   
-    </div>
-	<br>
-	
-	<label class="control-label col-sm-6" for="email" align="left" >Tipo:</label>
-	<br>
-	<br>
-	
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	  
-	  <select name="tipo_edita" id="tipo_edita" class="form-control" required />
-				
-				<option value="<?php echo $tipo;?>"><?php echo $tipo;?></option>
-				
-				<option value="docente">docente</option>
-				<option value="admin">admin</option>
-				</select>
-    </div>
-	<br>
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Email:</label>
-	<br>
-	<br>
-	
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="email_edita" type="email" class="form-control" name="email_edita" placeholder="Email" data-rule="email" data-msg="Vérifiez votre saisie sur les champs : Le champ 'E-mail' est obligatoire." value="<?php echo $email;?>" required/>
-    </div>
-	<br>
-	
-	
-	<!----<p>Tipo</p>----->
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Fecha nacimiento:</label>
-	<br>
-	<br>
-	
-	<div class="input-group ">
-	
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="f_nacimiento_edita" type="text" class="form-control" name="f_nacimiento_edita" placeholder="Fecha nacimiento"  value="<?php echo $fnacimiento;?>" required />
-    </div>
-	<br>
-	
-	
-	
-	
-	<!----<p>Tipo</p>----->
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Contraseña</label>
-	<br>
-	<br>
-	
-	<div class="input-group ">
-	
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="password_edita" type="text" class="form-control" name="password_edita" placeholder="Contraseña"  value="<?php echo $password;?>" required />
-    </div>
-	<br>
-	
-	
-	
-	
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Teléfono:</label>
-	<br>
-	<br>
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	  
-	   <input id="telefono_edita" type="text" class="form-control" name="telefono_edita"  placeholder="telefono" value="<?php echo $telefono;?>"  required />
-	   
-	   
-    </div>
-	<br>
-	
-	
-	
-
-	</div>
-
-	<!--------------BOTON CREAR DOCENTE---------------------------------->
- 
-<button type="submit" name="update_admin" class="bouton-contact" >GUARDAR CAMBIOS</button> 
-
-
-</form>
-		
-		
-		  
-        </div>
-		
-		
-        
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-
 
 <br><br><br><br>
 <br><br><br><br>
@@ -713,38 +542,8 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 <?php
 
 //esta funcion nos ayudara a guardar los cambios de los datos del docente en la base de datos al momento de editarlo
-if(isset($_POST['update_admin']))
-{
-        include('conexion.php');
-		
-		$nombre_docente_edita=$_POST["nombre_docente_edita"];
-		
-        $apellido_edita=$_POST["apellido_edita"];
-		
-        $dni_edita=$_POST["DNI_edita"];
-		
-        $direccion_edita=$_POST["direccion_edita"];
-		
-		$tipo_edita=$_POST["tipo_edita"];
-		
-        $email_edita=$_POST["email_edita"];
-		
-        $fnacimiento_edita=$_POST["f_nacimiento_edita"];
-		
-		
-		$telefono_edita=$_POST["telefono_edita"];
-		
-		$password_edita=$_POST["password_edita"];
 
-		$actualizar="UPDATE docente set nombre='$nombre_docente_edita',apellido='$apellido_edita',dni='$dni_edita',direccion='$direccion_edita',
-		tipo='$tipo_edita',email='$email_edita',fnacimiento='$fnacimiento_edita',password='$password_edita',telefono_docente='$telefono_edita'
-
-		WHERE Cod_docente='$Cod_docente'";
-		
-		
-		$ejecutar_actu_admin=mysqli_query($con,$actualizar);
-
-      }?>
+      ?>
 		
   
 		
