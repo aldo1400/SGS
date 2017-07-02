@@ -134,28 +134,27 @@ body {
 
 
 <script type="text/javascript">
+	$(function() {
 
+		$(".delbutton").click(function(){
+			var $self = $(this)
+			var del_id = $self.data("id");
+			var info = 'id=' + del_id;
+			if(confirm("Desea borrar esto?")){
+				$.ajax({
+					type: "POST",
+					url: "borra.php",
+					data: info,
+					success: function(){
+						$self.parents(".borrado").parent().animate({ backgroundColor: "#fbc7c7" }, "fast")
+							.animate({ opacity: "hide" }, "slow");
+					}.bind(this)
+				});
 
-$(function() {
-
-$(".delbutton").click(function(){
-var del_id = element.attr("id");
-var info = 'id=' + del_id;
-if(confirm("Desea borrar esto?"))
-{
-$.ajax({
-type: "POST",
-url: "borra.php",
-data: info,
-success: function(){
-}
-});
-$(this).parents(".borrado").animate({ backgroundColor: "#fbc7c7" }, "fast")
-.animate({ opacity: "hide" }, "slow");
-}
-return false;
-});
-});
+			}
+			return false;
+		});
+	});
 
 </script>
 
@@ -576,45 +575,25 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	<TR><TH>HORAS LABORATORIO       :</TH>
 		<TD>&nbsp;<?php echo $horas_laboratorio; ?></TD> </TR>
 	
-	<TR><TH>DOCENTES       :</TH>
-		<TD><?php while ($fila4 = mysqli_fetch_array($ejecutar4) )   //PROFESORES ASIGNADOS AL CURSO
-	  
-	  {
-	  ?>
-	  &nbsp;
-	  <?
-	  echo $fila4['nombre']; 
-	  ?>
-	  
-	  <div class="borrado">
-<a href="#" class="delbutton" id="<?php echo $fila4['interno_docente']?>">Eliminar</a>
-</div>
-
-	  <?
-	  ?>
-
-	  <!--<button type="button" class="btn btn-lg btn-danger"  >X</button>-->
-	  
-	  
-	  <!--
-		<div class="service_list" id="service<?php echo $fila4['interno_docente'] ?>" data="<?php echo $fila4['interno_docente'] ?>">    
-   
-			<a class="delete" id="delete<?php echo $fila4['interno_docente'] ?>" >Eliminar Curso</a>
-			
-		</div>
-	  ---------------->
-	
-
-	  <?php
-	  
-	  echo "<br>";
-	  }
-	  
-	  ?>
-	  	
-		
-		
-		<TR><TH font size="30">ACCIONES       :</TH>
+	<TR>
+		<TH>DOCENTES:</TH>
+		<TD>
+			<?php while ($fila4 = mysqli_fetch_array($ejecutar4) ) { ?>
+			&nbsp;
+				<div class="profesor">
+					<?
+					echo $fila4['nombre']; 
+					?>	  
+					<div class="borrado">
+						<a href="#" class="delbutton" data-id="<?php echo $fila4['interno_docente']?>">Eliminar</a>
+					</div>
+				</div>
+			<?php
+				}	  
+			?>
+	</TR>
+	<TR>
+		<TH font size="30">ACCIONES:</TH>
 		<TD>
 		<br>
 		
@@ -1260,29 +1239,7 @@ if(isset($_POST['sumilla_enviar']))
 
     </div>
     <!-- /.container -->
-	
-	<script type="text/javascript">
-$(function() {
 
-$(".delbutton").click(function(){
-var del_id = element.attr("id");
-var info = 'id=' + del_id;
-if(confirm("Desea borrar esto?"))
-{
-$.ajax({
-type: "POST",
-url: "borra.php",
-data: info,
-success: function(){
-}
-});
-$(this).parents(".borrado").animate({ backgroundColor: "#fbc7c7" }, "fast")
-.animate({ opacity: "hide" }, "slow");
-}
-return false;
-});
-});
-</script>
 
 	<style>		
 	$(document).on("click","#eliminar",function()
