@@ -1,10 +1,10 @@
 <?php
 include("conexion.php");
-if($_GET['id'])
+if($_POST['id'])
 {
-$id=$_GET['id'];
+$id=$_POST['id'];
 echo $id;
-$sql = "delete from dicta where Cod_docente='$id'";
+$sql = "DELETE from dicta where interno_docente='id' and cod_asignatura='011103' ";
 mysql_query($con,$sql);
 }
 ?>

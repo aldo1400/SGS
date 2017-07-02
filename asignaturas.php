@@ -187,7 +187,159 @@ $nombre_admin=$_SESSION['nombre_docente'];
 		
 		
 
+ <script language="javascript">
  
+function agregarOpciones(form)
+{
+var selec = form.facultad_crea.options;
+var combo = form.escuela_crea.options;
+combo.length = null;
+
+    if (selec[0].selected == true)
+    {
+    var seleccionar = new Option("<-- esperando selección","","","");
+    combo[0] = seleccionar;
+    }
+
+    if (selec[1].selected == true)
+    {
+    var Facultad1 = new Option("Ingenieria de Minas","ESMI","","");
+    var Facultad2 = new Option("Ingenieria Metalurgica y Materiales","ESME","","");
+	var Facultad3 = new Option("Ingenieria Mecanica","ESMC","","");
+	var Facultad4 = new Option(" Ingeniería Informática y Sistemas","ESIS","","");
+	var Facultad5 = new Option(" Ingeniería Química","ESIQ","","");
+	
+    combo[0] = Facultad1;
+    combo[1] = Facultad2;
+	combo[2] = Facultad3;
+	combo[3] = Facultad4;
+	combo[4] = Facultad5;
+	
+    }
+
+    if (selec[2].selected == true)
+    {
+	
+    var Facultad21 = new Option("Biología Microbiología","ESBI","","");
+	
+    var Facultad22 = new Option("Física Aplicada","ESFI","","");
+	
+    var Facultad23 = new Option("Matemáticas","ESMA","","");
+	
+    combo[0] = Facultad21;
+    combo[1] = Facultad22;
+    combo[2] = Facultad23;
+	
+    }
+	
+	if (selec[3].selected == true)
+    {
+	
+    var Facultad31 = new Option(" Ciencias Contables y Financieras","ESCF","","");
+	
+    var Facultad32 = new Option("Ciencias Administrativas","ESAD","","");
+	
+    var Facultad33 = new Option("Derecho y Ciencias Políticas","ESDE","","");
+	
+	var Facultad34 = new Option("Ingeniería Comercial","ESCO","","");
+	 
+    combo[0] = Facultad31;
+    combo[1] = Facultad32;
+    combo[2] = Facultad33;
+	combo[3] = Facultad34;
+	
+    }
+	
+	
+	if (selec[4].selected == true)
+    {
+	
+    var Facultad41 = new Option("Agronomía","ESAG","","");
+	
+    var Facultad42 = new Option("Medicina Veterinaria y Zootecnia ","ESVZ","","");
+	
+    var Facultad43 = new Option("Ingeniería en Economía Agraria","ESEA","","");
+	
+	var Facultad44 = new Option("Ingeniería en Industrias Alimentarias","ESIA","","");
+	 
+	var Facultad45 = new Option("Ingeniería Pesquera","ESIP","","");
+	
+	var Facultad46 = new Option("Ingeniería Ambiental","ESAM","","");
+	
+    combo[0] = Facultad41;
+    combo[1] = Facultad42;
+    combo[2] = Facultad43;
+	combo[3] = Facultad44;
+	combo[4] = Facultad45;
+	combo[5] = Facultad46;
+	
+    }
+	
+	
+	if (selec[5].selected == true)
+    {
+	
+    var Facultad51 = new Option("Obstetricia","ESOB","","");
+	
+    var Facultad52 = new Option("Enfermería","ESEN","","");
+	
+    var Facultad53 = new Option("Medicina Humana","ESMH","","");
+	
+	var Facultad54 = new Option("Odontología","ESOD","","");
+	 
+	var Facultad55 = new Option("Farmacia y Bioquímica","ESFB","","");
+	
+    combo[0] = Facultad51;
+    combo[1] = Facultad52;
+    combo[2] = Facultad53;
+	combo[3] = Facultad54;
+	combo[4] = Facultad55;
+	
+    }
+	
+	if (selec[6].selected == true)
+    {
+	
+    var Facultad61 = new Option("Educación","ESED","","");
+	
+    var Facultad62 = new Option(" Ciencias de la Comunicación","ESCC","","");
+	
+    var Facultad63 = new Option("Historia","ESHI","","");
+
+    combo[0] = Facultad61;
+    combo[1] = Facultad62;
+    combo[2] = Facultad63;
+
+    }
+	
+	if (selec[7].selected == true)
+    {
+	
+    var Facultad71 = new Option("Ingeniería Civil","ESIC","","");
+	
+    var Facultad72 = new Option("Ingeniería Geológica-Geotecnia","ESGE","","");
+	
+    var Facultad73 = new Option("Arquitectura","ESAQ","","");
+	
+	var Facultad74 = new Option("Artes","ESAR","","");
+
+    combo[0] = Facultad71;
+    combo[1] = Facultad72;
+    combo[2] = Facultad73;
+	combo[3] = Facultad74;
+
+    }
+	
+	
+	
+}
+</script>
+
+
+
+  
+
+
  
 
 
@@ -910,7 +1062,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 
 
 <BR>
-	  <div class="container">
+	  <div class="container" id="contenido">
   
   <!-- Trigger the modal with a button -->
   
@@ -988,38 +1140,42 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 		<div class="input-group ">
 			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 	  
-			<select name="facultad_crea" id="facultad_crea" class="form-control" required >
+			<select name="facultad_crea" id="facultad_crea" class="form-control" onChange="agregarOpciones(this.form)" required >
 				
 				<option>Elige facultad</option>
-				<option value="FAIN">FAIN</option>
-				<option value="FACI">FACI</option>
-				<option value="FCJE">FCJE</option>
-				<option value="FCAG">FCAG</option>
-				<option value="FACS">FACS</option>
-				<option value="FECH">FECH</option>
-				<option value="FIAG">FIAG</option>
-				
+				<option value="FAIN">Facultad de Ingeniera (FAIN) </option>
+				<option value="FACI">Facultad de Ciencias (FACI) </option>
+				<option value="FCJE">Facultad de Ciencias Juridicas y Empresariales (FCJE) </option>
+				<option value="FCAG">Facultad de Ciencias Agropecuarias (FCAG)</option>
+				<option value="FACS">Facultad de Ciencias de la Salud (FACS) </option>
+				<option value="FECH">Facultad de Educación,Comunicación y Humanidades (FECH) </option>
+				<option value="FIAG">Facultad de Ingenieria Civil, Arquitectura y Geotecnia (FIAG) </option>
 				</select>
 			
     </div>
 	<br>
 	
-	
-	
+
+ 
+
 	<label class="control-label col-sm-4" for="email" align="left">Escuela :</label>
 	<br>
 	<br>
 	
+	
 	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="escuela_crea" type="text" class="form-control" name="escuela_crea" placeholder="Escuela" required>
+			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	  
+			<select name="escuela_crea" id="escuela_crea" class="form-control"  required >
+				
+				<option value="">esperando selección</option>
+			
+			</select>
+			
     </div>
+	
+
 	<br>
-	
-	
-	
-	
-	
 	
 	
 	
@@ -1033,17 +1189,16 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 	  <select name="ciclo_academico_crea" id="ciclo_academico_crea" class="form-control"  required >
 				
 				<option>Elige ciclo</option>
-				<option value="FAIN">Primer ciclo</option>
-				<option value="FACI">Segundo ciclo</option>
-				<option value="FCJE">Tercer ciclo</option>
-				<option value="FCAG">Cuarto ciclo</option>
-				<option value="FACS">Quinto ciclo</option>
-				<option value="FECH">Sexto ciclo</option>
-				<option value="FECH">Séptimo ciclo</option>
-				<option value="FECH">Octavo ciclo</option>
-				<option value="FECH">Noveno ciclo</option>
-				<option value="FECH">Décimo ciclo</option>
-				
+				<option value="Primer ciclo">Primer ciclo</option>
+				<option value="Segundo ciclo">Segundo ciclo</option>
+				<option value="Tercer ciclo">Tercer ciclo</option>
+				<option value="Cuarto ciclo">Cuarto ciclo</option>
+				<option value="Quinto ciclo">Quinto ciclo</option>
+				<option value="Sexto ciclo">Sexto ciclo</option>
+				<option value="Séptimo ciclo">Séptimo ciclo</option>
+				<option value="Octavo ciclo">Octavo ciclo</option>
+				<option value="Noveno ciclo">Noveno ciclo</option>
+				<option value="Décimo ciclo">Décimo ciclo</option>
 				
 				</select>
 				
@@ -1064,21 +1219,21 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
     </div>
 	<br>
 	
+	<div class="row" id="contenido2">
 	
+		<label class="control-label col-sm-4" for="email" align="left" >Horas laboratorio:</label>
 	
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Número de créditos:</label>
-	
-	<div class="col-sm-2">
+	<div class="col-sm-2" >
 	
 	<div class="input-group ">
-	
       
-
-      <input id="nro_creditos_crea" type="text" class="form-control" name="nro_creditos_crea" required pattern="[0-9]"  required>
+      <input id="horas_laboratorio_crea" type="text" class="form-control" name="horas_laboratorio_crea"  required>
     </div>
 	
 	</div>
+	
+
+	
 	
 	
 	
@@ -1134,16 +1289,21 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 	
 	
 	
-	<label class="control-label col-sm-4" for="email" align="left" >Horas laboratorio:</label>
+	<label class="control-label col-sm-4" for="email" align="left" >Número de créditos:</label>
 	
-	<div class="col-sm-2" >
+	<div class="col-sm-2">
 	
 	<div class="input-group ">
+	
       
-      <input id="horas_laboratorio_crea" type="text" class="form-control" name="horas_laboratorio_crea"  required>
+
+      <input id="nro_creditos_crea" type="text" class="form-control" name="nro_creditos_crea" required pattern="[0-9]"  disabled="true" required>
     </div>
 	
 	</div>
+	
+	</div>
+	
 	<br>
 	<br>
 	<br>
@@ -1163,6 +1323,46 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 
 
 </form>
+
+<script>
+  $(document).on('ready',constructor);
+  function constructor()
+  {
+	sumarentradas();
+  }
+  
+  function sumarentradas()
+ {
+	$('#contenido2').on('change','#horas_laboratorio_crea,#horas_teoria_crea,#horas_practica_crea',function()
+	{
+	var num1=parseInt($('#horas_laboratorio_crea').val());
+	var num2=parseInt($('#horas_teoria_crea').val());
+	var num3=parseInt($('#horas_practica_crea').val());
+	
+	if(isNaN(num1))
+	{
+		num1=0;
+	}
+	if(isNaN(num2))
+	{
+		num2=0;
+	}
+	
+	if(isNaN(num3))
+	{
+		num3=0;
+	}
+	
+	$('#nro_creditos_crea').val(num1+num2+num3);
+	
+	}
+	)
+ 
+ }
+  
+  </script>
+  
+
 
 <?php
 	include('conexion.php');//CADENA DE CONEXION
@@ -1266,6 +1466,8 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 
 
 
+  
+  
   
 	<br>
 	<br>

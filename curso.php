@@ -6,7 +6,7 @@ EN ESTE ARCHIVO SE MOSTRARA  LOS DATOS DE LOS CURSOS Y LA OPCION DE AGREGAR DOCE
 
 
 
-<!-------------ESTE ES UN METODO DE SEGURIDAD, YO HE CREADO EN LOGIN.PHP dos variables de sesion, es decir variables que estaran presentes en todos los archivos, las podemos llamar y utilizar su valor, si estas variables estan vacias significa que no se logeo correctamnete el docente o admin, por lo tanto se redirigire a index.html----------------->
+<!-------------ESTE ES UN METODO DE SEGURIDAD, YO HE CREADO EN LOGIN.PHP dos variables de sesion, es decir variables que estaran presentes en todos los archivos, las podemos llamar y utilizar su valor, si estas variables estan vacias significa que no se logeo correctamnete el docente o admin, por lo tanto se redirigire a index.html---------------->
 
 
 <?php
@@ -130,6 +130,36 @@ body {
     font-family: 'Roboto';font-size: 16px;
 }
 </style>
+
+
+
+<script type="text/javascript">
+
+
+$(function() {
+
+$(".delbutton").click(function(){
+var del_id = element.attr("id");
+var info = 'id=' + del_id;
+if(confirm("Desea borrar esto?"))
+{
+$.ajax({
+type: "POST",
+url: "borra.php",
+data: info,
+success: function(){
+}
+});
+$(this).parents(".borrado").animate({ backgroundColor: "#fbc7c7" }, "fast")
+.animate({ opacity: "hide" }, "slow");
+}
+return false;
+});
+});
+
+</script>
+
+
 
 
 
@@ -292,7 +322,7 @@ a:link
 
       ?>
 	  
-	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
+	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE-->
 	  
       <?php
 		
@@ -554,19 +584,25 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	  &nbsp;
 	  <?
 	  echo $fila4['nombre']; 
+	  ?>
 	  
+	  <div class="borrado">
+<a href="#" class="delbutton" id="<?php echo $fila4['interno_docente']?>">Eliminar</a>
+</div>
+
+	  <?
 	  ?>
 
-	  <!------<button type="button" class="btn btn-lg btn-danger"  >X</button>-------------->
+	  <!--<button type="button" class="btn btn-lg btn-danger"  >X</button>-->
 	  
 	  
-	  <!---------
+	  <!--
 		<div class="service_list" id="service<?php echo $fila4['interno_docente'] ?>" data="<?php echo $fila4['interno_docente'] ?>">    
    
 			<a class="delete" id="delete<?php echo $fila4['interno_docente'] ?>" >Eliminar Curso</a>
 			
 		</div>
-	  ------------------>
+	  ---------------->
 	
 
 	  <?php
@@ -575,7 +611,10 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	  }
 	  
 	  ?>
-	  	<TR><TH font size="30">ACCIONES       :</TH>
+	  	
+		
+		
+		<TR><TH font size="30">ACCIONES       :</TH>
 		<TD>
 		<br>
 		
@@ -981,7 +1020,6 @@ include('conexion.php');//CADENA DE CONEXION
 				<input type="checkbox" name="valores[]" value="<?php echo $name?>" class="checks"  >
 				<?php
 						echo "$name<br><br><br>";
-					
 					}
 				?>
 				<style>
@@ -1222,7 +1260,42 @@ if(isset($_POST['sumilla_enviar']))
 
     </div>
     <!-- /.container -->
+	
+	<script type="text/javascript">
+$(function() {
 
+$(".delbutton").click(function(){
+var del_id = element.attr("id");
+var info = 'id=' + del_id;
+if(confirm("Desea borrar esto?"))
+{
+$.ajax({
+type: "POST",
+url: "borra.php",
+data: info,
+success: function(){
+}
+});
+$(this).parents(".borrado").animate({ backgroundColor: "#fbc7c7" }, "fast")
+.animate({ opacity: "hide" }, "slow");
+}
+return false;
+});
+});
+</script>
+
+	<style>		
+	$(document).on("click","#eliminar",function()
+	{
+	if(confirm("Estas seguro de que desea eliminar este registro"))
+	{
+		alert("eliminado... ")
+	
+	};
+	})
+	
+	</style>
+	
     <footer>
         <div class="container">
             <div class="row">
