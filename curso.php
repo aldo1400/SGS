@@ -134,6 +134,8 @@ body {
 
 
 <script type="text/javascript">
+
+
 	$(function() {
 
 		$(".delbutton").click(function(){
@@ -458,9 +460,19 @@ a:link
 </div>	  
 
 
+
+
 <?php
+
+
+
+
 $v1 = $_GET['nombre_curso_enviado']; 
 
+session_start();
+session_name('permiso');
+
+$_SESSION['id_curso']=$v1;
 /*Para saber de que curso voy a mostrar los datos necesito el nombre, por eso desde el archivo asiganturas.php he enviado el nombre del curso en la variable nombre_curso_enviado por eso voy a recibirla en la variable $v1*/
 
 ?>
