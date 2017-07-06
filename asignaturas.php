@@ -54,6 +54,8 @@ include('conexion.php');//CADENA DE CONEXION
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 	
+	<script src="js/myscript.js"></script>
+	
 <style>
 body {
     font-family: 'Roboto';font-size: 16px;
@@ -182,7 +184,6 @@ $nombre_admin=$_SESSION['nombre_docente'];
 
 		<br>
 		<br>
-		<div class="contenedor-menu">
 		
 		
 		
@@ -335,13 +336,126 @@ combo.length = null;
 }
 </script>
 
-
-
+<script>
+$(document).on('ready',constructor);
+ function constructor()
+  {
+	sumarentradas();
+  }
   
+  function sumarentradas()
+ {
+	$('#contenido2').on('change','#horas_laboratorio_crea,#horas_teoria_crea,#horas_practica_crea',function()
+	{
+	var num1=parseInt($('#horas_laboratorio_crea').val());
+	var num2=parseInt($('#horas_teoria_crea').val());
+	var num3=parseInt($('#horas_practica_crea').val());
+	
+	$('#nro_creditos_crea').val(num1+num2+num3);
+	
+	}
+	)
+ 
+ }
+  
+  </script>
 
+
+ <div class="contenedor-menu1">
+		
+
+<style type="text/css">   
+a:link   
+{   
+ text-decoration:none;   
+}   
+</style>
+
+
+
+		<li class="btn-menu1">Docente<i class="icono fa fa-bars"></i></li>
+		<ul class="menu1">
+		
+			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
+			
+			
+			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
+				<ul>
+		<?php
+		
+		
+include('conexion.php');
+
+$extraer_interno_docente="select interno_docente from docente  where Cod_docente='$nombre_admin'";
+		$EJECUCION_ID=mysqli_query($con,$extraer_interno_docente);
+		$interno_docente1= mysqli_fetch_array($EJECUCION_ID);
+		
+		$interno_docente=$interno_docente1['interno_docente'];
+		
+		//En esta zona haremos que se creen tantos submenus como cursos tenga el docente seleecionado, por ejemplo si el docnete tiene 6 cursos asignados , aparecen 6 submenus con los nombre de los cursos, de maner dinamica.
+		
+		$CONSULTAR_CURSOS="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.interno_docente='$interno_docente'";
+		$EJECUCION_CURSOS=mysqli_query($con,$CONSULTAR_CURSOS);
+		
+		$i=0;
+		while($CURSOS = mysqli_fetch_array($EJECUCION_CURSOS))
+		{
+		
+			$nombre=$CURSOS['nomb_asignatura'];
+			$id_asignatura=$CURSOS['cod_asignatura'];
+			
+			
+			$fecha=$CURSOS['fecha_dicta'];
+			 $parte = explode("-", $fecha);
+			//echo $parte[0];//año asignado //
+			$fecha_sistema=getdate();
+			//echo $fecha_sistema['year'];
+			
+			 
+			 
+			
+			$i++;
+			if($fecha_sistema['year']==$parte[0])
+			{
+			?>
+	  
+	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
+	  
+		
+		
+        <li style="text-align:left;" ><a href="curso_docente.php?nombre_asig=<?php echo $id_asignatura ?>"><img src="img/flecha.png" width="30" height="30" name="flecha"><?php echo $nombre; ?></a></li>
+	
+		<?php }} ?>
+		
+				
+     
+	  <style>
+	  
+	  .flecha
+	  {
+	  margin-right:10px;
+	  margin-left:15px;
+	  }
+	  
+	  </style>
 
  
+ 		
+					
+					
+				</ul>
+			</li>
+			
+		</ul>
+	</div>
+				
 
+				
+
+
+		<div class="contenedor-menu">
+		
+		
 
 <style type="text/css">   
 a:link   
@@ -355,10 +469,8 @@ a:link
 		<li class="btn-menu">Administración<i class="icono fa fa-bars"></i></li>
 		<ul class="menu">
 		
-			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
-			
-			
-			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Asignación de curso</a></li>
+				
+			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Plan de estudios</a></li>
 			
 			
 			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Crear docente</a></li>
@@ -390,7 +502,7 @@ a:link
 		{
 		?>
 		
-        <li style="text-align:left;" ><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png" width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
+        <li style="text-align:left;"><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png"  width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
 		
 		
 		<?php
@@ -561,6 +673,7 @@ a:link
 <button style="position: relative; bottom: 8px" type="submit" name="SEMESTRE" class="btn btn-success btn-lg">BUSCAR</button>
 
 </form>
+
 
 
 <?PHP //con esto indicas que empiezas a insertar codigo php
@@ -1224,28 +1337,16 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 		<label class="control-label col-sm-4" for="email" align="left" >Horas laboratorio:</label>
 	
 	<div class="col-sm-2" >
-	
-	<div class="input-group ">
-      
       <input id="horas_laboratorio_crea" type="text" class="form-control" name="horas_laboratorio_crea"  required>
-    </div>
-	
+    
 	</div>
 	
 
-	
-	
-	
-	
 	<label class="control-label col-sm-4" for="email" align="left" >Horas teoría:</label>
 	<div class="col-sm-2"> 
 	
-	<div class="input-group ">
-	
-	
       <input id="horas_teoria_crea" type="text" class="form-control" name="horas_teoria_crea"  required>
-    </div>
-	
+    
 	</div>
 	
 	<br>
@@ -1255,16 +1356,12 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 	<label class="control-label col-sm-4" for="email" align="left" >Horas práctica:</label>
 	
 	<div class="col-sm-2" >
-	
-	<div class="input-group ">
-	
-      
+
       <input id="horas_practica_crea" type="text" class="form-control" name="horas_practica_crea" required pattern="[0-9]"  data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné."   required>
 	  
-    </div>
+   
 	
 	</div>
-	
 	
 	
 	<!-----
@@ -1293,12 +1390,8 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 	
 	<div class="col-sm-2">
 	
-	<div class="input-group ">
-	
-      
-
-      <input id="nro_creditos_crea" type="text" class="form-control" name="nro_creditos_crea" required pattern="[0-9]"  disabled="true" required>
-    </div>
+      <input id="nro_creditos_crea" type="text" class="form-control" name="nro_creditos_crea"   disabled="true" required>
+    
 	
 	</div>
 	
@@ -1324,43 +1417,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 
 </form>
 
-<script>
-  $(document).on('ready',constructor);
-  function constructor()
-  {
-	sumarentradas();
-  }
-  
-  function sumarentradas()
- {
-	$('#contenido2').on('change','#horas_laboratorio_crea,#horas_teoria_crea,#horas_practica_crea',function()
-	{
-	var num1=parseInt($('#horas_laboratorio_crea').val());
-	var num2=parseInt($('#horas_teoria_crea').val());
-	var num3=parseInt($('#horas_practica_crea').val());
-	
-	if(isNaN(num1))
-	{
-		num1=0;
-	}
-	if(isNaN(num2))
-	{
-		num2=0;
-	}
-	
-	if(isNaN(num3))
-	{
-		num3=0;
-	}
-	
-	$('#nro_creditos_crea').val(num1+num2+num3);
-	
-	}
-	)
- 
- }
-  
-  </script>
+
   
 
 
@@ -1409,7 +1466,15 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
          VALUES('$nomb_asignatura','$horas_practica','$pre_requisito','$nro_creditos','$semestre_academico','$cod_asignatura','$ciclo_academico','$facultad','$horas_teoria','$escuela','$horas_laboratorio','$sumilla')";
         $ejecutar = mysqli_query($con,$insertar_asig);
         if($ejecutar){
-          echo "fallo";
+		
+          ?>
+		
+		<script language="JavaScript">
+	var page='asignaturas.php';
+		location.href=page;
+		
+	</script>
+	<?
         }
       }
      ?>

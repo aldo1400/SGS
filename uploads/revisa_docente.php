@@ -975,14 +975,12 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
 		
         <form action="" method="post" class="form-inline" role="form">
         		<p><label class="control-label col-sm-3" for="fecha limite">Fecha límite:</label></p>
-		
 		<div class="input-group col-sm-4" >
-		
 		<input type="hidden" value="<?echo  $CURSOS['cod_asignatura'] ?>" id="cod_asig" name="cod_asig" >
 		<input type="hidden" value="<?echo  $id_profesor ?>" id="interno_docente1" name="interno_docente1" >
-		<input type="text" id="fecha" value="<?echo  $CURSOS['fecha_limite'] ?>" name="fecha" />
-		
-		</div>
+ <input type="text" id="fecha" value="<?echo  $CURSOS['fecha_limite'] ?>" name="fecha" />
+ 
+ </div>
  
 		
 	
@@ -992,11 +990,11 @@ $('.panel-group').on('shown.bs.collapse', toggleIcon);
 			<p>OBSERVACIONES <span>*</span></p>
 			
 			<span class="icon-case"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
-				<textarea type="text" CLASS="observaciones1" name="observaciones_nueva" id="observaciones_nueva"  data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné." /><?echo  $CURSOS['observaciones'] ?></textarea>
+				<textarea type="text" CLASS="observaciones1" name="observaciones_nueva" id="observaciones_nueva" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné." /></textarea>
                
 							
 <button type="submit" name="fecha_limite_asignación" class="btn btn-success btn-lg" >GUARDAR CAMBIOS</button>
-</form>
+
                 </div>
             </div>
         </div>

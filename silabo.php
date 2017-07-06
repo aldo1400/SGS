@@ -32,6 +32,21 @@
 
 <body>
 
+<style>
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+	width: 20%;
+	float: left;
+	
+   } 
+	</style>
+	
     <div class="brand">UNJBG</div>
     <div class="address-bar">Ciudad Universitaria - Av. Miraflores S/N - Central Telefónica: 052-583000</div>
 
@@ -246,11 +261,11 @@ $nombre_admin=$_SESSION['nombre_docente'];
 						</tr>
 						<tr>
 							<td class="col-md-9">Física general</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
+							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
 						</tr>
 						<tr>
 							<td class="col-md-9">Fundamentos de programación</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
+							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
 						</tr>
 						<tr>
 							<td class="col-md-9">Matemática discreta I</td>
@@ -282,11 +297,11 @@ $nombre_admin=$_SESSION['nombre_docente'];
 						</tr>
 						<tr>
 							<td class="col-md-9">Electromagnetismo y óptica</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
+							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
 						</tr>
 						<tr>
 							<td class="col-md-9">Programación avanzada</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
+							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
 						</tr>
 						<tr>
 							<td class="col-md-9">Matemática discreta II</td>
@@ -317,11 +332,11 @@ $nombre_admin=$_SESSION['nombre_docente'];
 						</tr>
 						<tr>
 							<td class="col-md-9">Física moderna</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
+							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
 						</tr>
 						<tr>
 							<td class="col-md-9">Estructura de datos</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
+							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
 						</tr>
 						<tr>
 							<td class="col-md-9">Métodos numéricos para ingeniería</td>
@@ -347,11 +362,11 @@ $nombre_admin=$_SESSION['nombre_docente'];
 						</tr>
 						<tr>
 							<td class="col-md-9">Sistemas electrónicos digitales</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
+							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
 						</tr>
 						<tr>
 							<td class="col-md-9">Algoritmos y programación paralela</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
+							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
 						</tr>
 						<tr>
 							<td class="col-md-9">Contabilidad, costos y presupuestos</td>
@@ -376,11 +391,11 @@ $nombre_admin=$_SESSION['nombre_docente'];
 						</tr>
 						<tr>
 							<td class="col-md-9">Arquitectura de computadoras</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
+							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
 						</tr>
 						<tr>
 							<td class="col-md-9">Sistemas operativos</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
+							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
 						</tr>
 						<tr>
 							<td class="col-md-9">Base de datos I</td>

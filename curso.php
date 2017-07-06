@@ -254,7 +254,7 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="contact.php">Contáctanos</a>
                     </li>
 					<li>
-                        <a href="silabos.php">Sílabos</a>
+                        <a href="silabo.php">Sílabos</a>
                     </li>
                 </ul>
             </div>
@@ -661,7 +661,13 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
         if($ejecutar_eliminar)
 		
 		{
-          echo "fallo";
+          ?>
+		<script language="JavaScript">
+	var page='asignaturas.php';
+		location.href=page;
+		
+	</script>
+		<?
         }
       }
      ?>
@@ -930,7 +936,15 @@ include('conexion.php');//CADENA DE CONEXION
         if($ejecutar_actualizar)
 		
 		{
-          
+		
+          ?>
+		<script language="JavaScript">
+	var page='curso.php?nombre_curso_enviado=<?php echo $cod_asignatura_edita ?>';
+		location.href=page;
+		
+	</script>
+		<?
+		
         }
       }
      ?>
@@ -1003,16 +1017,45 @@ include('conexion.php');//CADENA DE CONEXION
 		<form action="#" method="post" name="ASIGNACIÓN">
 		<?php 
 				
+				include('conexion.php');
+				
+				$consulta_docente_asignado="SELECT * FROM dicta inner join docente on docente.interno_docente=dicta.interno_docente where cod_asignatura='$v1'";
+					
+				$ejecutar_docente_asignado= mysqli_query($con,$consulta_docente_asignado);
+				$i_docente_asignado=0;
+				WHILE($fila_docente_asignado= mysqli_fetch_array($ejecutar_docente_asignado))
+				{
+					
+					$nombre_asignado["$i_docente_asignado"]=$fila_docente_asignado['nombre'];
+				
+				$i_docente_asignado++;	
+				}
+				
+					
+					
 				while($row57=mysqli_fetch_array($lista_profesores2))
 					{	
 					$name=$row57["nombre"];
+					
+					
+				if($name==$nombre_asignado[0] OR $name==$nombre_asignado[1] or $name==$nombre_asignado[2]or $name==$nombre_asignado[3] or  $name==$nombre_asignado[4] or $name==$nombre_asignado[5] or $name==$nombre_asignado[6])
+				{}
+				else{
+					?>
+						<input type="checkbox" name="valores[]" value="<?php echo $name?>" class="checks"  >
+					
+					<?php
 						
-				?>
-				<input type="checkbox" name="valores[]" value="<?php echo $name?>" class="checks"  >
-				<?php
 						echo "$name<br><br><br>";
+						
+				}
+					
+					
+					
 					}
 				?>
+				
+				
 				<style>
 				.checks
 				{
@@ -1095,8 +1138,18 @@ include('conexion.php');//CADENA DE CONEXION
 		 
         $ejecutar_insertar22 = mysqli_query($con,$insertar_dicta2);
 		
+		
+		
 		}
 		
+		
+		?>
+		<script language="JavaScript">
+	var page='curso.php?nombre_curso_enviado=<?php echo $codigo_curso ?>';
+		location.href=page;
+		
+	</script>
+		<?
 		
 		
 		}
@@ -1176,6 +1229,15 @@ if(isset($_POST['sumilla_enviar']))
 		*/
 		
 		$ejecutar3=mysqli_query($con,$actualizar);
+		
+		?>
+		<script language="JavaScript">
+	var page='curso.php?nombre_curso_enviado=<?php echo $codigo_asignatura ?>';
+		location.href=page;
+		
+	</script>
+		<?
+		
   
       }
 	  

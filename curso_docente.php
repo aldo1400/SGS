@@ -19,8 +19,6 @@ header("location:index.php");
 
 }
 
-$nombre_docente_verificado=$_SESSION['nombre_doc'];
-
 
 ?>
 <!------------------fin de metodo de seguridad-------------------------------------->
@@ -199,15 +197,8 @@ $nombre_admin=$_SESSION['nombre_docente'];
 		
 		
 		
-		<div class="contenedor-menu">
+		<div class="contenedor-menu1">
 		
-		
-		
-
- 
- 
-
-
 <style type="text/css">   
 a:link   
 {   
@@ -217,12 +208,28 @@ a:link
 
 
 
-		<li class="btn-menu">Docente<i class="icono fa fa-bars"></i></li>
-		<ul class="menu">
+		<li class="btn-menu1">Docente<i class="icono fa fa-bars"></i></li>
+		<ul class="menu1">
 		
+		<?php
+		
+		if(!$_SESSION['nombre_docente'])
+{
+$nombre_docente_verificado=$_SESSION['nombre_doc'];
+$ID_DOC = $nombre_docente_verificado;
+
+?>
 			<li><a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
-			
-			
+		<?
+		
+		}	
+else
+{
+$nombre_admin=$_SESSION['nombre_docente'];
+$ID_DOC = $nombre_admin;
+?>
+			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
+<? }?>
 			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 		<?php
@@ -234,7 +241,8 @@ a:link
 include('conexion.php');
 
 
-$ID_DOC = $nombre_docente_verificado;
+
+
 
 $extraer_interno_docente="select interno_docente from docente  where Cod_docente='$ID_DOC'";
 
@@ -300,8 +308,97 @@ $extraer_interno_docente="select interno_docente from docente  where Cod_docente
 		</ul>
 	</div>
 
+	
+	<?php 
+	
+	if($_SESSION['nombre_docente'])
+	{
+	?>
+	
+<div class="contenedor-menu">
+		
+		
+
+<style type="text/css">   
+a:link   
+{   
+ text-decoration:none;   
+}   
+</style>
 
 
+
+		<li class="btn-menu">Administración<i class="icono fa fa-bars"></i></li>
+		<ul class="menu">
+		
+				
+			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Plan de estudios</a></li>
+			
+			
+			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Crear docente</a></li>
+			
+			
+			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
+				<ul>
+				
+				
+	<?php
+      $consulta ="SELECT * FROM docente";
+      $ejecutar= mysqli_query($con,$consulta);
+      $i=0;
+      while($fila = mysqli_fetch_array($ejecutar))
+      {
+        $nombre=$fila['nombre'];
+		$id_docente=$fila['Cod_docente'];
+		$interno_docente=$fila['interno_docente'];
+		
+        $i++;
+
+      ?>
+	  
+	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
+	  
+      <?php
+		
+		if($id_docente!=$nombre_admin)
+		{
+		?>
+		
+        <li style="text-align:left;"><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png"  width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
+		
+		
+		<?php
+		}
+		else
+		{}
+		
+		?>
+		
+		
+        
+     
+	  <style>
+	  
+	  .flecha
+	  {
+	  margin-right:10px;
+	  margin-left:15px;
+	  }
+	  
+	  </style>
+
+      <?php } ?>
+ 
+ 		
+					
+					
+				</ul>
+			</li>
+			
+		</ul>
+	</div>
+	
+<? }?>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

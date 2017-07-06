@@ -180,14 +180,101 @@ $nombre_admin=$_SESSION['nombre_docente'];
 		<br>
 
 		
+		<div class="contenedor-menu1">
+		
+
+<style type="text/css">   
+a:link   
+{   
+ text-decoration:none;   
+}   
+</style>
+
+
+
+		<li class="btn-menu1">Docente<i class="icono fa fa-bars"></i></li>
+		<ul class="menu1">
+		
+			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
+			
+			
+			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
+				<ul>
+		<?php
+		
+		
+include('conexion.php');
+
+$extraer_interno_docente="select interno_docente from docente  where Cod_docente='$nombre_admin'";
+		$EJECUCION_ID=mysqli_query($con,$extraer_interno_docente);
+		$interno_docente1= mysqli_fetch_array($EJECUCION_ID);
+		
+		$interno_docente=$interno_docente1['interno_docente'];
+		
+		//En esta zona haremos que se creen tantos submenus como cursos tenga el docente seleecionado, por ejemplo si el docnete tiene 6 cursos asignados , aparecen 6 submenus con los nombre de los cursos, de maner dinamica.
+		
+		$CONSULTAR_CURSOS="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.interno_docente='$interno_docente'";
+		$EJECUCION_CURSOS=mysqli_query($con,$CONSULTAR_CURSOS);
+		
+		$i=0;
+		while($CURSOS = mysqli_fetch_array($EJECUCION_CURSOS))
+		{
+		
+			$nombre=$CURSOS['nomb_asignatura'];
+			$id_asignatura=$CURSOS['cod_asignatura'];
+			
+			
+			$fecha=$CURSOS['fecha_dicta'];
+			 $parte = explode("-", $fecha);
+			//echo $parte[0];//año asignado //
+			$fecha_sistema=getdate();
+			//echo $fecha_sistema['year'];
+			
+			 
+			 
+			
+			$i++;
+			if($fecha_sistema['year']==$parte[0])
+			{
+			?>
+	  
+	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
+	  
+		
+		
+        <li style="text-align:left;" ><a href="curso_docente.php?nombre_asig=<?php echo $id_asignatura ?>"><img src="img/flecha.png" width="30" height="30" name="flecha"><?php echo $nombre; ?></a></li>
+	
+		<?php }} ?>
+		
+				
+     
+	  <style>
+	  
+	  .flecha
+	  {
+	  margin-right:10px;
+	  margin-left:15px;
+	  }
+	  
+	  </style>
+
+ 
+ 		
+					
+					
+				</ul>
+			</li>
+			
+		</ul>
+	</div>
+				
+
+				
+
+
 		<div class="contenedor-menu">
 		
 		
-		
-
- 
- 
-
 
 <style type="text/css">   
 a:link   
@@ -201,9 +288,7 @@ a:link
 		<li class="btn-menu">Administración<i class="icono fa fa-bars"></i></li>
 		<ul class="menu">
 		
-			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
-			
-			
+				
 			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Plan de estudios</a></li>
 			
 			
@@ -236,7 +321,7 @@ a:link
 		{
 		?>
 		
-        <li style="text-align:left;" ><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png" width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
+        <li style="text-align:left;"><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png"  width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
 		
 		
 		<?php
@@ -470,7 +555,7 @@ a:link
 		
 			<div class="form-group">
 			<p>Contraseña <span>*</span></p>
-			<span class="icon-case"><img src="img/pass.png" height="15"></span>
+			<span class="icon-case"><img src="img/contrasenia.png" height="15"></span>
 				<input type="password" name="password_crea" id="password_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné." required/>
                 <div class="validation"></div>
 			</div>
@@ -531,10 +616,21 @@ a:link
 		 $telefono=$_POST["telefono_crea"];
         $insertar="INSERT INTO docente(Cod_docente,interno_docente,nombre,apellido,dni,direccion,tipo,email,fnacimiento,telefono_docente,password)
          VALUES('$cod',NULL,'$nombre','$apellido','$dni','$direccion','$tipo','$email','$nacimiento','$telefono','$pass')";
-        $ejecutar = mysqli_query($con,$insertar);
-        if($ejecutar){
-          echo "";
+		
+	   $ejecutar = mysqli_query($con,$insertar);
+        if(!$ejecutar)
+		{
+		
+          ?>
+		<script language="JavaScript">
+	var page='administrador.php?nombre_admin=<?php echo $cod ?>';
+		location.href=page;
+		
+	</script>
+	
+	<?
         }
+		
 		?>
 		
 		<?

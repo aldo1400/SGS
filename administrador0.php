@@ -242,14 +242,101 @@ $nombre_admin=$_SESSION['nombre_docente'];
 		
 		
 		
+		<div class="contenedor-menu1">
+		
+
+<style type="text/css">   
+a:link   
+{   
+ text-decoration:none;   
+}   
+</style>
+
+
+
+		<li class="btn-menu1">Docente<i class="icono fa fa-bars"></i></li>
+		<ul class="menu1">
+		
+			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
+			
+			
+			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
+				<ul>
+		<?php
+		
+		
+include('conexion.php');
+
+$extraer_interno_docente="select interno_docente from docente  where Cod_docente='$nombre_admin'";
+		$EJECUCION_ID=mysqli_query($con,$extraer_interno_docente);
+		$interno_docente1= mysqli_fetch_array($EJECUCION_ID);
+		
+		$interno_docente=$interno_docente1['interno_docente'];
+		
+		//En esta zona haremos que se creen tantos submenus como cursos tenga el docente seleecionado, por ejemplo si el docnete tiene 6 cursos asignados , aparecen 6 submenus con los nombre de los cursos, de maner dinamica.
+		
+		$CONSULTAR_CURSOS="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.interno_docente='$interno_docente'";
+		$EJECUCION_CURSOS=mysqli_query($con,$CONSULTAR_CURSOS);
+		
+		$i=0;
+		while($CURSOS = mysqli_fetch_array($EJECUCION_CURSOS))
+		{
+		
+			$nombre=$CURSOS['nomb_asignatura'];
+			$id_asignatura=$CURSOS['cod_asignatura'];
+			
+			
+			$fecha=$CURSOS['fecha_dicta'];
+			 $parte = explode("-", $fecha);
+			//echo $parte[0];//año asignado //
+			$fecha_sistema=getdate();
+			//echo $fecha_sistema['year'];
+			
+			 
+			 
+			
+			$i++;
+			if($fecha_sistema['year']==$parte[0])
+			{
+			?>
+	  
+	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
+	  
+		
+		
+        <li style="text-align:left;" ><a href="curso_docente.php?nombre_asig=<?php echo $id_asignatura ?>"><img src="img/flecha.png" width="30" height="30" name="flecha"><?php echo $nombre; ?></a></li>
+	
+		<?php }} ?>
+		
+				
+     
+	  <style>
+	  
+	  .flecha
+	  {
+	  margin-right:10px;
+	  margin-left:15px;
+	  }
+	  
+	  </style>
+
+ 
+ 		
+					
+					
+				</ul>
+			</li>
+			
+		</ul>
+	</div>
+				
+
+				
+
+
 		<div class="contenedor-menu">
 		
 		
-		
-
- 
- 
-
 
 <style type="text/css">   
 a:link   
@@ -263,9 +350,7 @@ a:link
 		<li class="btn-menu">Administración<i class="icono fa fa-bars"></i></li>
 		<ul class="menu">
 		
-			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
-			
-			
+				
 			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Plan de estudios</a></li>
 			
 			
@@ -499,10 +584,23 @@ input[type=file] {
 	  
 	  <br>
 	  <div align="rigth" style=" position: relative; left:380px; top:-50px">
+	  
+	  
+
+	  
 	  <form action="" method="post" enctype="multipart/form-data" class="form-inline-2" role="form">
-<input name="foto1" type="file" id="foto1"  ><input name="guardar2" type="submit" class="btn btn-success btn-lg" value="subir foto"/>
+	
+	
+<input name="foto1" type="file" id="foto1"  >
+
+<input name="guardar2" type="submit" class="btn btn-success btn-lg" value="subir foto"/>
+
 
 </form>
+
+
+
+
 
 	  </div>
 	  
@@ -557,8 +655,18 @@ imagejpeg($lienzo, $destino1, 80);
 
 $act="UPDATE docente SET ruta_imagen='".$destino1."' where Cod_docente='$nombre_admin'";
 
-if(@mysqli_query($con,$act)){echo "La foto fue publicada con éxito";
-}}
+if(@mysqli_query($con,$act)){
+
+?>
+		<script language="JavaScript">
+	var page='administrador0.php?nombre_admin=<?php echo $nombre_admin ?>';
+		location.href=page;
+		
+	</script>
+		<?
+		
+}
+}
 
 ?>
 
@@ -916,7 +1024,18 @@ if(isset($_POST['update_admin']))
 		
 		
 		$ejecutar_actu_admin=mysqli_query($con,$actualizar);
-
+		
+		if($ejecutar_actu_admin)
+		{
+		?>
+		<script language="JavaScript">
+	var page='administrador0.php?nombre_admin=<?php echo $nombre_admin ?>';
+		location.href=page;
+		
+	</script>
+	<?
+	}
+	
       }?>
 		
   

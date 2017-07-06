@@ -19,6 +19,8 @@ session_destroy();
     <meta name="author" content="">
 <!--------------titulo de la pagina------------->
     <title>Universidad Nacional - JORGE BASADRE GROHMANN</title>
+	
+<LINK REL="SHORTCUT ICON" HREF="http://images.midominio.com/ico/icono.ico">
 
 <!----------------Aqui llamamos a la funcion de boostrap que nos ayudara a que nuestr pagina se acomode a un celular,tablet,etc---------->
     <!-- Bootstrap Core CSS -->

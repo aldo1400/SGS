@@ -297,6 +297,7 @@ $extraer_interno_docente="select interno_docente from docente  where Cod_docente
 	</div>
 
 
+		
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -483,12 +484,12 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
                     </a>
                 </h4>
             </div>
+			
             <div id="collapse<?php echo $indice;?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?php echo $indice;?>">
                 <div class="panel-body">
 				
-				  aqui se podran los detalles del curso
-				  
 				  <p>Fecha límite <span>*</span></p>
+				  
 			<span class="icon-case"><img src="" height="15"><i class="fa fa-building-o"></i></span>
 				<input type="text" name="fecha_limite" id="fecha_limite" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné."  />
                 <div class="validation"></div>
@@ -743,7 +744,18 @@ if(isset($_POST['update_admin']))
 		
 		
 		$ejecutar_actu_admin=mysqli_query($con,$actualizar);
-
+		
+		if($ejecutar_actu_admin)
+		{
+		?>
+		
+		<script language="JavaScript">
+	var page='docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> ';
+		location.href=page;
+		
+	</script>
+		<?
+		}
       }?>
 		
   
@@ -777,6 +789,16 @@ if(isset($_POST['update_admin']))
 	<br>
 	<br>
 	<br>
+	
+	<div class="container">
+	<div class="row">
+  		<div class="col-xs-6">
+          <div class="well"> 
+            content
+          </div>
+		</div>
+	</div>
+</div>	
 	<br>
 	<br>
 	<br>
