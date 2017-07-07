@@ -526,6 +526,76 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 </div><!-- container -->
 
 
+<?php 
+
+include('conexion.php');
+
+
+$extraer_interno_docente="select interno_docente from docente  where Cod_docente='$ID_DOC'";
+		$EJECUCION_ID=mysqli_query($con,$extraer_interno_docente);
+		$interno_docente1= mysqli_fetch_array($EJECUCION_ID);
+		$interno_docente2=$interno_docente1['interno_docente'];
+		
+		
+$CONSULTAR_OBSER="select * from dicta inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where interno_docente='$interno_docente2' and year(fecha_dicta)='2017' ";
+
+$ejecutar_obser=mysqli_query($con,$CONSULTAR_OBSER);
+
+
+?>
+<div class="container">
+	<div class="row">
+  		<div class="col-xs-7">
+          
+  <div class="panel panel-default">
+  
+    <div class="panel-heading">Área de observaciones</div>
+    <style>
+	
+	.panel > .panel-heading 
+	{
+    background-image: none;
+    background-color: #EC7063      ;
+    color: white;
+
+	}
+	</style>
+	
+ <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th><center>Nombre de la asignatura</center></th>
+        <th><center>Observaciones</center></th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      
+	  <?
+			while($array_observaciones=mysqli_fetch_array($ejecutar_obser))
+			
+			{
+				
+				?>
+				<tr>
+				<td><?echo $array_observaciones['nomb_asignatura'];?></td>
+				<td><?echo $array_observaciones['observaciones'];?></td>
+				</tr>
+			<?
+			}
+			
+			?>
+
+    </tbody>
+  </table>
+			
+        </div>  
+	</div>
+</div>	
+</div>
+
+
+
 
 	</div>
 	
@@ -704,6 +774,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 </div>
 
 
+
 <br><br><br><br>
 <br><br><br><br>
 <br><br><br><br>
@@ -768,6 +839,9 @@ if(isset($_POST['update_admin']))
 	<br>
 	<br>
 	<br>
+	
+	
+
 	<br>
 	<br>
 	<br>
@@ -790,15 +864,7 @@ if(isset($_POST['update_admin']))
 	<br>
 	<br>
 	
-	<div class="container">
-	<div class="row">
-  		<div class="col-xs-6">
-          <div class="well"> 
-            content
-          </div>
-		</div>
-	</div>
-</div>	
+	
 	<br>
 	<br>
 	<br>

@@ -250,311 +250,171 @@ $nombre_admin=$_SESSION['nombre_docente'];
 			
 			<div id="ESIS">
 				<div class="col-md-9">
-										
-					<a href="#1c_esis" data-toggle="collapse"><h4>Primer ciclo</h4></a>
+					
+					<?php
+					
+					include('conexion.php');
+					$consulta ="SELECT * FROM asignatura order by cod_asignatura ASC ";
+					$ejecutar= mysqli_query($con,$consulta);
+					$repeticion=1;
+					
+					while($fila = mysqli_fetch_array($ejecutar))
+                          {
+
+
+	   if($fila['ciclo_academico']=='Primer ciclo' and $repeticion==1)
+	  {
+			?> <a href="#1c_esis" data-toggle="collapse"><h4><?php echo  'Primer ciclo';?></h4></a>
 					<hr />
+					
 					<table cellspacing="1000" class="collapse" id="1c_esis">
+			<?php
+			$repeticion++;
+		
+					
+	  }
+	  else
+
+	  {
+		if($fila['ciclo_academico']=='Segundo ciclo' and $repeticion==2)
+			{
+				?> <a href="#2c_esis" data-toggle="collapse"><h4><?php echo  'Segundo ciclo';?></h4></a>
+					<hr /> 
+					
+					<table cellspacing="1000" class="collapse" id="2c_esis">
+					
+					<?php
+				$repeticion++;
+			}
+		else
+		{
+			if($fila['ciclo_academico']=='Tercer ciclo' and $repeticion==3)
+			{
+				?> <a href="#3c_esis" data-toggle="collapse"><h4><?php echo  'Tercer ciclo';?></h4></a>
+					<hr />
+					
+					<table cellspacing="1000" class="collapse" id="3c_esis">
+
+					<?php
+				$repeticion++;
+			}
+			else
+			{
+				if($fila['ciclo_academico']=='Cuarto ciclo' and $repeticion==4)
+				{
+					?> <a href="#4c_esis" data-toggle="collapse"><h4><?php echo  'Cuarto ciclo';?></h4></a>
+					<hr />
+					
+					<table cellspacing="1000" class="collapse" id="4c_esis">
+					
+					<?php
+					$repeticion++;
+				}
+				else
+				{
+					if($fila['ciclo_academico']=='Quinto ciclo' and $repeticion==5)
+					{
+						?> <a href="#5c_esis" data-toggle="collapse"><h4><?php echo  'Quinto ciclo';?></h4></a>
+					<hr /> 
+					
+					<table cellspacing="1000" class="collapse" id="5c_esis">
+					
+					<?php
+						$repeticion++;
+					}
+					else
+					{
+							if($fila['ciclo_academico']=='Sexto ciclo' and $repeticion==6)
+							{
+							?> <a href="#6c_esis" data-toggle="collapse"><h4><?php echo  'Sexto ciclo';?></h4></a>
+							<hr />
+								<table cellspacing="1000" class="collapse" id="6c_esis">
+							<?php
+							
+							$repeticion++;
+							}
+							else
+							{
+								if($fila['ciclo_academico']=='Séptimo ciclo' and $repeticion==7)
+								{
+								?> <a href="#7c_esis" data-toggle="collapse"><h4><?php echo  'Séptimo ciclo';?></h4></a>
+									<hr />
+									
+									<table cellspacing="1000" class="collapse" id="7c_esis">
+									
+									<?php
+							
+								$repeticion++;
+								}
+								else
+								{
+									
+										if($fila['ciclo_academico']=='Octavo ciclo' and $repeticion==8)
+										{
+										?> <a href="#8c_esis" data-toggle="collapse"><h4><?php echo  'Octavo ciclo';?></h4></a>
+										<hr />
+										<table cellspacing="1000" class="collapse" id="8c_esis">
+										
+										<?php
+							
+										$repeticion++;
+										}
+										else
+										{
+													if($fila['ciclo_academico']=='Noveno ciclo' and $repeticion==9)
+													{
+													?> <a href="#9c_esis" data-toggle="collapse"><h4><?php echo  'Noveno ciclo';?></h4></a>
+													<hr />
+													
+													<table cellspacing="1000" class="collapse" id="9c_esis">
+													
+													<?php
+							
+													$repeticion++;
+													}
+													else
+													{
+															?>
+															<a href="#10c_esis" data-toggle="collapse"><h4>Décimo ciclo</h4></a>
+															<hr />
+															
+															<table cellspacing="1000" class="collapse" id="10c_esis">
+															<?
+															$repeticion++;
+													}
+										
+													
+								
+										}
+									
+								
+								}
+								
+								
+							}
+							
+							
+					}
+				}
+			}
+		}
+	  }
+
+		$nombre2=$fila['nomb_asignatura'];
+		
+					?>
 					
 						<tr>
-							<td class="col-md-9">Seminario de ética y sociedad</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Física general</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Fundamentos de programación</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Matemática discreta I</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Matemática I</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Lenguaje y comunicación</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Metodología del estudio</td>
+							<td class="col-md-9"><?php echo $nombre2; ?></td>
+							<td><a href="archivo.php?id=<?php echo $fila['cod_asignatura']?>" class="btn btn-info btn-xs"><?php echo $fila['nombre_archivo']; ?></a></td>
 							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
 						</tr>
 						
-					</table>
-					<br />
-					
-					<a href="#2c_esis" data-toggle="collapse"><h4>Segundo ciclo</h4></a>
-					<hr />
-					<table class="collapse" id="2c_esis">
-					
-						<tr>
-							<td class="col-md-9">Metodología de investigación para ingeniería</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Electromagnetismo y óptica</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Programación avanzada</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Matemática discreta II</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Matemática II</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Programación gráfica</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Realidad y defensa nacional</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
+						<?php
+                          }
+                          ?>
+                     </table>
 						
-					</table>
-					<br />
-					<a href="#3c_esis" data-toggle="collapse"><h4>Tercer ciclo</h4></a>
-					<hr />
-					<table class="collapse" id="3c_esis">
-					
-						<tr>
-							<td class="col-md-9">Teoría general de sistemas</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Física moderna</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Estructura de datos</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Métodos numéricos para ingeniería</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Matemática III</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Estadística y probabilidades</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-					</table>
-					<br />
-					<a href="#4c_esis" data-toggle="collapse"><h4>Cuarto ciclo</h4></a>
-					<hr />
-					<table class="collapse" id="4c_esis">
-					
-						<tr>
-							<td class="col-md-9">Análisis de sistemas I</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Sistemas electrónicos digitales</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Algoritmos y programación paralela</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Contabilidad, costos y presupuestos</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Matemática IV</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Economía y desarrollo</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-					</table>
-					<br />
-					<a href="#5c_esis" data-toggle="collapse"><h4>Quinto ciclo</h4></a>
-					<hr />
-					<table class="collapse" id="5c_esis">
-						<tr>
-							<td class="col-md-9">Análisis de sistemas II</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Arquitectura de computadoras</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Sistemas operativos</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Base de datos I</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Investigación operativa I</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Ingeniería económica</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-					</table>
-					<br />
-					<a href="#6c_esis" data-toggle="collapse"><h4>Sexto ciclo</h4></a>
-					<hr />
-					<table class="collapse" id="6c_esis">
-						<tr>
-							<td class="col-md-9">Ingeniería de software I</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Comunicación de datos</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Compiladores y teoría de lenguaje</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Base de datos II</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Investigación operativa II</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Formulación y evaluación de proyectos informáticos</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-					</table>
-					<br />
-					<a href="#7c_esis" data-toggle="collapse"><h4>Séptimo ciclo</h4></a>
-					<hr />
-					<table class="collapse" id="7c_esis">
-						<tr>
-							<td class="col-md-9">Ingeniería de software II</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Telemática</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Sistemas de información</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Gestión empresarial</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Dinámica de sistemas</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Legislación industrial e informática</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-					</table>
-					<br />
-					<a href="#8c_esis" data-toggle="collapse"><h4>Octavo ciclo</h4></a>
-					<hr />
-					<table class="collapse" id="8c_esis">
-						<tr>
-							<td class="col-md-9">Ingeniería web</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Métodos cuantitativos para investigación</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Taller de emprendimiento e innovación</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Simulación de sistemas</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Seguridad informática</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">[Electivo]:Diseño asistido por computador</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">[Electivo]:Gestión de ecoeficiencia en la empresa</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-					</table>
-					<br />
-					<a href="#9c_esis" data-toggle="collapse"><h4>Noveno ciclo</h4></a>
-					<hr />
-					<table class="collapse" id="9c_esis">
-						<tr>
-							<td class="col-md-9">Taller de tesis I</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Práctica profesional I</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Realidad virtual</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Sistemas expertos</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">[Electivo]:Coomputación en la nube</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">[Electivo]:Programación de dispositivos móviles</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-					</table>
-					<br />
-						<a href="#10c_esis" data-toggle="collapse"><h4>Décimo ciclo</h4></a>
-					<hr />
-					<table class="collapse" id="10c_esis">
-						<tr>
-							<td class="col-md-9">Taller de tesis II</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Práctica pre profesional II</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">Auditoría de sistemas</td>
-							<td class="col-md-3"><a class="btn" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">[Electivo]:Robótica</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-						<tr>
-							<td class="col-md-9">[Electivo]:Minería de datos</td>
-							<td class="col-md-3"><a class="btn btn-primary" href="#">Descargar</a></td>
-						</tr>
-					</table>
 					<br />
 				</div>
 				<br />
