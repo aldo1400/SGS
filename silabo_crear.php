@@ -156,9 +156,50 @@ $nombre_admin=$_SESSION['nombre_docente'];
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> ">Mi perfil</a>
+                    
+					
+					<?php
+
+session_start();
+session_name('permiso');
+
+if(!$_SESSION)
+{
+?>
+<li>
+                        <a href="index.php">Inicio</a>
                     </li>
+<?
+}
+else
+{
+
+if(!$_SESSION['nombre_docente'])
+{
+$nombre_docente_verificado=$_SESSION['nombre_doc'];
+?>
+					<li>
+                        <a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>">Mi perfil</a>
+                    </li>
+<?					
+}
+else
+{
+$nombre_admin=$_SESSION['nombre_docente'];
+?>
+
+					<li>
+                        <a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?>">Mi perfil</a>
+                    </li>
+
+<?
+}
+
+}
+?>
+
+					
+					
                     <li>
                         <a href="about.php">Noticias</a>
                     </li>

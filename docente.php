@@ -220,10 +220,10 @@ a:link
 		<li class="btn-menu">Docente<i class="icono fa fa-bars"></i></li>
 		<ul class="menu">
 		
-			<li><a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> "><i class="icono izquierda fa fa-user"></i>Mi perfil</a></li>
+			<li><a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
 			
 			
-			<li><a href="#"><i class="icono izquierda fa fa-book"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
+			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 		<?php
 		
@@ -378,7 +378,6 @@ $extraer_interno_docente="select interno_docente from docente  where Cod_docente
 
 
 <div class="contenedor_presenta">
-<img src="img/profesor.jpg" width="200" height="200" align="RIGHT"><!-----IMAGEN DEL PROFESOR---------------->
 
 
 
@@ -402,12 +401,14 @@ $extraer_interno_docente="select interno_docente from docente  where Cod_docente
 		 $fnacimiento=$fila['fnacimiento'];
 		 $telefono=$fila['telefono_docente'];
 		 $password=$fila['password'];
-		 
+		 $ruta_imagen=$fila['ruta_imagen'];
 		
         $i++;
 
       ?>
-	
+	<div>
+   <img src="<?php echo $ruta_imagen; ?>" width="250" height="250" alt="" align="RIGHT" />
+</div>
 	<TABLE cellpadding=5 >
 	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CÓDIGO DOCENTE :</TH>
 		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Cod_docente; ?></TD> </TR>
@@ -436,8 +437,97 @@ $extraer_interno_docente="select interno_docente from docente  where Cod_docente
 
       <?php } ?>
 	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar_admin">EDITAR DATOS</button>
-	  <BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " >Recargar datos</button>
-	  
+	  <!------<BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " >Recargar datos</button>---->
+
+	  <form action="" method="post" enctype="multipart/form-data" class="form-inline-2" role="form">
+	
+<input name="foto1" type="file" id="foto1"  >
+
+<input name="guardar2" type="submit" class="btn btn-success btn-lg" value="subir foto"/>
+
+
+</form>
+
+
+<?	
+				  			  			  
+if($_POST['guardar2']){
+
+$nombrefoto1=$_FILES['foto1']['name'];
+$ruta1=$_FILES['foto1']['tmp_name'];
+if(is_uploaded_file($ruta1))
+{ 
+if($_FILES['foto1']['type'] == 'image/png' OR $_FILES['foto1']['type'] == 'image/gif' OR $_FILES['foto1']['type'] == 'image/jpeg')
+		{
+$tips = 'jpg';
+$type = array('image/jpeg' => 'jpg');
+$name = $nombre_admin.'Foto-perfil'.'.'.$tips;
+$destino1 =  "imagenes/".$name;
+copy($ruta1,$destino1);
+
+$ruta_imagen = $destino1;
+
+$miniatura_ancho_maximo = 700;
+$miniatura_alto_maximo = 500;
+
+$info_imagen = getimagesize($ruta_imagen);
+$imagen_ancho = $info_imagen[0];
+$imagen_alto = $info_imagen[1];
+$imagen_tipo = $info_imagen['mime'];
+
+switch ( $imagen_tipo ){
+  case "image/jpg":
+  case "image/jpeg":
+    $imagen = imagecreatefromjpeg( $ruta_imagen );
+    break;
+  case "image/png":
+    $imagen = imagecreatefrompng( $ruta_imagen );
+    break;
+  case "image/gif":
+    $imagen = imagecreatefromgif( $ruta_imagen );
+    break;
+}
+
+$lienzo = imagecreatetruecolor( $miniatura_ancho_maximo, $miniatura_alto_maximo );
+
+imagecopyresampled($lienzo, $imagen, 0, 0, 0, 0, $miniatura_ancho_maximo, $miniatura_alto_maximo, $imagen_ancho, $imagen_alto);
+
+
+imagejpeg($lienzo, $destino1, 80);
+}
+}
+
+$act="UPDATE docente SET ruta_imagen='".$destino1."' where Cod_docente='$nombre_docente_verificado'";
+
+if(@mysqli_query($con,$act)){
+
+?>
+		<script language="JavaScript">
+	var page='docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>';
+	
+	
+	
+		location.href=page;
+		
+	</script>
+		<?
+		
+}
+}
+
+?>
+
+
+	  <?
+	   $result = mysqli_query($con,"SELECT * FROM docente where Cod_docente='$nombre_docente_verificado'"); 
+while ($row=mysqli_fetch_array($result)) 
+{ 
+    /*almacenamos el nombre de la ruta en la variable $ruta_img*/ 
+    $ruta_img = $row["ruta_imagen"]; 
+}
+?>
+
+
 	  
 	  <BR>
 	  <!------------------------------------FIN DE MOSTRAR DATOS DEL DOCENTE ADMINISTRADOR------------------------------------------------>
@@ -565,6 +655,7 @@ $ejecutar_obser=mysqli_query($con,$CONSULTAR_OBSER);
     <thead>
       <tr>
         <th><center>Nombre de la asignatura</center></th>
+		<th><center>Fecha limite</center></th>
         <th><center>Observaciones</center></th>
         
       </tr>
@@ -579,6 +670,7 @@ $ejecutar_obser=mysqli_query($con,$CONSULTAR_OBSER);
 				?>
 				<tr>
 				<td><?echo $array_observaciones['nomb_asignatura'];?></td>
+				<td><?echo $array_observaciones['fecha_limite'];?></td>
 				<td><?echo $array_observaciones['observaciones'];?></td>
 				</tr>
 			<?
