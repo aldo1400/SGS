@@ -15,13 +15,13 @@ a {
 .btn-menu {
 	display: block;
 	padding: 20px;
-	background: #0d2c44;
+	background: #b40f0f;
 	color:#fff;
 }
 .btn-menu1 {
 	display: block;
 	padding: 20px;
-	background: #0d2c44;
+	background: #b40f0f;
 	color:#fff;
 }
 
@@ -57,10 +57,13 @@ width: 100%;}
 
 .contenedor-menu1 ul {
 	list-style: none;
+	text-align: left;
+	
 }
 
 .contenedor-menu ul {
 	list-style: none;
+	text-align: left;
 }
 
 .contenedor-menu .menu li a {
@@ -68,12 +71,14 @@ width: 100%;}
 	display: block;
 	padding: 15px 20px;
 	background: #e9e9e9;
+	
 }
 .contenedor-menu1 .menu1 li a {
 	color:#494949;
 	display: block;
 	padding: 15px 20px;
 	background: #e9e9e9;
+	
 }
 
 .contenedor-menu .menu li a:hover {
@@ -86,12 +91,12 @@ width: 100%;}
 }
 
 .contenedor-menu .menu .icono {
-	font-size: 12px;
+	font-size: 25px;
 	line-height: 18px;
 }
 
 .contenedor-menu1 .menu1 .icono {
-	font-size: 12px;
+	font-size: 25px;
 	line-height: 18px;
 }
 
@@ -110,6 +115,10 @@ width: 100%;}
 	margin-left: 10px; 
 }
 
+.contenedor-menu1 .menu1 .icono.derecha {
+	float: right;
+	margin-left: 10px; 
+}
 .contenedor-menu .menu ul {
 	display: none;
 }

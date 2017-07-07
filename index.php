@@ -129,13 +129,13 @@ session_destroy();
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="img-responsive img-full" src="img/oasa.jpg" alt="">
+                                    <img class="img-responsive img-full" src="img/esis1.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="img-responsive img-full" src="img/oasa.jpg" alt="">
+                                    <img class="img-responsive img-full" src="img/esis2.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="img-responsive img-full" src="img/oasa.jpg" alt="">
+                                    <img class="img-responsive img-full" src="img/esis3.jpg" alt="">
                                 </div>
                             </div>
 
