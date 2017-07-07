@@ -219,7 +219,7 @@ $nombre_docente_verificado=$_SESSION['nombre_doc'];
 $ID_DOC = $nombre_docente_verificado;
 
 ?>
-			<li><a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
+			<li><a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> "><i class="icono izquierda fa fa-user"></i>Mi perfil</a></li>
 		<?
 		
 		}	
@@ -228,9 +228,9 @@ else
 $nombre_admin=$_SESSION['nombre_docente'];
 $ID_DOC = $nombre_admin;
 ?>
-			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
+			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-user"></i>Mi perfil</a></li>
 <? }?>
-			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
+			<li><a href="#"><i class="icono izquierda fa fa-book"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 		<?php
 		
@@ -332,13 +332,13 @@ a:link
 		<ul class="menu">
 		
 				
-			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Plan de estudios</a></li>
+			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-folder-open"></i>Plan de estudios</a></li>
 			
 			
-			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Crear docente</a></li>
+			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-user-plus"></i>Crear docente</a></li>
 			
 			
-			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
+			<li><a href="#"><i class="icono izquierda fa fa-users"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 				
 				

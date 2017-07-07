@@ -220,10 +220,10 @@ a:link
 		<li class="btn-menu">Docente<i class="icono fa fa-bars"></i></li>
 		<ul class="menu">
 		
-			<li><a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
+			<li><a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> "><i class="icono izquierda fa fa-user"></i>Mi perfil</a></li>
 			
 			
-			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
+			<li><a href="#"><i class="icono izquierda fa fa-book"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 		<?php
 		

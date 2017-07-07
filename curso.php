@@ -296,16 +296,16 @@ a:link
 		<li class="btn-menu">Administración<i class="icono fa fa-bars"></i></li>
 		<ul class="menu">
 		
-			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
+			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-user"></i>Mi perfil</a></li>
 			
 			
-			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Plan de estudios</a></li>
+			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-folder-open"></i>Plan de estudios</a></li>
 			
 			
-			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Crear docente</a></li>
+			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-user-plus"></i>Crear docente</a></li>
 			
 			
-			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
+			<li><a href="#"><i class="icono izquierda fa fa-users"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 				
 				
@@ -1146,7 +1146,7 @@ include('conexion.php');//CADENA DE CONEXION
 		?>
 		<script language="JavaScript">
 	var page='curso.php?nombre_curso_enviado=<?php echo $codigo_curso ?>';
-		location.href=page;
+		location.href=page;-->
 		
 	</script>
 		<?
@@ -1233,7 +1233,7 @@ if(isset($_POST['sumilla_enviar']))
 		?>
 		<script language="JavaScript">
 	var page='curso.php?nombre_curso_enviado=<?php echo $codigo_asignatura ?>';
-		location.href=page;
+		location.href=page;-->
 		
 	</script>
 		<?

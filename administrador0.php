@@ -257,10 +257,9 @@ a:link
 		<li class="btn-menu1">Docente<i class="icono fa fa-bars"></i></li>
 		<ul class="menu1">
 		
-			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
+			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-user"></i>Mi perfil</a></li>
 			
-			
-			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
+			<li><a href="#"><i class="icono izquierda fa fa-book"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 		<?php
 		
@@ -351,13 +350,13 @@ a:link
 		<ul class="menu">
 		
 				
-			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Plan de estudios</a></li>
+			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-folder-open"></i>Plan de estudios</a></li>
 			
 			
-			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Crear docente</a></li>
+			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-user-plus"></i>Crear docente</a></li>
 			
 			
-			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
+			<li><a href="#"><i class="icono izquierda fa fa-users"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 				
 				
@@ -996,6 +995,7 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 
 //esta funcion nos ayudara a guardar los cambios de los datos del docente en la base de datos al momento de editarlo
 if(isset($_POST['update_admin']))
+	
 {
         include('conexion.php');
 		
@@ -1030,7 +1030,7 @@ if(isset($_POST['update_admin']))
 		?>
 		<script language="JavaScript">
 	var page='administrador0.php?nombre_admin=<?php echo $nombre_admin ?>';
-		location.href=page;
+		location.href=page;--'09m 
 		
 	</script>
 	<?
