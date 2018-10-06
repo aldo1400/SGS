@@ -15,13 +15,13 @@ a {
 .btn-menu {
 	display: block;
 	padding: 20px;
-	background: #b40f0f;
+	background: #560000;
 	color:#fff;
 }
 .btn-menu1 {
 	display: block;
 	padding: 20px;
-	background: #b40f0f;
+	background: #560000;
 	color:#fff;
 }
 
@@ -194,5 +194,63 @@ width: 100%;}
 
 	.contenedor-menu1 .menu1 {
 		display: none;
+		background:#b40f0f;
 	}
+}
+
+
+
+.contenedor-menu .menu li a:hover {
+	background: #ffad68;
+	color:#fff;
+}
+.contenedor-menu1 .menu1 li a:hover {
+	background: #ffad68;
+	color:#fff;
+}
+
+.profesor .borrado .icon {
+	font-size: 25px;
+	line-height: 18px;
+	color:#FF0000;
+	
+}
+.profesor .borrado a {
+	text-decoration: none;
+	color:#fff;
+	/*color:#FF0000;*/
+	
+}
+
+.btn-info {
+    color: #8c0a0a;
+    background-color: rgb(233, 233, 233);
+    border-color: #860620;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #b40f0f;
+    border-color: #ffffff;
+}
+
+
+div.fileinputs {
+	position: relative;
+}
+
+div.fakefile {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+}
+
+input.file {
+	position: relative;
+	text-align: right;
+	-moz-opacity:0 ;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
 }

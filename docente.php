@@ -1,11 +1,3 @@
-<!----------------
-EN ESTE ARCHIVO SE MOSTRARA LOS DATOS DEL DOCENTE
------------------------->
-
-
-
-<!-------------ESTE ES UN METODO DE SEGURIDAD, YO HE CREADO EN LOGIN.PHP dos variables de sesion, es decir variables que estarna presentes en todos los archivos, las podemos llamar y utilizar su valor, si estas variables estan vacias significa que no se logeo correctamnete el docente o admin, por lo tanto se redirigire a index.html----------------->
-
 
 <?php
 
@@ -23,25 +15,17 @@ $nombre_docente_verificado=$_SESSION['nombre_doc'];
 
 
 ?>
-<!------------------fin de metodo de seguridad-------------------------------------->
-
-
 
 
 <!DOCTYPE html>
 <html charset="utf-8">
-
-
-<!------recibo la variable nombre_admin, donde esta el nombre del administrador------------->
 
 <?php
 
 include('conexion.php');//en este archivo se encuentra la cadena de conexion
 
 
-
-		
-		
+	
 ?>
 
 
@@ -121,7 +105,7 @@ if(!$_SESSION)
 						<a class="navbar-brand" href="index.php">unjbg</a>
                         
                     
-<?
+<?php
 }
 else
 {
@@ -133,7 +117,7 @@ $nombre_docente_verificado=$_SESSION['nombre_doc'];
 						<a class="navbar-brand" href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>"><?php echo $nombre_docente_verificado ?></a>
                        
                     
-<?					
+<?php
 }
 else
 {
@@ -145,19 +129,33 @@ $nombre_admin=$_SESSION['nombre_docente'];
 						
                     
 
-<?
+<?php
 }
 
 }
 ?>
+<script>
 
+$('#bs-example-navbar-collapse-1 li a').on('click', function(){
+    $('li a.activo').removeClass('activo');
+    $(this).addClass('activo');
+});
+
+</script>
+
+<style>
+.activo {
+    text-decoration: underline;
+    background-color: rgba(123, 129, 129,0.6);
+}
+</style>
 				
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> ">Mi perfil</a>
+                        <a class="activo" href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> ">Mi perfil</a>
                     </li>
                     <li>
                         <a href="about.php">Noticias</a>
@@ -402,6 +400,8 @@ $extraer_interno_docente="select interno_docente from docente  where Cod_docente
 		 $telefono=$fila['telefono_docente'];
 		 $password=$fila['password'];
 		 $ruta_imagen=$fila['ruta_imagen'];
+		 $grado_academico=$fila['grado_academico'];
+		 $titulo=$fila['titulo'];
 		
         $i++;
 
@@ -409,49 +409,120 @@ $extraer_interno_docente="select interno_docente from docente  where Cod_docente
 	<div>
    <img src="<?php echo $ruta_imagen; ?>" width="250" height="250" alt="" align="RIGHT" />
 </div>
-	<TABLE cellpadding=5 >
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CÓDIGO DOCENTE :</TH>
+	
+
+<TABLE cellpadding=5 >
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cod. Docente :</TH>
 		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Cod_docente; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOMBRE         :</TH>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nombre         :</TH>
 		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo  $nombre; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APELLIDO       :</TH>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apellido       :</TH>
 		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $apellido; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI            :</TH>
+
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Grado Ac. :</TH>
+		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $grado_academico; ?></TD> </TR>
+
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Titulo        :</TH>
+		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $titulo; ?></TD> </TR>
+
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI            :</TH>
 		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $dni; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIRECCIÓN      :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo  $direccion; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TIPO           :</TH>
+
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tipo           :</TH>
 		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $tipo; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-MAIL         :</TH>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-MAIL         :</TH>
 		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $email; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FECHA NAC.     :</TH>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fecha Nac.     :</TH>
 		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $fnacimiento; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TELÉFONO       :</TH>
+	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teléfono      :</TH>
 		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $telefono; ?></TD> </TR>
 	</TABLE>
+
+
+
+	<BR>
+	<BR>
 	
-     
-	  
-      <br>  
-	  
-
-      <?php } ?>
-	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar_admin">EDITAR DATOS</button>
-	  <!------<BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " >Recargar datos</button>---->
-
-	  <form action="" method="post" enctype="multipart/form-data" class="form-inline-2" role="form">
+	<?php } ?>
 	
-<input name="foto1" type="file" id="foto1"  >
+	 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar_admin">EDITAR DATOS</button>
+	 
+	 <BR>
+	 <BR>
+     <div align="rigth" style=" position: relative; margin:0px;left:430px; top:-50px; width:300px;">
+	  
+	  
+<style>
+.form-inline-3
+{
+ max-width: 150px;
+ margin:0px;
+ width:100%;
+ 
+}
 
-<input name="guardar2" type="submit" class="btn btn-success btn-lg" value="subir foto"/>
+</style>
+	  
+	  <form action="" method="post" enctype="multipart/form-data" class="form-inline-3" role="form">
+
+<style>
+  div.fileinputs {
+	position: relative;
+}
+
+div.fakefile {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+}
+
+input.file {
+	position: relative;
+	text-align: right;
+	-moz-opacity:0 ;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+}
+</style>
+  
+
+<div class="fileinputs">
+	<input name="foto1" type="file" class="file" id="foto1" style="width: 57px;"/>
+	<div style="width: 200px;">
+		<div class="fakefile">
+			<!--<input />-->
+			<img src="imagenes/upload.png" width="45" height="45"/>
+		</div>
+		<input name="guardar2" type="submit" class="btn btn-success btn-lg" value="subir foto" style="width: 145px;"/>
+
+	</div>
+</div>
+<!--<input name="foto1" type="file" id="foto1"  >-->
+
 
 
 </form>
 
 
-<?	
+
+
+
+	  </div>
+	 
+	  <!------<BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " >Recargar datos</button>---->
+<BR>
+
+
+	  
+	  
+
+
+<?php
 				  			  			  
-if($_POST['guardar2']){
+// if($_POST['guardar2']){
+	if(isset($_POST['guardar2'])){
 
 $nombrefoto1=$_FILES['foto1']['name'];
 $ruta1=$_FILES['foto1']['tmp_name'];
@@ -510,7 +581,7 @@ if(@mysqli_query($con,$act)){
 		location.href=page;
 		
 	</script>
-		<?
+		<?php
 		
 }
 }
@@ -518,7 +589,7 @@ if(@mysqli_query($con,$act)){
 ?>
 
 
-	  <?
+	  <?php
 	   $result = mysqli_query($con,"SELECT * FROM docente where Cod_docente='$nombre_docente_verificado'"); 
 while ($row=mysqli_fetch_array($result)) 
 { 
@@ -549,9 +620,10 @@ height:100%;
 
 		<?php
 		
-		$ID_ADMIN = $_GET['nombre_admin'];
-
-$extraer_interno_admin="select interno_docente from docente  where Cod_docente='$ID_ADMIN'";
+		
+		if(isset($_GET['nombre_admin'])){
+			$ID_ADMIN = $_GET['nombre_admin'];
+			$extraer_interno_admin="select interno_docente from docente  where Cod_docente='$ID_ADMIN'";
 		$EJECUCION_ID=mysqli_query($con,$extraer_interno_admin);
 		$interno_docente= mysqli_fetch_array($EJECUCION_ID);
 		
@@ -607,6 +679,11 @@ $extraer_interno_admin="select interno_docente from docente  where Cod_docente='
 		<?php } ?>
 		
 		<!----------fin de submenus de cursos--------------------->
+		<?php } else{
+
+		}?>
+
+
 		
 		
 
@@ -662,18 +739,18 @@ $ejecutar_obser=mysqli_query($con,$CONSULTAR_OBSER);
     </thead>
     <tbody>
       
-	  <?
+	  <?php
 			while($array_observaciones=mysqli_fetch_array($ejecutar_obser))
 			
 			{
 				
 				?>
 				<tr>
-				<td><?echo $array_observaciones['nomb_asignatura'];?></td>
-				<td><?echo $array_observaciones['fecha_limite'];?></td>
-				<td><?echo $array_observaciones['observaciones'];?></td>
+				<td><?php echo $array_observaciones['nomb_asignatura'];?></td>
+				<td><?php echo $array_observaciones['fecha_limite'];?></td>
+				<td><?php echo $array_observaciones['observaciones'];?></td>
 				</tr>
-			<?
+			<?php
 			}
 			
 			?>
@@ -707,151 +784,126 @@ $ejecutar_obser=mysqli_query($con,$CONSULTAR_OBSER);
         </div>
 		
 		
-        <div class="modal-body">
+		<style>
+.contentform3 {
+    padding: 0px 30px;
+    height: 500px;
+	
+}
+
+.EDITAR_ADMIN3
+{
+    border-radius: 5px;
+    max-width: 700px;
+    width: 100%;
+    margin: 0% auto;
+    overflow: hidden;
+}
+	</style>
+	
 		
-		<form action="#" method="post" class="EDITAR_ADMIN"  >
+        <div style="margin-top: -5%" class="modal-body">
+		
+		<form action="#" method="post" class="EDITAR_ADMIN3"  >
 	   
-    <div class="contentform">
+    <div class="contentform3">
     	<div id="sendmessage"> Has creado correctamente al docente </div>
 		
 		<div class="form-group">
-      <label class="control-label col-sm-4" for="CODIGO_DOCENTE">Código docente:</label>
-      <div class="col-sm-4">
-        <p class="form-control-static"><?php echo $Cod_docente; ?></p>
+     
+      <label style="left: 25px;top: 30px" class="control-label col-sm-4" for="CODIGO_DOCENTE">Código docente:</label>
+      <div  class="col-sm-4">
+        <p style="position: relative; left: 115px; top: 15px" class="form-control-static"><?php echo $Cod_docente; ?></p>
       </div>
     </div>
+	<!------------------------------------------------------------------------------------>
 	
-	
-	<label class="control-label col-sm-8" for="email" align="left" >Nombre docente:</label>
-	<br>
-	<br>
-	
-	
-	<div class="input-group ">
+	<label style="position: relative; right: 105px;top: 25px;" class="control-label col-sm-8" for="email" >Nombre docente:</label><label style="float: right; left: 142px" class="control-label col-sm-8" for="email" align="left" >DNI:</label>
+	<br>	
+	<div style="position: relative;" class="input-group ">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="nombre_docente_edita" type="text" class="form-control" name="nombre_docente_edita"   data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné."  placeholder="Nombre" value="<?php echo $nombre;?>" required />
+      <input style="width: 220px" id="nombre_docente_edita" type="text" class="form-control" name="nombre_docente_edita"   data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné."  placeholder="Nombre" value="<?php echo $nombre;?>" required />
+      <span  style="position: relative; left: 14px" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input style="width: 125px;left: 14px" id="DNI_edita" type="text" class="form-control" name="DNI_edita"  data-rule="maxlen:8" required pattern="[0-9]{8}" placeholder="DNI" value="<?php echo $dni;?>"  required />
     </div>
 	
 	<br>
 	
-	<label class="control-label col-sm-4" for="email" align="left" >Apellidos:</label>
+	<label style="right: 12px" class="control-label col-sm-4" for="email" align="left" >Apellido:</label><label style="float: right; left: 65px" class="control-label col-sm-6" for="email" align="left" >Tipo:</label>
 	<br>
-	<br>
-	
-	<div class="input-group ">
+	<div style="position: relative;" class="input-group ">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="apellido_edita" type="text" class="form-control" name="apellido_edita" placeholder="Apellido" value="<?php echo $apellido;?>"  required />
-    </div>
-	<br>
-	
-	
-	<label class="control-label col-sm-8" for="email" align="left" >DNI:</label>
-	<br>
-	<br>
-	
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="DNI_edita" type="text" class="form-control" name="DNI_edita"  data-rule="maxlen:8" required pattern="[0-9]{8}" placeholder="DNI" value="<?php echo $dni;?>"  required />
-    </div>
-	<br>
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Dirección:</label>
-	<br>
-	<br>
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input style="width: 220px" id="apellido_edita" type="text" class="form-control" name="apellido_edita" placeholder="Apellido" value="<?php echo $apellido;?>"  required />
+      <span style="position: relative; left: 14px;" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 	  
-	   <input id="direccion_edita" type="text" class="form-control" name="direccion_edita"  placeholder="Direccion" value="<?php echo $direccion;?>"  required />
-	   
-	   
-    </div>
-	<br>
-	
-	<label class="control-label col-sm-6" for="email" align="left" >Tipo:</label>
-	<br>
-	<br>
-	
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	  
-	  <select name="tipo_edita" id="tipo_edita" class="form-control" required />
+	  <select style="left: 14px;width: 125px" name="tipo_edita" id="tipo_edita" class="form-control" required />
 				
 				<option value="<?php echo $tipo;?>"><?php echo $tipo;?></option>
-				
 				<option value="docente">docente</option>
 				<option value="admin">admin</option>
+				
 				</select>
     </div>
 	<br>
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Email:</label>
-	<br>
-	<br>
-	
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="email_edita" type="email" class="form-control" name="email_edita" placeholder="Email" data-rule="email" data-msg="Vérifiez votre saisie sur les champs : Le champ 'E-mail' est obligatoire." value="<?php echo $email;?>" required/>
-    </div>
-	<br>
+		
+	<label style="position: relative;  right: 55px;top: -4px;  bottom: 20px;" class="control-label col-sm-6" for="email" >Grado académico</label>
 	
 	
-	<!----<p>Tipo</p>----->
+	<br>	
 	
-	<label class="control-label col-sm-4" for="email" align="left" >Fecha nacimiento:</label>
-	<br>
-	<br>
-	
-	<div class="input-group ">
-	
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="f_nacimiento_edita" type="text" class="form-control" name="f_nacimiento_edita" placeholder="Fecha nacimiento"  value="<?php echo $fnacimiento;?>" required />
-    </div>
-	<br>
-	
-	
-	
-	
-	<!----<p>Tipo</p>----->
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Contraseña</label>
-	<br>
-	<br>
-	
-	<div class="input-group ">
-	
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="password_edita" type="text" class="form-control" name="password_edita" placeholder="Contraseña"  value="<?php echo $password;?>" required />
-    </div>
-	<br>
-	
-	
-	
-	
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Teléfono:</label>
-	<br>
-	<br>
-	<div class="input-group ">
+	<div style="position: relative;" class="input-group ">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 	  
-	   <input id="telefono_edita" type="text" class="form-control" name="telefono_edita"  placeholder="telefono" value="<?php echo $telefono;?>"  required />
+      <input style="width: 220px" id="grado_academico_edita" type="text" class="form-control" name="grado_academico_edita"   data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné."  placeholder="Grado academico" value="<?php echo $grado_academico;?>" required />
+	  
+    </div>
+
+	<br>
+
+<label style="right: 12px" class="control-label col-sm-4" for="email" align="left" >Titulo:</label>
+	<br>
+	<div class="input-group ">
+      <span style="position: relative;" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	  
+	   <input style="position:relative; width: 450px;" id="titulo_edita" type="text" class="form-control" name="titulo_edita"  placeholder="Titulo" value="<?php echo $titulo;?>"  required />
 	   
 	   
+    </div>
+
+	<br>
+	
+	<label style="right: 12px" class="control-label col-sm-4" for="email" align="left" >Email:</label><label style="float: right;left: 65px" class="control-label col-sm-6" for="email" align="left" >Fecha de nacimiento:</label>
+	<br>
+	
+	<div style="position: relative;" class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input style="width: 220px" id="email_edita" type="email" class="form-control" name="email_edita" placeholder="Email" data-rule="email" data-msg="Vérifiez votre saisie sur les champs : Le champ 'E-mail' est obligatoire." value="<?php echo $email;?>" required/>
+      <span style="position: relative; left: 14px" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input style="left: 14px;width: 125px" id="f_nacimiento_edita" type="text" class="form-control" name="f_nacimiento_edita" placeholder="Fecha nacimiento"  value="<?php echo $fnacimiento;?>" required />
+    </div>
+	<br>
+		
+	<label style="right: 11px" class="control-label col-sm-4" for="email" align="left" >Contraseña</label><label style="float: right;right: 20px" class="control-label col-sm-4" for="email" align="left" >Teléfono:</label>
+	<br>
+	<div style="position: relative;" class="input-group ">
+	
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input style="width: 220px" id="password_edita" type="text" class="form-control" name="password_edita" placeholder="Contraseña"  value="<?php echo $password;?>" required />
+      <span style="position: relative; left: 14px" style="position: relative;" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	  
+	   <input style="left: 14px;width: 125px" id="telefono_edita" type="text" class="form-control" name="telefono_edita"  placeholder="telefono" value="<?php echo $telefono;?>"  required />
     </div>
 	<br>
 	
 	
-	
-
 	</div>
 
 	<!--------------BOTON CREAR DOCENTE---------------------------------->
  
-<button type="submit" name="update_admin" class="bouton-contact" >GUARDAR CAMBIOS</button> 
+<button style="width: 200px" type="submit" name="update_admin" class="bouton-contact" >GUARDAR</button> 
 
 
 </form>
-		
 		
 		  
         </div>
@@ -868,6 +920,7 @@ $ejecutar_obser=mysqli_query($con,$CONSULTAR_OBSER);
 
 
 <br><br><br><br>
+
 <br><br><br><br>
 <br><br><br><br>
 <br><br><br><br>
@@ -900,8 +953,16 @@ if(isset($_POST['update_admin']))
 		
 		$password_edita=$_POST["password_edita"];
 
+
+		$grado_academico_edita=$_POST["grado_academico_edita"];
+
+		$titulo_edita=$_POST['titulo_edita'];
+
+
+
 		$actualizar="UPDATE docente set nombre='$nombre_docente_edita',apellido='$apellido_edita',dni='$dni_edita',direccion='$direccion_edita',
-		tipo='$tipo_edita',email='$email_edita',fnacimiento='$fnacimiento_edita',password='$password_edita',telefono_docente='$telefono_edita'
+		tipo='$tipo_edita',email='$email_edita',fnacimiento='$fnacimiento_edita',password='$password_edita',telefono_docente='$telefono_edita',grado_academico='$grado_academico_edita',titulo='$titulo_edita'
+
 
 		WHERE Cod_docente='$Cod_docente'";
 		
@@ -917,7 +978,7 @@ if(isset($_POST['update_admin']))
 		location.href=page;
 		
 	</script>
-		<?
+		<?php
 		}
       }?>
 		
@@ -938,29 +999,7 @@ if(isset($_POST['update_admin']))
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	
-	
-	<br>
-	<br>
-	<br>
-	<br>
+
 	<br>
 	<br>
 	<br>

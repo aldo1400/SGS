@@ -205,7 +205,7 @@ if(!$_SESSION)
 						<a class="navbar-brand" href="index.php>unjbg</a>
                         
                     
-<?
+<?php
 }
 else
 {
@@ -217,7 +217,7 @@ $nombre_docente_verificado=$_SESSION['nombre_doc'];
 						<a class="navbar-brand" href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>"><?php echo $nombre_docente_verificado ?></a>
                        
                     
-<?					
+<?php					
 }
 else
 {
@@ -229,7 +229,7 @@ $nombre_admin=$_SESSION['nombre_docente'];
 						
                     
 
-<?
+<?php
 }
 
 }
@@ -275,14 +275,100 @@ $nombre_admin=$_SESSION['nombre_docente'];
 		<br>
 		<br>
 
+		<div class="contenedor-menu1">
+		
+
+<style type="text/css">   
+a:link   
+{   
+ text-decoration:none;   
+}   
+</style>
+
+
+
+		<li class="btn-menu1">Docente<i class="icono fa fa-bars"></i></li>
+		<ul class="menu1">
+		
+			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-user"></i>Mi perfil</a></li>
+			
+			
+			<li><a href="#"><i class="icono izquierda fa fa-book"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
+				<ul>
+		<?php
+		
+		
+include('conexion.php');
+
+$q_extraer_interno_docente="select interno_docente from docente  where Cod_docente='$nombre_admin'";
+
+		$e_extraer_interno_docente=mysqli_query($con,$q_extraer_interno_docente);
+		
+		$a_interno_docente1= mysqli_fetch_array($e_extraer_interno_docente);
+		
+		$interno_docente=$a_interno_docente1['interno_docente'];
+		
+		//En esta zona haremos que se creen tantos submenus como cursos tenga el docente seleecionado, por ejemplo si el docnete tiene 6 cursos asignados , aparecen 6 submenus con los nombre de los cursos, de maner dinamica.
+		
+		$q_CONSULTAR_CURSOS_ASIGNADOS_MENU="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.interno_docente='$interno_docente'";
+		$e_EJECUCION_CURSOS=mysqli_query($con,$q_CONSULTAR_CURSOS_ASIGNADOS_MENU);
+		$i=0;
+		while($CURSOS = mysqli_fetch_array($e_EJECUCION_CURSOS))
+		{
+		
+			$nombre=$CURSOS['nomb_asignatura'];
+			$id_asignatura=$CURSOS['cod_asignatura'];
+			
+			
+			$dt_fecha=$CURSOS['fecha_dicta'];
+			 $parte = explode("-", $dt_fecha);
+			//echo $parte[0];//año asignado //
+			$fecha_sistema=getdate();
+			//echo $fecha_sistema['year'];
+			
+			$i++;
+			if($fecha_sistema['year']==$parte[0])
+			{
+			?>
+			
+	  
+	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
+	  
+		
+		
+        <li style="text-align:left;" ><a href="curso_docente.php?nombre_asig=<?php echo $id_asignatura ?>"><img src="img/flecha.png" width="30" height="30" name="flecha"><?php echo $nombre; ?></a></li>
+	
+		<?php }} ?>
+		
+				
+     
+	  <style>
+	  
+	  .flecha
+	  {
+	  margin-right:10px;
+	  margin-left:15px;
+	  }
+	  
+	  </style>
+
+ 
+ 		
+					
+					
+				</ul>
+			</li>
+			
+		</ul>
+	</div>
+				
+
+				
+
+
 		<div class="contenedor-menu">
 		
 		
-		
-
- 
- 
-
 
 <style type="text/css">   
 a:link   
@@ -296,34 +382,32 @@ a:link
 		<li class="btn-menu">Administración<i class="icono fa fa-bars"></i></li>
 		<ul class="menu">
 		
-			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
+				
+			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-folder-open"></i>Plan de estudios</a></li>
 			
 			
-			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Plan de estudios</a></li>
+			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-user-plus"></i>Crear docente</a></li>
 			
 			
-			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Crear docente</a></li>
-			
-			
-			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
+			<li><a href="#"><i class="icono izquierda fa fa-users"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 				
 				
 	<?php
-      $consulta ="SELECT * FROM docente";
-      $ejecutar= mysqli_query($con,$consulta);
+      $q_lista_total_docentes ="SELECT * FROM docente";
+      $e_lista_total_docentes= mysqli_query($con,$q_lista_total_docentes);
       $i=0;
-      while($fila = mysqli_fetch_array($ejecutar))
+      while($a_lista_total_docentes = mysqli_fetch_array($e_lista_total_docentes))
       {
-        $nombre=$fila['nombre'];
-		$id_docente=$fila['Cod_docente'];
-		$interno_docente=$fila['interno_docente'];
+        $nombre=$a_lista_total_docentes['nombre'];
+		$id_docente=$a_lista_total_docentes['Cod_docente'];
+		$interno_docente=$a_lista_total_docentes['interno_docente'];
 		
         $i++;
 
       ?>
 	  
-	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE-->
+	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
 	  
       <?php
 		
@@ -331,7 +415,7 @@ a:link
 		{
 		?>
 		
-        <li style="text-align:left;" ><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png"  width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
+        <li style="text-align:left;"><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png"  width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
 		
 		
 		<?php
@@ -389,18 +473,18 @@ a:link
 	<br>
 	<br>
 	
-<!------------------------------MENU LATERAL DOCENTES, crear docente  ------------------------------------------------->
+<!------------------------------MENU LATERAL DOCENTES, crear docente  ------------------------------------------------>
 
 	
 	
-<!------------------------------FIN DE MENU LATERAL DOCENTES,crear docente  ------------------------------------------------->
+<!------------------------------FIN DE MENU LATERAL DOCENTES,crear docente  ------------------------------------------------>
 
 
-<!---------funcion para mostrar la lista de  los docentes actualizados ----------------------------------------->
+<!---------funcion para mostrar la lista de  los docentes actualizados ---------------------------------------->
 
     
 
-<!--------- fin de funcion para mostrar la lista de  los docentes actualizados ----------------------------------------->  
+<!--------- fin de funcion para mostrar la lista de  los docentes actualizados ---------------------------------------->  
 
 <style>
 /*
@@ -456,7 +540,23 @@ a:link
 </div>
 
 <div class="pull-left">
-<a href="asignaturas.php" class="btn btn-info btn-lg" >volver</a>
+<a href="asignaturas.php" class="btn btn-info btn-lg" >ATRÁS</a>
+
+</div>
+
+<style>
+.alert-danger{
+
+width:60%;
+position:relative;
+right:-100px;
+margin:0px;
+padding:0px;
+text-align: justify
+}
+</style>
+<div class="alert alert-danger">
+  <strong>Alerta!</strong> En caso quiera retroceder recomendamos usar el botón ATRÁS para evitar problemas de envío de formulario
 </div>	  
 
 
@@ -469,8 +569,8 @@ a:link
 
 $v1 = $_GET['nombre_curso_enviado']; 
 
-session_start();
-session_name('permiso');
+// session_start();
+// session_name('permiso');
 
 $_SESSION['id_curso']=$v1;
 /*Para saber de que curso voy a mostrar los datos necesito el nombre, por eso desde el archivo asiganturas.php he enviado el nombre del curso en la variable nombre_curso_enviado por eso voy a recibirla en la variable $v1*/
@@ -480,8 +580,7 @@ $_SESSION['id_curso']=$v1;
 
 
 <br>
-<br>
-<br>
+
 
 
 <div class="contenedor_presenta">
@@ -519,30 +618,30 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 	  
 	  include('conexion.php');
 	  
-	  $consulta ="SELECT * FROM asignatura where cod_asignatura='$v1'";
+	  $q_datos_asignatura ="SELECT * FROM asignatura where cod_asignatura='$v1'";
 	 
-
-	  
-	  $consulta2 ="SELECT * FROM dicta inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where asignatura.cod_asignatura='$v1'";//Consulta para que se muestre los profesores asignados al curso
-	    $ejecutar2= mysqli_query($con,$consulta2);
-	   $fila2 = mysqli_fetch_array($ejecutar2);
+	  $q_profesores_asignados ="SELECT * FROM dicta inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where asignatura.cod_asignatura='$v1'";//Consulta para que se muestre los profesores asignados al curso
+	    $e_profesores_asignados= mysqli_query($con,$q_profesores_asignados);
+	   $fila2 = mysqli_fetch_array($e_profesores_asignados);
 	   
-      $ejecutar= mysqli_query($con,$consulta);
+	   
+	   
+      $e_datos_asignatura= mysqli_query($con,$q_datos_asignatura);
 	  
 	 
 	  
       $i=0;
-      while($fila = mysqli_fetch_array($ejecutar))
+      while($a_datos_asignatura = mysqli_fetch_array($e_datos_asignatura))
       {
-		$nombre=$fila['nomb_asignatura'];
-		 $horas_practica=$fila['horas_practica'];
-		 $pre_requisito=$fila['pre_requisito'];
-		 $nro_creditos=$fila['nro_creditos'];
-		 $semestre_academico=$fila['semestre_academico'];
-		 $cod_asignatura=$fila['cod_asignatura'];
-		 $facultad=$fila['facultad'];
-		 $horas_teoria=$fila['horas_teoria'];
-		 $horas_laboratorio=$fila['horas_laboratorio'];
+		$nombre=$a_datos_asignatura['nomb_asignatura'];
+		 $horas_practica=$a_datos_asignatura['horas_practica'];
+		 $pre_requisito=$a_datos_asignatura['pre_requisito'];
+		 $nro_creditos=$a_datos_asignatura['nro_creditos'];
+		 $semestre_academico=$a_datos_asignatura['semestre_academico'];
+		 $cod_asignatura=$a_datos_asignatura['cod_asignatura'];
+		 $facultad=$a_datos_asignatura['facultad'];
+		 $horas_teoria=$a_datos_asignatura['horas_teoria'];
+		 $horas_laboratorio=$a_datos_asignatura['horas_laboratorio'];
 		 if($i=0 )
 		 {
 		 $Cod_docente=$fila2['Cod_docente'];
@@ -560,32 +659,31 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
       ?>
 	  <!---------SE MUESTRAN DATOS DEL CURSO------------>
 	  
-	  <div class="pull-right">
+	  <!--<div class="pull-right">
 		<a href="javascript:window.history.go(0);" class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-refresh"></span> Actualizar información</a>
-	</div>
+	</div>-->
 		<br>
-		<br>
-		<br>
+		
 		
 	  <TABLE style="text-align: left; position: relative; left: 150px" >
 	<TR><TH>CÓDIGO ASIGNATURA :</TH>
-		<TD>&nbsp;<?php echo $cod_asignatura; ?></TD> </TR>
+		<TD><?php echo $cod_asignatura; ?></TD> </TR>
 	<TR><TH>NOMBRE DEL CURSO :</TH>
-		<TD>&nbsp;<?php echo  $nombre; /*echo $i;*/ ?></TD> </TR>
+		<TD><?php echo  $nombre; /*echo $i;*/ ?></TD> </TR>
 	<TR><TH>PRE-REQUISITO      :</TH>
-		<TD>&nbsp;<?php echo $pre_requisito; ?></TD> </TR>
+		<TD><?php echo $pre_requisito; ?></TD> </TR>
 	<TR><TH>SEMESTRE ACADÉMICO :</TH>
-		<TD>&nbsp;<?php echo $semestre_academico; ?></TD> </TR>
+		<TD><?php echo $semestre_academico; ?></TD> </TR>
 	<TR><TH>FACULTAD      :</TH>
-		<TD>&nbsp;<?php echo  $facultad; ?></TD> </TR>
-	<TR><TH>NÚMERO DE CREDITOS           :</TH>
-		<TD>&nbsp;<?php echo $nro_creditos; ?></TD> </TR>
+		<TD><?php echo  $facultad; ?></TD> </TR>
+	<TR><TH>NÚMERO DE CRÉDITOS           :</TH>
+		<TD><?php echo $nro_creditos; ?></TD> </TR>
 	<TR><TH>HORAS TEORÍA         :</TH>
-		<TD>&nbsp;<?php echo $horas_teoria; ?></TD> </TR>
+		<TD><?php echo $horas_teoria; ?></TD> </TR>
 	<TR><TH>HORAS DE PRACTICA     :</TH>
-		<TD>&nbsp;<?php echo $horas_practica; ?></TD> </TR>
+		<TD><?php echo $horas_practica; ?></TD> </TR>
 	<TR><TH>HORAS LABORATORIO       :</TH>
-		<TD>&nbsp;<?php echo $horas_laboratorio; ?></TD> </TR>
+		<TD><?php echo $horas_laboratorio; ?></TD> </TR>
 	
 	<TR>
 		<TH>DOCENTES:</TH>
@@ -593,11 +691,11 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 			<?php while ($fila4 = mysqli_fetch_array($ejecutar4) ) { ?>
 			&nbsp;
 				<div class="profesor">
-					<?
+					<?php
 					echo $fila4['nombre']; 
 					?>	  
 					<div class="borrado">
-						<a href="#" class="delbutton" data-id="<?php echo $fila4['interno_docente']?>">Eliminar</a>
+						<a href="#" class="delbutton" data-id="<?php echo $fila4['interno_docente']?>"><u>[Eliminar]</u></a>
 					</div>
 				</div>
 			<?php
@@ -612,7 +710,7 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar"><span class="glyphicon glyphicon-pencil" style="position: relative; width: 70px"></span>EDITAR CURSO</button>
 		<br>
 	  
-	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus" style="position: relative; width: 30px"></span>AGREGAR DOCENTE</button>
+	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_asignacion_docente"><span class="glyphicon glyphicon-plus" style="position: relative; width: 30px"></span>AGREGAR DOCENTE</button>
 	  <br>
 	 
 	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-pencil" style="position: relative; width: 20px"></span>MODIFICAR SUMILLA</button>
@@ -667,23 +765,22 @@ $muestra="SELECT sumilla, silabo.cod_silabo FROM silabo inner join usa on silabo
 		location.href=page;
 		
 	</script>
-		<?
+		<?php
         }
       }
      ?>
 	 
 
-<?
+<?php
 
 
 include('conexion.php');//CADENA DE CONEXION
 
       
-		$buscar_asig="select * from asignatura  where cod_asignatura='$v1'";
-        $ejecutar_buscar = mysqli_query($con,$buscar_asig);
-        $array_curso=mysqli_fetch_array($ejecutar_buscar);
+		$q_buscar_datos_asignatura="select * from asignatura  where cod_asignatura='$v1'";
+        $e_buscar_datos_asignatura = mysqli_query($con,$q_buscar_datos_asignatura);
+        $a_buscar_datos_asignatura=mysqli_fetch_array($e_buscar_datos_asignatura);
 	  
-
 ?>
 
 <div class="container">
@@ -703,7 +800,7 @@ include('conexion.php');//CADENA DE CONEXION
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">  ASIGNATURA</h4>
-		 <!-------- <h1><center>CREAR ASIGNATURA</center></h1>------------->
+		
         </div>
 		
         <div class="modal-body" style="color:#000;"  >
@@ -712,14 +809,14 @@ include('conexion.php');//CADENA DE CONEXION
 	   
     <div class="contentform">
     	<div id="sendmessage"> Has creado correctamente al docente </div>
-	<label class="control-label col-sm-8" for="email" align="left"> Nombre asignatura:</label>
+	<label style="right: 30px" class="control-label col-sm-8" for="email" align="left"> Nombre asignatura:</label>
 	
 	<br>
 	<br>
 	
 <div class="input-group ">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="nomb_asignatura_crea" type="text" class="form-control" name="nomb_asignatura_crea" placeholder="Nombre Curso" value="<?php echo $array_curso[0];?>"  required >
+      <input id="nomb_asignatura_crea" type="text" class="form-control" name="nomb_asignatura_crea" placeholder="Nombre Curso" value="<?php echo $a_buscar_datos_asignatura[0];?>"  required >
 	  
     </div>
 	
@@ -727,28 +824,18 @@ include('conexion.php');//CADENA DE CONEXION
 	
 	
 	
-	<label class="control-label col-sm-6" for="email" align="left" >Código asignatura:</label>
+	<label class="control-label col-sm-6" for="email" align="left" >Código asignatura:</label> <label style="left: 20px" class="control-label col-sm-4" for="email" align="right" >Semestre:</label>
 	<br>
 	<br>
 	
 	<div class="input-group ">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="cod_asignatura_crea" type="text" class="form-control" name="cod_asignatura_crea" placeholder="codigo asignatura" value="<?php echo $array_curso[5];?>" required>
-    </div>
-	<br>
-	
-	
-	
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Semestre:</label>
-	<br>
-	<br>
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input style="width: 120px; float: left" id="cod_asignatura_crea" type="text" class="form-control" name="cod_asignatura_crea" placeholder="codigo asignatura" value="<?php echo $a_buscar_datos_asignatura[5];?>" required>
+      <span style="position: relative;left: 50px " class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 	  
-	   <select name="semestre_academico_crea" id="semestre_academico_crea" class="form-control" required >
+	   <select style="width: 120px;position: relative;left: 50px" name="semestre_academico_crea" id="semestre_academico_crea" class="form-control" required >
 				
-				<option value="<?php echo $array_curso[4];?>"><?php echo $array_curso[4];?></option>
+				<option value="<?php echo $a_buscar_datos_asignatura[4];?>"><?php echo $a_buscar_datos_asignatura[4];?></option>
 				<option value="I">I</option>
 				<option value="II">II</option>
 				</select>
@@ -765,7 +852,7 @@ include('conexion.php');//CADENA DE CONEXION
 	  
 	  <select name="facultad_crea" id="facultad_crea" class="form-control" required >
 				
-				<option value="<?php echo $array_curso[7];?>"><?php echo $array_curso[7];?></option>
+				<option value="<?php echo $a_buscar_datos_asignatura[7];?>"><?php echo $a_buscar_datos_asignatura[7];?></option>
 				<option value="FAIN">FAIN</option>
 				<option value="FACI">FACI</option>
 				<option value="FCJE">FCJE</option>
@@ -786,35 +873,51 @@ include('conexion.php');//CADENA DE CONEXION
 	
 	<div class="input-group ">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="escuela_crea" type="text" class="form-control" name="escuela_crea" placeholder="Escuela" value="<?php echo $array_curso[10];?>" required>
+      <input id="escuela_crea" type="text" class="form-control" name="escuela_crea" placeholder="Escuela" value="<?php echo $a_buscar_datos_asignatura[10];?>" required>
     </div>
 	<br>
 	
 	
 	
 	
-	<label class="control-label col-sm-5" for="email" align="left" >Ciclo académico:</label>
+	<label style="left: 15px" class="control-label col-sm-5" for="email" align="left" >Ciclo académico:</label>
 	<br>
 	<br>
 	
 	<div class="input-group ">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="ciclo_academico_crea" type="text" class="form-control" name="ciclo_academico_crea" placeholder="Ciclo academico" value="<?php echo $array_curso[6];?>" required>
+   <select name="ciclo_academico_crea" id="ciclo_academico_crea" class="form-control"  required >
+				
+				<option value="<?php echo $a_buscar_datos_asignatura[6];?>"><?php echo $a_buscar_datos_asignatura[6];?></option>
+
+				<option value="Primer ciclo">Primer ciclo</option>
+				<option value="Segundo ciclo">Segundo ciclo</option>
+				<option value="Tercer ciclo">Tercer ciclo</option>
+				<option value="Cuarto ciclo">Cuarto ciclo</option>
+				<option value="Quinto ciclo">Quinto ciclo</option>
+				<option value="Sexto ciclo">Sexto ciclo</option>
+				<option value="Séptimo ciclo">Séptimo ciclo</option>
+				<option value="Octavo ciclo">Octavo ciclo</option>
+				<option value="Noveno ciclo">Noveno ciclo</option>
+				<option value="Décimo ciclo">Décimo ciclo</option>
+				
+				</select>
+
     </div>
+	
 	<br>
 	
 	
 	
-	<label class="control-label col-sm-4" for="email" align="left" >Pre requisito:</label>
+	<label style="left: 15px" class="control-label col-sm-4" for="email" align="left" >Pre requisito:</label>
 	<br>
 	<br>
 	
 	<div class="input-group ">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="pre_requisito_crea" type="text" class="form-control" name="pre_requisito_crea" placeholder="Pre requisito" value="<?php echo $array_curso[2];?>"  required>
+      <input id="pre_requisito_crea" type="text" class="form-control" name="pre_requisito_crea" placeholder="Pre requisito" value="<?php echo $a_buscar_datos_asignatura[2];?>"  required>
     </div>
 	<br>
-	
 	
 	<label class="control-label col-sm-3" for="email" align="left" >Número de créditos:</label>
 	
@@ -823,7 +926,7 @@ include('conexion.php');//CADENA DE CONEXION
 	
 	<div class="input-group ">
       
-      <input id="nro_creditos_crea" type="text" class="form-control" name="nro_creditos_crea" required pattern="[0-9]" placeholder="# creditos" value="<?php echo $array_curso[3];?>"  required>
+      <input id="nro_creditos_crea" type="text" class="form-control" name="nro_creditos_crea" required pattern="[0-9]*" placeholder="# creditos" value="<?php echo $a_buscar_datos_asignatura[3];?>"  required>
     </div>
 	</div>
 	
@@ -836,7 +939,7 @@ include('conexion.php');//CADENA DE CONEXION
 	<div class="input-group ">
 	
       
-      <input id="horas_teoria_crea" type="text" class="form-control" name="horas_teoria_crea" placeholder="Horas teoria"  value="<?php echo $array_curso[8];?>" required>
+      <input id="horas_teoria_crea" type="text" class="form-control" name="horas_teoria_crea" placeholder="Horas teoria"  value="<?php echo $a_buscar_datos_asignatura[8];?>" required>
     </div>
 	</div>
 	<br>
@@ -850,7 +953,7 @@ include('conexion.php');//CADENA DE CONEXION
 	
 	<div class="input-group ">
       
-      <input id="horas_practica_crea" type="text" class="form-control" name="horas_practica_crea" required pattern="[0-9]"  data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné."  placeholder="Horas practica" value="<?php echo $array_curso[1];?>" required>
+      <input id="horas_practica_crea" type="text" class="form-control" name="horas_practica_crea" required pattern="[0-9]"  data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné."  placeholder="Horas practica" value="<?php echo $a_buscar_datos_asignatura[1];?>" required>
     </div>
 	
 	</div>
@@ -863,8 +966,10 @@ include('conexion.php');//CADENA DE CONEXION
 	
 	<div class="input-group ">
       
-      <input id="horas_laboratorio_crea" type="text" class="form-control" name="horas_laboratorio_crea"  value="<?php echo $array_curso[9];?>" required>
+      <input id="horas_laboratorio_crea" type="text" class="form-control" name="horas_laboratorio_crea"  value="<?php echo $a_buscar_datos_asignatura[9];?>" required>
     </div>
+	
+	</div>
 	
 	</div>
 	
@@ -882,10 +987,11 @@ include('conexion.php');//CADENA DE CONEXION
 
 	<!--------------BOTON CREAR DOCENTE---------------------------------->
  
-<button type="submit" name="update_curso" class="bouton-contact" >GUARDAR CAMBIOS</button> 
+<button style="width: 220px; margin:0px;right: 60px;top: 0px; position: relative; border-radius: 5px" type="submit" name="update_curso" class="bouton-contact" >GUARDAR CAMBIOS</button> 
 
 
 </form>
+
 
 <?php
 	include('conexion.php');//CADENA DE CONEXION
@@ -943,7 +1049,7 @@ include('conexion.php');//CADENA DE CONEXION
 		location.href=page;
 		
 	</script>
-		<?
+		<?php
 		
         }
       }
@@ -954,10 +1060,7 @@ include('conexion.php');//CADENA DE CONEXION
 		
 		
         </div>
-        <div class="modal-footer">
-          
-		  
-        </div>
+        
       </div>
 	  
       
@@ -987,16 +1090,10 @@ include('conexion.php');//CADENA DE CONEXION
 	$lista_curso2=mysqli_query($con,$lista_curso);
 	$array_lista_curso2=mysqli_fetch_array($lista_curso2);
 ?>
-		
-	  
 	  <div class="container">
   
-  <!-- Trigger the modal with a button -->
   
-
-  <!-- Modal -->
-  
-  <div class="modal fade" id="myModal" role="dialog" style="color:#000;">
+  <div class="modal fade" id="myModal_asignacion_docente" role="dialog" style="color:#000;">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -1013,7 +1110,9 @@ include('conexion.php');//CADENA DE CONEXION
 		
 		
         <div class="modal-body" style="color:#000;" >
-		
+		 <div class="alert alert-info">
+    <strong>Recuerde!</strong> Solo puede asignar a dos docentes a un curso.
+  </div>
 		<form action="#" method="post" name="ASIGNACIÓN">
 		<?php 
 				
@@ -1026,7 +1125,7 @@ include('conexion.php');//CADENA DE CONEXION
 				WHILE($fila_docente_asignado= mysqli_fetch_array($ejecutar_docente_asignado))
 				{
 					
-					$nombre_asignado["$i_docente_asignado"]=$fila_docente_asignado['nombre'];
+					$nombre_asignado[$i_docente_asignado]=$fila_docente_asignado['nombre'];
 				
 				$i_docente_asignado++;	
 				}
@@ -1036,21 +1135,11 @@ include('conexion.php');//CADENA DE CONEXION
 				while($row57=mysqli_fetch_array($lista_profesores2))
 					{	
 					$name=$row57["nombre"];
-					
-					
-				if($name==$nombre_asignado[0] OR $name==$nombre_asignado[1] or $name==$nombre_asignado[2]or $name==$nombre_asignado[3] or  $name==$nombre_asignado[4] or $name==$nombre_asignado[5] or $name==$nombre_asignado[6])
-				{}
-				else{
 					?>
 						<input type="checkbox" name="valores[]" value="<?php echo $name?>" class="checks"  >
-					
 					<?php
-						
+				
 						echo "$name<br><br><br>";
-						
-				}
-					
-					
 					
 					}
 				?>
@@ -1149,7 +1238,7 @@ include('conexion.php');//CADENA DE CONEXION
 		location.href=page;
 		
 	</script>
-		<?
+		<?php
 		
 		
 		}
@@ -1198,9 +1287,53 @@ include('conexion.php');//CADENA DE CONEXION
         </div>
         
       </div>
+	  
       
     </div>
+	
+	 <br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+
+
+	<h2 class="brand-before" >
+<center>
+                        <small>BIENVENIDOS</small>
+						</center>
+                    </h2>
+                    <h1 class="brand-name">UNJBG</h1>
+                    <hr class="tagline-divider">
+                    <h2>
+					
+					
   </div>
+  
+  
   
 </div>
 				
@@ -1236,45 +1369,22 @@ if(isset($_POST['sumilla_enviar']))
 		location.href=page;
 		
 	</script>
-		<?
+		<?php
 		
   
       }
 	  
 	  ?>
-	  <br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
+	 
 
 
-<h2 class="brand-before" >
-<center>
-                        <small>BIENVENIDOS</small>
-						</center>
-                    </h2>
-                    <h1 class="brand-name">UNJBG</h1>
-                    <hr class="tagline-divider">
-                    <h2>
+
                         <small>
                             <strong></strong>
                         </small>
                     </h2>	
   
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+
 	<br>
 	<br>
 </div> 

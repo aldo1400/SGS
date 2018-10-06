@@ -86,6 +86,23 @@ body {
 
 <body>
 
+
+<script>
+
+$('#bs-example-navbar-collapse-1 li a').on('click', function(){
+    $('li a.activo').removeClass('activo');
+    $(this).addClass('activo');
+});
+
+</script>
+
+<style>
+.activo {
+    text-decoration: underline;
+    background-color: rgba(123, 129, 129,0.6);
+}
+</style>
+
     <div class="brand">UNJBG</div>
     <div class="address-bar">Sistema de acceso para editar sílabos</div>
 
@@ -113,7 +130,7 @@ if(!$_SESSION)
 						<a class="navbar-brand" href="index.php">unjbg</a>
                         
                     
-<?
+<?php
 }
 else
 {
@@ -125,7 +142,7 @@ $nombre_docente_verificado=$_SESSION['nombre_doc'];
 						<a class="navbar-brand" href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>"><?php echo $nombre_docente_verificado ?></a>
                        
                     
-<?					
+<?php				
 }
 else
 {
@@ -137,7 +154,7 @@ $nombre_admin=$_SESSION['nombre_docente'];
 						
                     
 
-<?
+<?php
 }
 
 }
@@ -153,6 +170,11 @@ $nombre_admin=$_SESSION['nombre_docente'];
                     <li>
                         <a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> ">Mi perfil</a>
 					</li>
+					
+					 <li>
+                        <a class="activo" href="asignaturas.php">Asignatura</a>
+                    </li>
+					
                     <li>
                         <a href="about.php">Noticias</a>
                     </li>
@@ -381,43 +403,44 @@ a:link
 			
 			<li><a href="#"><i class="icono izquierda fa fa-book"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
+		
 		<?php
 		
 		
 include('conexion.php');
 
-$extraer_interno_docente="select interno_docente from docente  where Cod_docente='$nombre_admin'";
-		$EJECUCION_ID=mysqli_query($con,$extraer_interno_docente);
-		$interno_docente1= mysqli_fetch_array($EJECUCION_ID);
+$q_extraer_interno_docente="select interno_docente from docente  where Cod_docente='$nombre_admin'";
+
+		$e_extraer_interno_docente=mysqli_query($con,$q_extraer_interno_docente);
 		
-		$interno_docente=$interno_docente1['interno_docente'];
+		$a_interno_docente1= mysqli_fetch_array($e_extraer_interno_docente);
+		
+		$interno_docente=$a_interno_docente1['interno_docente'];
 		
 		//En esta zona haremos que se creen tantos submenus como cursos tenga el docente seleecionado, por ejemplo si el docnete tiene 6 cursos asignados , aparecen 6 submenus con los nombre de los cursos, de maner dinamica.
 		
-		$CONSULTAR_CURSOS="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.interno_docente='$interno_docente'";
-		$EJECUCION_CURSOS=mysqli_query($con,$CONSULTAR_CURSOS);
-		
+		$q_CONSULTAR_CURSOS_ASIGNADOS_MENU="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.interno_docente='$interno_docente'";
+		$e_EJECUCION_CURSOS=mysqli_query($con,$q_CONSULTAR_CURSOS_ASIGNADOS_MENU);
 		$i=0;
-		while($CURSOS = mysqli_fetch_array($EJECUCION_CURSOS))
+		while($CURSOS = mysqli_fetch_array($e_EJECUCION_CURSOS))
 		{
 		
 			$nombre=$CURSOS['nomb_asignatura'];
 			$id_asignatura=$CURSOS['cod_asignatura'];
 			
 			
-			$fecha=$CURSOS['fecha_dicta'];
-			 $parte = explode("-", $fecha);
+			$dt_fecha=$CURSOS['fecha_dicta'];
+			 $parte = explode("-", $dt_fecha);
 			//echo $parte[0];//año asignado //
 			$fecha_sistema=getdate();
 			//echo $fecha_sistema['year'];
-			
-			 
-			 
 			
 			$i++;
 			if($fecha_sistema['year']==$parte[0])
 			{
 			?>
+			
+			
 	  
 	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
 	  
@@ -481,18 +504,20 @@ a:link
 				
 				
 	<?php
-      $consulta ="SELECT * FROM docente";
-      $ejecutar= mysqli_query($con,$consulta);
+      $q_lista_total_docentes ="SELECT * FROM docente";
+      $e_lista_total_docentes= mysqli_query($con,$q_lista_total_docentes);
       $i=0;
-      while($fila = mysqli_fetch_array($ejecutar))
+      while($a_lista_total_docentes = mysqli_fetch_array($e_lista_total_docentes))
       {
-        $nombre=$fila['nombre'];
-		$id_docente=$fila['Cod_docente'];
-		$interno_docente=$fila['interno_docente'];
+        $nombre=$a_lista_total_docentes['nombre'];
+		$id_docente=$a_lista_total_docentes['Cod_docente'];
+		$interno_docente=$a_lista_total_docentes['interno_docente'];
 		
         $i++;
 
       ?>
+	  
+	  
 	  
 	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
 	  
@@ -641,11 +666,12 @@ a:link
 ----------------------->
 
 
-<!------Aqui se encuentra el combobox, donde el docente selecciona el semestre academico, donde esta la asignatura que necesita----------->
+<!----Aqui se encuentra el combobox, donde el docente selecciona el semestre academico, donde esta la asignatura que necesita---------->
 
 <div class="pull-left">
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>  Crear asignatura</button>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_crear"><span class="glyphicon glyphicon-plus"></span>  Crear asignatura </button>
 
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_crea_estra"><span class="glyphicon glyphicon-plus"></span>  Crear estrategia </button>
 </div>
 <div class="pull-right">
 <a href="logout.php" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-off"></span> Cerrar sesión</a>
@@ -654,18 +680,18 @@ a:link
 <br>
 <br>
 
-	<form action=" " method="post" class="form-inline" role="form">
+	<form action="" method="post" class="form-inline" role="form" >
 	<br>
 	
-			<label class="control-label col-sm-5" for="email" align="left" >Seleccione Semestre acádemico</label>
+			<label class="control-label col-sm-5" for="email" align="left" >Seleccione Semestre académico</label>
 		
 		<div class="input-group col-sm-3 " >
 			<select name="curso">
 					<option value="" ></option>		
 					<!------option 2017 I-------->
-					<option value="I">2017-I</option>
+					<option value="I">2018-I</option>
 					<!------option 2017 II-------->
-					<option value="II">2017-II</option>
+					<option value="II">2018-II</option>
 				</select>
 			
 		
@@ -676,9 +702,15 @@ a:link
 
 
 
-<?PHP //con esto indicas que empiezas a insertar codigo php
+<?php //con esto indicas que empiezas a insertar codigo php
 
-$link_valor=$_POST['curso']; //recibo la variable que escogio el docente
+if(isset($_POST['curso'])){
+	$link_valor=$_POST['curso'];
+}
+else{
+	$link_valor='';
+}
+ //recibo la variable que escogio el docente
 
 
 // En esta zona verifico que valor ha escogido el docente si primer semestre o segundo semestre
@@ -731,7 +763,7 @@ if($link_valor=='I')//si selecciono primer semestre
 							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs " style="width: 72px; height: 24px;">Detalles</td>
 
 						 
                           </tr>  
@@ -765,7 +797,7 @@ if($link_valor=='I')//si selecciono primer semestre
 							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs" style="width: 72px; height: 24px;">Detalles</td>
 
 						 
                           </tr>  
@@ -798,7 +830,7 @@ if($link_valor=='I')//si selecciono primer semestre
 							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs" style="width: 72px; height: 24px;">Detalles</td>
 
 						 
                           </tr>  
@@ -834,7 +866,7 @@ if($link_valor=='I')//si selecciono primer semestre
 							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs" style="width: 72px; height: 24px;" >Detalles</td>
 
 						 
                           </tr>  
@@ -873,7 +905,7 @@ if($link_valor=='I')//si selecciono primer semestre
 							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs" style="width: 72px; height: 24px;" >Detalles</td>
 
 						 
                           </tr>  
@@ -972,7 +1004,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs" style="width: 72px; height: 24px;">Detalles</td>
 
 						 
                           </tr>  
@@ -1006,7 +1038,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs" style="width: 72px; height: 24px;">Detalles</td>
 
 						 
                           </tr>  
@@ -1039,7 +1071,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs" style="width: 72px; height: 24px;" >Detalles</td>
 
 						 
                           </tr>  
@@ -1075,7 +1107,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs" style="width: 72px; height: 24px;" >Detalles</td>
 
 						 
                           </tr>  
@@ -1114,7 +1146,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 							   <td width="60%"><?php echo $fila["nomb_asignatura"]; ?></td> 
 
 							  
-								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs">editar</td>
+								<td width="20%" ><a href="curso.php?nombre_curso_enviado=<?php echo $cod_asig ?>" class="btn btn-info btn-xs" style="width: 72px; height: 24px;" >Detalles</a></td>
 
 						 
                           </tr>  
@@ -1173,16 +1205,61 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 
 <br>
 
+<div class="modal fade" id="myModal_crea_estra" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" onclick="javascript:window.history.go(0);" >&times;</button>
+          <h4 class="modal-title" style="font-family: Roboto;">Estrategia académica</h4>
+        </div>
+        <div class="modal-body">
+		
+          <form method="post" action="#" >
+		  <center>
+					<textarea name="nueva_estrategia" class="size" style="margin-left:12%; padding: 10px; border-radius: 5px; border: 1px solid #666666; font-size:10pt;color:#000;" rows="20" cols="40" >
+					</textarea>
+					
+				</center>
+				<button type="submit" name="estrategia_crea" class="bouton-contact"  >Guardar cambios</button>
+	
+			</form>
+				
+		  
+        </div>
+        
+      </div>
+	  
+      
+    </div>
+</div>
 
+<?php
+if(isset($_POST['estrategia_crea']))
+	  {	  
+		include('conexion.php');
+		$nueva_estrategia=$_POST['nueva_estrategia'];  
+		
+		$e_nueva_estrategica="INSERT INTO banco_estrategia(codigo_estrategia,estrategia) VALUES(NULL,'$nueva_estrategia')";
+		
+		  $ejecutar3=mysqli_query($con,$e_nueva_estrategica);
+		  
+	  }
+?>
+  
 <BR>
-	  <div class="container" id="contenido">
+
+
+
+<div class="container" id="contenido">
   
   <!-- Trigger the modal with a button -->
   
 
   <!-- Modal -->
   
-  <div class="modal fade" id="myModal" role="dialog" style="color:#000;">
+  <div class="modal fade" id="myModal_crear" role="dialog" style="color:#000;">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -1191,8 +1268,8 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
       <div class="modal-content" >
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">CREACIÓN DE ASIGNATURA</h4>
-		 <!-------- <h1><center>CREAR ASIGNATURA</center></h1>------------->
+          <h3 class="modal-title"style="text-transform:none;font-family: Roboto;">Creación de asignatura</h3>
+
         </div>
 		
         <div class="modal-body" style="color:#000;"  >
@@ -1219,9 +1296,9 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 	</style>
 	<div class="contentform">
 	
-<!------------el formulario esta dividido en dos zonas, la primera zona que vamos a ver es la izquierda----------------------------->
+
 		<br>
-	<label class="control-label col-sm-8" for="email" align="left"> Nombre asignatura:</label>
+	<label style="right: 35px" class="control-label col-sm-8" for="email" align="left"> Nombre asignatura:</label>
 	
 	<br>
 	<br>
@@ -1232,13 +1309,31 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
     </div>
 	
 	<br>
-	<label class="control-label col-sm-4" for="email" align="left" >Código asignatura:</label>
+	<label style="right: 100px" class="control-label col-sm-8" for="email" >Código asignatura:</label> <label style="right: 20px" class="control-label col-sm-4" for="email" align="left" >Ciclo académico:</label>
 	<br>
 	<br>
 	
 	<div class="input-group ">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="cod_asignatura_crea" type="text" class="form-control" name="cod_asignatura_crea" placeholder="codigo asignatura" required>
+      <input style="width: 180px" id="cod_asignatura_crea" type="text" class="form-control" name="cod_asignatura_crea" placeholder="codigo asignatura" required>
+
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	  
+	  <select name="ciclo_academico_crea" id="ciclo_academico_crea" class="form-control"  required >
+				
+				<option>Elige ciclo</option>
+				<option value="Primer ciclo">Primer ciclo</option>
+				<option value="Segundo ciclo">Segundo ciclo</option>
+				<option value="Tercer ciclo">Tercer ciclo</option>
+				<option value="Cuarto ciclo">Cuarto ciclo</option>
+				<option value="Quinto ciclo">Quinto ciclo</option>
+				<option value="Sexto ciclo">Sexto ciclo</option>
+				<option value="Séptimo ciclo">Séptimo ciclo</option>
+				<option value="Octavo ciclo">Octavo ciclo</option>
+				<option value="Noveno ciclo">Noveno ciclo</option>
+				<option value="Décimo ciclo">Décimo ciclo</option>
+				
+				</select>
     </div>
 	
 	
@@ -1288,41 +1383,10 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
     </div>
 	
 
-	<br>
-	
-	
-	
-	<label class="control-label col-sm-4" for="email" align="left" >Ciclo académico:</label>
-	<br>
-	<br>
-	
-	<div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	  
-	  <select name="ciclo_academico_crea" id="ciclo_academico_crea" class="form-control"  required >
-				
-				<option>Elige ciclo</option>
-				<option value="Primer ciclo">Primer ciclo</option>
-				<option value="Segundo ciclo">Segundo ciclo</option>
-				<option value="Tercer ciclo">Tercer ciclo</option>
-				<option value="Cuarto ciclo">Cuarto ciclo</option>
-				<option value="Quinto ciclo">Quinto ciclo</option>
-				<option value="Sexto ciclo">Sexto ciclo</option>
-				<option value="Séptimo ciclo">Séptimo ciclo</option>
-				<option value="Octavo ciclo">Octavo ciclo</option>
-				<option value="Noveno ciclo">Noveno ciclo</option>
-				<option value="Décimo ciclo">Décimo ciclo</option>
-				
-				</select>
-				
-      
-    </div>
-	
-	
 	
 	<br>
 	
-	<label class="control-label col-sm-4" for="email" align="left" >Pre requisito:</label>
+	<label style="left: 20px" class="control-label col-sm-4" for="email" align="left" >Pre requisito:</label>
 	<br>
 	<br>
 	
@@ -1330,6 +1394,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <input id="pre_requisito_crea" type="text" class="form-control" name="pre_requisito_crea" placeholder="Pre requisito"  required>
     </div>
+	<br>
 	<br>
 	
 	<div class="row" id="contenido2">
@@ -1390,18 +1455,15 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 	
 	<div class="col-sm-2">
 	
-      <input id="nro_creditos_crea" type="text" class="form-control" name="nro_creditos_crea"   disabled="true" required>
+      <input id="nro_creditos_crea" type="text" class="form-control" name="nro_creditos_crea"  required>
     
 	
 	</div>
 	
 	</div>
 	
-	<br>
-	<br>
-	<br>
 	<div class="form-group">
-	
+	<br>
 	<label class="control-label col-sm-4" for="email" align="left" >Sumilla :</label>
   
   <textarea class="form-control" rows="10" id="sumilla_crea"></textarea>
@@ -1412,7 +1474,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 
 	<!--------------BOTON CREAR DOCENTE---------------------------------->
  
-<button type="submit" name="insert_asignatura" class="bouton-contact" >Crear</button> 
+<button style="position: relative; width: 180px; bottom: 30px" type="submit" name="insert_asignatura" class="bouton-contact" >Crear</button> 
 
 
 </form>
@@ -1474,7 +1536,7 @@ $consulta ="SELECT * FROM asignatura where semestre_academico='II' order by cod_
 		location.href=page;
 		
 	</script>
-	<?
+	<?php
         }
       }
      ?>

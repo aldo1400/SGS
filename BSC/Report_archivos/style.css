@@ -1,0 +1,70 @@
+@font-face {
+	font-family: OpenSans;
+	src:url(OpenSans.ttf);
+}
+* {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+IMG {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none
+}
+BODY {
+	MARGIN: 0px auto; WIDTH: 90%; FONT-FAMILY: OpenSans; COLOR: #003399
+}
+H3 {
+	MARGIN-TOP: 70px; MARGIN-BOTTOM: 10px; COLOR: #003399
+}
+#start {
+	TEXT-ALIGN: center
+}
+#ver-minimalist {
+	TEXT-ALIGN: left; MARGIN: 30px 30px 30px 15px; WIDTH: 85%; BORDER-COLLAPSE: collapse; FONT-FAMILY: OpenSans; FONT-SIZE: 14px
+}
+#ver-minimalist TH {
+	BORDER-BOTTOM: #6678b1 2px solid; TEXT-ALIGN: center; PADDING-BOTTOM: 8px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; COLOR: #003399; FONT-SIZE: 14px; FONT-WEIGHT: bold; PADDING-TOP: 8px; border-left-color-ltr-source: physical; border-left-color-rtl-source: physical; border-left-color-value: #FFFFFF; border-left-style-ltr-source: physical; border-left-style-rtl-source: physical; border-left-style-value: solid; border-left-width-ltr-source: physical; border-left-width-rtl-source: physical; border-left-width-value: 30px; border-right-color-ltr-source: physical; border-right-color-rtl-source: physical; border-right-color-value: #FFFFFF; border-right-style-ltr-source: physical; border-right-style-rtl-source: physical; border-right-style-value: solid; border-right-width-ltr-source: physical; border-right-width-rtl-source: physical; border-right-width-value: 30px
+}
+#ver-minimalist TD {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; COLOR: #666699; PADDING-TOP: 12px; border-left-color-ltr-source: physical; border-left-color-rtl-source: physical; border-left-color-value: #FFFFFF; border-left-style-ltr-source: physical; border-left-style-rtl-source: physical; border-left-style-value: solid; border-left-width-ltr-source: physical; border-left-width-rtl-source: physical; border-left-width-value: 30px; border-right-color-ltr-source: physical; border-right-color-rtl-source: physical; border-right-color-value: #FFFFFF; border-right-style-ltr-source: physical; border-right-style-rtl-source: physical; border-right-style-value: solid; border-right-width-ltr-source: physical; border-right-width-rtl-source: physical; border-right-width-value: 30px
+}
+TBODY {
+	
+}
+#newspaper-a {
+	BORDER-BOTTOM: #6699cc 1px solid; TEXT-ALIGN: left; MARGIN: 20px; WIDTH: 85%; BORDER-COLLAPSE: collapse; FONT-FAMILY: OpenSans; FONT-SIZE: 14px; BORDER-TOP: #6699cc 1px solid; border-left-color-ltr-source: physical; border-left-color-rtl-source: physical; border-left-color-value: #6699CC; border-left-style-ltr-source: physical; border-left-style-rtl-source: physical; border-left-style-value: solid; border-left-width-ltr-source: physical; border-left-width-rtl-source: physical; border-left-width-value: 1px; border-right-color-ltr-source: physical; border-right-color-rtl-source: physical; border-right-color-value: #6699CC; border-right-style-ltr-source: physical; border-right-style-rtl-source: physical; border-right-style-value: solid; border-right-width-ltr-source: physical; border-right-width-rtl-source: physical; border-right-width-value: 1px; -moz-border-bottom-colors: none; -moz-border-left-colors: none; -moz-border-right-colors: none; -moz-border-top-colors: none; border-image-outset: 0 0 0 0; border-image-repeat: stretch stretch; border-image-slice: 100% 100% 100% 100%; border-image-source: none; border-image-width: 1 1 1 1
+}
+#newspaper-a TH {
+	BORDER-BOTTOM: #6699cc 1px dashed; PADDING-BOTTOM: 12px; PADDING-LEFT: 17px; PADDING-RIGHT: 17px; COLOR: #003399; FONT-SIZE: 14px; FONT-WEIGHT: normal; PADDING-TOP: 12px
+}
+#newspaper-a TD {
+	PADDING-BOTTOM: 7px; PADDING-LEFT: 17px; PADDING-RIGHT: 17px; COLOR: #666699; PADDING-TOP: 7px
+}
+#rounded-corner {
+	TEXT-ALIGN: left; MARGIN: 20px; WIDTH: 85%; BORDER-COLLAPSE: collapse; FONT-FAMILY: "Lucida Sans Unicode","Lucida Grande",Sans-Serif; FONT-SIZE: 12px
+}
+#rounded-corner THEAD TH.rounded-company {
+	BACKGROUND-COLOR: #b9c9fe; BACKGROUND-ATTACHMENT: scroll; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: left -1px; background-clip: border-box; border-top-left-radius: 10px; background-origin: padding-box; background-size: auto auto
+}
+#rounded-corner TH {
+	PADDING-BOTTOM: 8px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; BACKGROUND: #b9c9fe 0px 0px; COLOR: #003399; FONT-SIZE: 13px; FONT-WEIGHT: normal; PADDING-TOP: 8px; background-clip: border-box; background-origin: padding-box; background-size: auto auto
+}
+#rounded-corner TH {
+	PADDING-BOTTOM: 8px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; BACKGROUND: #b9c9fe 0px 0px; COLOR: #003399; FONT-SIZE: 13px; FONT-WEIGHT: normal; PADDING-TOP: 8px; background-clip: border-box; background-origin: padding-box; background-size: auto auto
+}
+#rounded-corner TD {
+	PADDING-BOTTOM: 8px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; BACKGROUND: #e8edff 0px 0px; COLOR: #666699; BORDER-TOP: #ffffff 1px solid; PADDING-TOP: 8px; background-clip: border-box; background-origin: padding-box; background-size: auto auto
+}
+#rounded-corner THEAD TH.rounded-q4 {
+	BACKGROUND-COLOR: #b9c9fe; BACKGROUND-ATTACHMENT: scroll; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: right -1px; background-clip: border-box; background-origin: padding-box; background-size: auto auto; border-top-right-radius: 10px
+}
+#rounded-corner TFOOT TD.rounded-foot-left {
+	BACKGROUND-COLOR: #e8edff; BACKGROUND-ATTACHMENT: scroll; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: left bottom; background-clip: border-box; background-origin: padding-box; background-size: auto auto; border-bottom-left-radius: 10px
+}
+#rounded-corner TFOOT TD.rounded-foot-right {
+	BACKGROUND-COLOR: #e8edff; BACKGROUND-ATTACHMENT: scroll; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: right bottom; background-clip: border-box; background-origin: padding-box; background-size: auto auto; border-bottom-right-radius: 10px
+}
+#rounded-corner TBODY TR:hover TD {
+	BACKGROUND: #d0dafd 0px 0px; background-clip: border-box; background-origin: padding-box; background-size: auto auto
+}
+#newspaper-a TBODY TR:hover TD {
+	BACKGROUND: #d0dafd 0px 0px; COLOR: #333399; background-clip: border-box; background-origin: padding-box; background-size: auto auto
+}

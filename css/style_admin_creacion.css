@@ -195,9 +195,9 @@ form h1 {
 
 form {
   border-radius: 5px;
-  max-width:700px;
+  max-width:800px;
   width:100%;
-  margin: 5% auto;
+  margin: 5px;
   background-color: #FFFFFF;
   overflow: hidden;
 }

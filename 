@@ -1,0 +1,133 @@
+[33mcommit 1c428da0641d2f35d223ab4f974104f1af9837aa[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Alex_hr1 <alex.zandeer69@gmail.com>
+Date:   Fri Jul 7 01:15:56 2017 -0500
+
+    iconos 2.0
+
+[33mcommit b3c72d9ed01628972e76201429e2a1ca3e508f82[m
+Author: Aracely <Aracely>
+Date:   Fri Jul 7 00:22:18 2017 -0500
+
+    actualizando fecha limite,ctualizar bd
+
+[33mcommit 908d3a7ceb54ca47cf67e9954d6b1da7225d95fc[m
+Author: agarciai137 <agarciaiquise@gmail.com>
+Date:   Thu Jul 6 23:56:10 2017 -0500
+
+    iconos
+
+[33mcommit 804efb1e4f3810a439930e3dfedb8f4995434191[m
+Author: Aracely <Aracely>
+Date:   Thu Jul 6 23:13:52 2017 -0500
+
+    observaciones completas
+
+[33mcommit da226ad876a8c68694928f4218f752d95debc3a1[m
+Author: aldo1400 <aldo14000@bitbucket.org>
+Date:   Wed Jul 5 23:22:03 2017 -0500
+
+    corrgiendo errores en pagina revisa docente
+
+[33mcommit b7c0194abe727f4d820fc0b8bb389402e4eba81f[m
+Author: aldo1400 <aldo14000@bitbucket.org>
+Date:   Sun Jul 2 13:51:30 2017 -0500
+
+    desasignar docente
+
+[33mcommit e45cc5ffb6154cf178484cf9a75b82bf53e0d25d[m
+Author: Angel <aleangrodriguez123@gmail.com>
+Date:   Sun Jul 2 12:35:04 2017 -0500
+
+    Arreglando eliminacion de docentes
+
+[33mcommit 0467143495efaa99d3157416789539b03932596a[m
+Author: aldo1400 <aldo14000@bitbucket.org>
+Date:   Sun Jul 2 11:45:21 2017 -0500
+
+    lista dinamica de facultad y suma de creditos
+
+[33mcommit fdfa85a0e2bef4f145b39131ef7bc7fadd094b92[m
+Author: aldo1400 <aldo14000@bitbucket.org>
+Date:   Tue Jun 27 10:59:17 2017 -0500
+
+    curso-docente
+
+[33mcommit 6ac7fdee45150962296e85fb8b15dad550541b91[m
+Author: Aracely <Aracely>
+Date:   Mon Jun 19 11:59:03 2017 -0500
+
+    actulizacion base de datos
+
+[33mcommit e29412b215c5fa53edd8a9ba6161d61a84e281cd[m
+Merge: 541c6ec 68025b6
+Author: agarciai137 <agarciaiquise@gmail.com>
+Date:   Mon Jun 19 00:38:09 2017 -0500
+
+    logo, clickleable, editar, plan
+
+[33mcommit 541c6ec23898e9e3c3a8b0ceb75a83e522207aca[m
+Author: agarciai137 <agarciaiquise@gmail.com>
+Date:   Mon Jun 19 00:26:08 2017 -0500
+
+    logo, plan de estudios, curso clickleable, editar
+
+[33mcommit 68025b6309b2e67fd4d6863aa9171ca742c70c1b[m
+Author: aldo1400 <aldo14000@bitbucket.org>
+Date:   Sun Jun 18 23:50:04 2017 -0500
+
+    cambios2
+
+[33mcommit 2a06d5b5abe6bc2482a5bb95575d7992f33d0086[m
+Author: aldo1400 <aldo14000@bitbucket.org>
+Date:   Sun Jun 18 23:20:11 2017 -0500
+
+    cambios1
+
+[33mcommit 742442b54af4483438de4ad8d56518f14a5b122a[m
+Author: Alex_hr1 <alex.zandeer69@gmail.com>
+Date:   Sun Jun 18 22:03:05 2017 -0500
+
+    errores ortograficos
+
+[33mcommit 7284605cd5c24410f35e2bed0f2b0aeb01b08c24[m
+Merge: e86057c 2f97ef3
+Author: Aracely <Aracely>
+Date:   Sun Jun 18 21:20:55 2017 -0500
+
+    Merge branch 'master' of https://bitbucket.org/arymasy25/proyecto-silabo
+
+[33mcommit e86057c38b62a4b0c082ea61b28749b8f46c31b9[m
+Author: Aracely <Aracely>
+Date:   Sun Jun 18 21:19:58 2017 -0500
+
+    silabos
+
+[33mcommit 2f97ef304c9a43bedc353738389104297c54a36c[m
+Author: Aracely <Aracely>
+Date:   Sun Jun 18 19:58:39 2017 -0500
+
+    base de datos
+
+[33mcommit 0246a92bfaee7427da6426e64517c7beaf957783[m
+Author: Aracely <Aracely>
+Date:   Sun Jun 18 19:54:33 2017 -0500
+
+    base de datos actualizada
+
+[33mcommit cc5510c86659ff8ad71660c346198f1ca1ef4c03[m
+Author: agarciai137 <agarciaiquise@gmail.com>
+Date:   Sun Jun 18 11:12:34 2017 -0500
+
+    versión 17/06 noche
+
+[33mcommit cb5375b6001b7b18f391f09fbd702158d4281df2[m
+Author: Angel <aleangrodriguez123@gmail.com>
+Date:   Fri Jun 16 11:36:59 2017 -0500
+
+    cambiando index
+
+[33mcommit 44948e8fbf035dafe43448283696cae00eaf3571[m
+Author: Aracely <Aracely>
+Date:   Sat Jun 10 16:22:43 2017 -0500
+
+    Inicio

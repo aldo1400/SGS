@@ -137,8 +137,7 @@ float:left;
 .contenedor_presenta
 {
 
-
-background-color:#A71034;
+background-color: #560000;
     /*background-color:#356AA0;*/
     /*box-shadow: 0 0 0 9px rgba(128,0,0,.1);*/
     /*Margen de sombra alrededor del contenedor 8px negro*/
@@ -193,12 +192,13 @@ form h1 {
   text-align:left
 }
 
+
+
 form {
   border-radius: 5px;
   max-width:700px;
   width:100%;
   margin: 5% auto;
-  background-color: #FFFFFF;
   overflow: hidden;
 }
 
@@ -279,6 +279,7 @@ i {
 
 .contentform {
   padding: 0px 30px;
+  
 }
 
 .bouton-contact{

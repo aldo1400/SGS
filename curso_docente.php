@@ -1,11 +1,3 @@
-<!----------------
-EN ESTE ARCHIVO SE MOSTRARA LOS DATOS DEL DOCENTE
------------------------->
-
-
-
-<!-------------ESTE ES UN METODO DE SEGURIDAD, YO HE CREADO EN LOGIN.PHP dos variables de sesion, es decir variables que estarna presentes en todos los archivos, las podemos llamar y utilizar su valor, si estas variables estan vacias significa que no se logeo correctamnete el docente o admin, por lo tanto se redirigire a index.html----------------->
-
 
 <?php
 
@@ -119,7 +111,7 @@ if(!$_SESSION)
 						<a class="navbar-brand" href="index.php">unjbg</a>
                         
                     
-<?
+<?php
 }
 else
 {
@@ -131,7 +123,7 @@ $nombre_docente_verificado=$_SESSION['nombre_doc'];
 						<a class="navbar-brand" href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>"><?php echo $nombre_docente_verificado ?></a>
                        
                     
-<?					
+<?php		
 }
 else
 {
@@ -143,22 +135,80 @@ $nombre_admin=$_SESSION['nombre_docente'];
 						
                     
 
-<?
+<?php
 }
 
 }
 ?>
+<script>
+
+$('#bs-example-navbar-collapse-1 li a').on('click', function(){
+    $('li a.activo').removeClass('activo');
+    $(this).addClass('activo');
+});
+
+</script>
+
+<style>
+.activo {
+    text-decoration: underline;
+    background-color: rgba(123, 129, 129,0.6);
+}
+</style>
 
 				
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+				<?php
+// 				session_start();
+// session_name('permiso');
+
+if(!$_SESSION)
+{
+?>
+<li>
+						<a  href="index.php">unjbg</a>
+    </li>                    
+                    
+<?php
+}
+else
+{
+
+if(!isset($_SESSION['nombre_docente']))
+{
+$nombre_docente_verificado=$_SESSION['nombre_doc'];
+// echo $nombre_docente_verificado;
+?>
+					<li>
+						<a  href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>">Mi perfil</a>
+                  </li>     
+                    
+<?php					
+}
+else
+{
+$nombre_admin=$_SESSION['nombre_docente'];
+echo $nombre_admin;
+?>
+<li>
+					<a  href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?>">Mi perfil</a>
+               </li>         
+						
+                    
+
+<?php
+}
+
+}
+?>
+               
+					<?PHP $id_asignatura1=$_GET['nombre_asig'];?>
+					
                     <li>
-                        <a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> ">Mi perfil</a>
-                    </li>
-                    <li>
-                        <a href="about.php">Noticias</a>
+                       <a class="activo" href="curso_docente.php?nombre_asig=<?php echo $id_asignatura1 ?>  ">Mi curso</a>
                     </li>
                     <li>
                         <a href="blog.php">Blog</a>
@@ -213,14 +263,15 @@ a:link
 		
 		<?php
 		
-		if(!$_SESSION['nombre_docente'])
+		// if(!$_SESSION['nombre_docente'])
+		if(!isset($_SESSION['nombre_docente']))
 {
 $nombre_docente_verificado=$_SESSION['nombre_doc'];
 $ID_DOC = $nombre_docente_verificado;
 
 ?>
-			<li><a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> "><i class="icono izquierda fa fa-user"></i>Mi perfil</a></li>
-		<?
+			<li><a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?> "><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
+		<?php
 		
 		}	
 else
@@ -228,9 +279,9 @@ else
 $nombre_admin=$_SESSION['nombre_docente'];
 $ID_DOC = $nombre_admin;
 ?>
-			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-user"></i>Mi perfil</a></li>
-<? }?>
-			<li><a href="#"><i class="icono izquierda fa fa-folder open"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
+			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-home"></i>Mi perfil</a></li>
+<?php }?>
+			<li><a href="#"><i class="icono izquierda fa fa-user"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 		<?php
 		
@@ -311,7 +362,8 @@ $extraer_interno_docente="select interno_docente from docente  where Cod_docente
 	
 	<?php 
 	
-	if($_SESSION['nombre_docente'])
+	// if($_SESSION['nombre_docente'])
+	if(isset($_SESSION['nombre_docente']))
 	{
 	?>
 	
@@ -332,13 +384,12 @@ a:link
 		<ul class="menu">
 		
 				
-			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-folder-open"></i>Plan de estudios</a></li>
+			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-home"></i>Plan de estudios</a></li>
 			
 			
-			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-user-plus"></i>Crear docente</a></li>
+			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-folder-open"></i>Crear docente</a></li>
 			
 			
-			<li><a href="#"><i class="icono izquierda fa fa-users"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
 			<li><a href="#"><i class="icono izquierda fa fa-users"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 				
@@ -399,7 +450,7 @@ a:link
 		</ul>
 	</div>
 	
-<? }?>
+<?php }?>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -501,34 +552,34 @@ $ejecutar2= mysqli_query($con,$consulta2);
 		 $horas_laboratorio=$fila['horas_laboratorio'];
 		 ?>
 		 <TABLE style="text-align: left; position: relative; left: 150px" >
-	<TR><TH>CÓDIGO ASIGNATURA :</TH>
+	<TR><TH>Código asignatura    :</TH>
 		<TD>&nbsp;<?php echo $cod_asignatura; ?></TD> </TR>
-	<TR><TH>NOMBRE DEL CURSO :</TH>
+	<TR><TH>Nombre del curso     :</TH>
 		<TD>&nbsp;<?php echo  $nombre;  ?></TD> </TR>
-	<TR><TH>PRE-REQUISITO      :</TH>
+	<TR><TH>Pre-requisito        :</TH>
 		<TD>&nbsp;<?php echo $pre_requisito; ?></TD> </TR>
-	<TR><TH>SEMESTRE ACADÉMICO :</TH>
+	<TR><TH>Semestre académico   :</TH>
 		<TD>&nbsp;<?php echo $semestre_academico; ?></TD> </TR>
-	<TR><TH>FACULTAD      :</TH>
+	<TR><TH>Facultad             :</TH>
 		<TD>&nbsp;<?php echo  $facultad; ?></TD> </TR>
-	<TR><TH>NÚMERO DE CREDITOS           :</TH>
+	<TR><TH>Número de créditos   :</TH>
 		<TD>&nbsp;<?php echo $nro_creditos; ?></TD> </TR>
-	<TR><TH>HORAS TEORÍA         :</TH>
+	<TR><TH>Horas de teoría      :</TH>
 		<TD>&nbsp;<?php echo $horas_teoria; ?></TD> </TR>
-	<TR><TH>HORAS DE PRACTICA     :</TH>
+	<TR><TH>Horas de práctica    :</TH>
 		<TD>&nbsp;<?php echo $horas_practica; ?></TD> </TR>
-	<TR><TH>HORAS LABORATORIO       :</TH>
+	<TR><TH>Horas de laboratorio :</TH>
 		<TD>&nbsp;<?php echo $horas_laboratorio; ?></TD> </TR>
 		 </TABLE>
-		<?
+		<?php
 }
 		
 	 ?>
 	 
-	 
-	  <a class="btn btn-info btn-lg" href="silabo_crear.php?nombre_asig=<?php echo $cod_asignatura ?>">EDITAR SILABO</a>
+	 <br>
+	  <a class="btn btn-info btn-lg" href="silabo_crear1.php?nombre_asig=<?php echo $cod_asignatura ?>">Editar sílabo</a>
 	  
-	  <BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " >Recargar datos</button>
+	  <!--<BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " >Recargar datos</button>-->
 	  
 	  
 	  <BR>
@@ -537,90 +588,6 @@ $ejecutar2= mysqli_query($con,$consulta2);
 	 
 </div>
 
-<div class="container demo">
-<style>
-.panel-group
-{
-width:60%;
-height:100%;
-
-}
-</style>
-    
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-		<?php
-		
-		
-$ID_DOC = $nombre_docente_verificado;
-
-include('conexion.php');
-
-$extraer_interno_docente="select interno_docente from docente  where Cod_docente='$ID_DOC'";
-		$EJECUCION_ID=mysqli_query($con,$extraer_interno_docente);
-		$interno_docente1= mysqli_fetch_array($EJECUCION_ID);
-		$interno_docente2=$interno_docente1['interno_docente'];
-		
-		//En esta zona haremos que se creen tantos submenus como cursos tenga el docente seleecionado, por ejemplo si el docnete tiene 6 cursos asignados , aparecen 6 submenus con los nombre de los cursos, de maner dinamica.
-		include('conexion.php');
-		$fecha_sistema=getdate();
-		
-		$CONSULTAR_CURSOS="select * from dicta where interno_docente='$interno_docente2' and cod_asignatura='$Cod_asignatura_enviada' ";
-		
-		$EJECUCION_CURSOS=mysqli_query($con,$CONSULTAR_CURSOS);
-		$indice=1;
-		
-		while($CURSOS = mysqli_fetch_array($EJECUCION_CURSOS))
-		{
-		$indice++;
-		?>
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="heading<?php echo $indice;?>">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $indice;?>" aria-expanded="false" aria-controls="collapse<?php echo $indice;?>">
-                        <i class="more-less glyphicon glyphicon-plus"></i>
-                        <?php echo $CURSOS['cod_asignatura']?> 
-                    </a>
-                </h4>
-            </div>
-            <div id="collapse<?php echo $indice;?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?php echo $indice;?>">
-                <div class="panel-body">
-				
-				  
-				  <p>Fecha límite : <?echo  $CURSOS['fecha_limite'];?><span></span></p>
-			
-				<br>
-				<style>
-			.observaciones1{
-			resize:none;
-			}
-			</style>
-			
-			<p>OBSERVACIONES <span>*</span></p>
-			<span class="icon-case"><img src="" height="18"><i class="fa fa-map-marker"></i></span>
-				<textarea type="text" name="observaciones" id="observaciones" class="observaciones1" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné." /></textarea>
-                <div class="validation"></div>
-			
-
-                </div>
-				<br>
-<br>
-<br>
-<br>
-            </div>
-			
-
-        </div>
-		<?php } ?>
-		
-		<!----------fin de submenus de cursos--------------------->
-		
-		
-
-    </div><!-- panel-group -->
-    
-    
-</div><!-- container -->
 
 
 

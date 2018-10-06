@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Contact - Business Casual - Start Bootstrap Theme</title>
+    <title>Universidad Nacional -   JORGE BASADRE GROHMANN</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@ if(!$_SESSION)
 						<a class="navbar-brand" href="index.php">unjbg</a>
                         
                     
-<?
+<?php
 }
 else
 {
@@ -71,7 +71,7 @@ $nombre_docente_verificado=$_SESSION['nombre_doc'];
 						<a class="navbar-brand" href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>"><?php echo $nombre_docente_verificado ?></a>
                        
                     
-<?					
+<?php					
 }
 else
 {
@@ -83,11 +83,26 @@ $nombre_admin=$_SESSION['nombre_docente'];
 						
                     
 
-<?
+<?php
 }
 
 }
 ?>
+<script>
+
+$('#bs-example-navbar-collapse-1 li a').on('click', function(){
+    $('li a.activo').removeClass('activo');
+    $(this).addClass('activo');
+});
+
+</script>
+
+<style>
+.activo {
+    text-decoration: underline;
+    background-color: rgba(123, 129, 129,0.6);
+}
+</style>
 				
 				
             </div>
@@ -97,28 +112,26 @@ $nombre_admin=$_SESSION['nombre_docente'];
 				
 				<?php
 
-session_start();
-session_name('permiso');
-
 if(!$_SESSION)
 {
 ?>
 <li>
                         <a href="index.php">Inicio</a>
                     </li>
-<?
+<?php
 }
 else
 {
 
-if(!$_SESSION['nombre_docente'])
+// if(!$_SESSION['nombre_docente'])
+if(!isset($_SESSION['nombre_docente']))
 {
 $nombre_docente_verificado=$_SESSION['nombre_doc'];
 ?>
 					<li>
                         <a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>">Mi perfil</a>
                     </li>
-<?					
+<?php			
 }
 else
 {
@@ -129,7 +142,7 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?>">Mi perfil</a>
                     </li>
 
-<?
+<?php
 }
 
 
@@ -143,7 +156,7 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contáctanos</a>
+                        <a class="activo" href="contact.php">Contáctanos</a>
                     </li>
 					 <li>
                         <a href="silabo.php">Sílabos</a>

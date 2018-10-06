@@ -9,35 +9,21 @@ session_destroy();
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Ssitema de gestion de silabos de la Universidad Nacional Jorge Basadre Grohmann , Tacna">
     <meta name="author" content="">
-<!--------------titulo de la pagina------------->
-    <title>Universidad Nacional - JORGE BASADRE GROHMANN</title>
-	
-<LINK REL="SHORTCUT ICON" HREF="http://images.midominio.com/ico/icono.ico">
-
-<!----------------Aqui llamamos a la funcion de boostrap que nos ayudara a que nuestr pagina se acomode a un celular,tablet,etc---------->
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	
-	
-<!----------------Aqui llamamos a la hoja de estilo que modifica las carcteristicas de la pagina como color, tamaño,etc---------->
-    <!-- Custom CSS -->
+    <title>Sistema de gestión de sílabos - Universidad Nacional JORGE BASADRE GROHMANN</title>
+ 
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/business-casual.css" rel="stylesheet">
-	
-	<link type="text/css" href="./css/style20_index.css" rel="stylesheet" />
-
-	
-
+    <link type="text/css" href="./css/style20_index.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css"> -->
 
     <style type="text/css">
         
@@ -52,13 +38,6 @@ session_destroy();
         }
 
     </style>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
@@ -67,6 +46,7 @@ session_destroy();
    <div class="brand"><img class="img-rounded" src="img/logo-unjbg.png" alt="UNJBG" width="10%" height="10%" align="left">UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN</div>
     <div class="address-bar">Sistema de acceso para editar sílabos</div>
 	
+
 
 	<!--------------------PANEL DE NAVEGACION, ZONA DONDE SE ENCUENTRA EL MENU HORIZONTAL BLANCO---------------------------------------->
     <!-- Navigation -->
@@ -80,35 +60,33 @@ session_destroy();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                
                 <a class="navbar-brand" href="index.php">UNJBG</a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
+           
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.php">Inicio</a> <!----OPCION DE HOME- MENU HORIZONTAL , CON SU RESPECTIVO LINK , ES DECIR ,A QUE PAGINA SE TRASLADA SI HACES CLIC AHI----->
+                        <a href="index.php" >Inicio</a> 
                     </li>
                     <li>
-                        <a href="about.php">Noticias</a> <!-------------------->
+                        <a href="about.php">Noticias</a>
                     </li>
                     <li>
-                        <a href="blog.php">Blog</a>  <!-------------------->
+                        <a href="blog.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contáctanos</a> <!-------------------->
+                        <a href="contact.php">Contáctanos</a> 
                     </li>
 					<li>
-                        <a href="silabo.php">Sílabos</a> <!-------------------->
+                        <a href="silabo.php">Sílabos</a> 
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
+            
         </div>
-        <!-- /.container -->
+    
     </nav>
-<!-----------------------FIN PANEL DE NAVEGACION-------------------------------------------------------------------------------------->
-
 
 
     <div class="container">
@@ -165,29 +143,12 @@ session_destroy();
                             <label>Contraseña</label>
                             <input name="pass_form" id="pass_form" type="password" placeholder="Ingresar Contraseña" required > 
 
-                            <input type="submit" id="submit" name="submit"  value="Login" class="primary_action">
+                            <input type="submit" id="submit" name="submit"  value="Ingresar" class="primary_action">
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="col-md-12">
-                    <div >
-                    <h2 class="brand-before">
-                        <small><center> BIENVENIDOS</center></small>
-                    </h2>
-                    <h1 class="brand-name"> <center> UNJBG</center></h1>
-                    <hr class="tagline-divider">
-                    <h2>
-					<h6><center>Esta página fue creada por los estudiantes de la escuela de ESIS</center></h6>
-            <small>
-                <strong></strong>
-            </small>
-        </h2>
-		
-
-    </div>
-
-             </div>
+            
             </div>
         </div> 
 
@@ -200,15 +161,28 @@ session_destroy();
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p>versión 1.0 &copy;  2017</p>
+            
+                <div class="col-md-12">
+                    <div >
+                    <h2 class="brand-before">
+                        <small><center> BIENVENIDOS</center></small>
+                    </h2>
+                    <h1 class="brand-name"> <center> UNJBG</center></h1>
+                    <hr class="tagline-divider">
+                    <h2>
+                    
+                    <small>
+                        <strong></strong>
+                    </small>
+                    </h2>
+        
+
+                    </div>
+
                 </div>
             </div>
         </div>
     </footer>
-<!---------------------------------------Referenciamos el Javascript que estamos usando para los sliders,
-la mayoria de veces usamos js para darle movimiento a elementos de nuestra pagina
- --------------------->
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 

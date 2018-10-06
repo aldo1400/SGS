@@ -101,8 +101,8 @@ body {
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
                 <?php
 
-session_start();
-session_name('permiso');
+// session_start();
+// session_name('permiso');
 
 if(!$_SESSION)
 {
@@ -110,7 +110,7 @@ if(!$_SESSION)
 						<a class="navbar-brand" href="index.php">unjbg</a>
                         
                     
-<?
+<?php
 }
 else
 {
@@ -122,7 +122,7 @@ $nombre_docente_verificado=$_SESSION['nombre_doc'];
 						<a class="navbar-brand" href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>"><?php echo $nombre_docente_verificado ?></a>
                        
                     
-<?					
+<?php				
 }
 else
 {
@@ -134,11 +134,26 @@ $nombre_admin=$_SESSION['nombre_docente'];
 						
                     
 
-<?
+<?php
 }
 
 }
 ?>
+<script>
+
+$('#bs-example-navbar-collapse-1 li a').on('click', function(){
+    $('li a.activo').removeClass('activo');
+    $(this).addClass('activo');
+});
+
+</script>
+
+<style>
+.activo {
+    text-decoration: underline;
+    background-color: rgba(123, 129, 129,0.6);
+}
+</style>
 				
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -149,7 +164,7 @@ $nombre_admin=$_SESSION['nombre_docente'];
 					</li>
 					
                     <li>
-                        <a href="about.php">Noticias</a>
+                        <a class="activo "href="administrador.php">Crear Docente</a>
                     </li>
                     <li>
                         <a href="blog.php">Blog</a>
@@ -202,41 +217,39 @@ a:link
 				<ul>
 		<?php
 		
-		
-include('conexion.php');
+		include('conexion.php');
 
-$extraer_interno_docente="select interno_docente from docente  where Cod_docente='$nombre_admin'";
-		$EJECUCION_ID=mysqli_query($con,$extraer_interno_docente);
-		$interno_docente1= mysqli_fetch_array($EJECUCION_ID);
+$q_extraer_interno_docente="select interno_docente from docente  where Cod_docente='$nombre_admin'";
+
+		$e_extraer_interno_docente=mysqli_query($con,$q_extraer_interno_docente);
 		
-		$interno_docente=$interno_docente1['interno_docente'];
+		$a_interno_docente1= mysqli_fetch_array($e_extraer_interno_docente);
+		
+		$interno_docente=$a_interno_docente1['interno_docente'];
 		
 		//En esta zona haremos que se creen tantos submenus como cursos tenga el docente seleecionado, por ejemplo si el docnete tiene 6 cursos asignados , aparecen 6 submenus con los nombre de los cursos, de maner dinamica.
 		
-		$CONSULTAR_CURSOS="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.interno_docente='$interno_docente'";
-		$EJECUCION_CURSOS=mysqli_query($con,$CONSULTAR_CURSOS);
-		
+		$q_CONSULTAR_CURSOS_ASIGNADOS_MENU="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.interno_docente='$interno_docente'";
+		$e_EJECUCION_CURSOS=mysqli_query($con,$q_CONSULTAR_CURSOS_ASIGNADOS_MENU);
 		$i=0;
-		while($CURSOS = mysqli_fetch_array($EJECUCION_CURSOS))
+		while($CURSOS = mysqli_fetch_array($e_EJECUCION_CURSOS))
 		{
 		
 			$nombre=$CURSOS['nomb_asignatura'];
 			$id_asignatura=$CURSOS['cod_asignatura'];
 			
 			
-			$fecha=$CURSOS['fecha_dicta'];
-			 $parte = explode("-", $fecha);
+			$dt_fecha=$CURSOS['fecha_dicta'];
+			 $parte = explode("-", $dt_fecha);
 			//echo $parte[0];//año asignado //
 			$fecha_sistema=getdate();
 			//echo $fecha_sistema['year'];
-			
-			 
-			 
 			
 			$i++;
 			if($fecha_sistema['year']==$parte[0])
 			{
 			?>
+			
 	  
 	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
 	  
@@ -300,18 +313,20 @@ a:link
 				
 				
 	<?php
-      $consulta ="SELECT * FROM docente";
-      $ejecutar= mysqli_query($con,$consulta);
+      $q_lista_total_docentes ="SELECT * FROM docente";
+      $e_lista_total_docentes= mysqli_query($con,$q_lista_total_docentes);
       $i=0;
-      while($fila = mysqli_fetch_array($ejecutar))
+      while($a_lista_total_docentes = mysqli_fetch_array($e_lista_total_docentes))
       {
-        $nombre=$fila['nombre'];
-		$id_docente=$fila['Cod_docente'];
-		$interno_docente=$fila['interno_docente'];
+        $nombre=$a_lista_total_docentes['nombre'];
+		$id_docente=$a_lista_total_docentes['Cod_docente'];
+		$interno_docente=$a_lista_total_docentes['interno_docente'];
 		
         $i++;
 
       ?>
+	  
+	  
 	  
 	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
 	  
@@ -440,15 +455,21 @@ a:link
 </div>
 
 <br>
-	<br>
-	<br>
+	
 
 	
 	<!-------------------FORMULARIO PARA CREAR DOCENTE----------------------------------------------------------->
+
+	<!----------Metodo de envio POST---------------->
 	
-	<!-----------Metodo de envio POST----------------->
-	
-	
+<style>
+.p
+{	
+font-size: 1em;
+}
+</style>
+
+
 	<form action="administrador.php" method="post" class="CREACION_PENDIENTE"  >
 	    <h1><center>CREAR PROFESOR</center></h1>
 
@@ -461,10 +482,10 @@ a:link
 
 		<div class="leftcontact">
 		
-		<!----------CODIGO DOCENTE--------------------->
+		<!----------CODIGO DOCENTE-------------------->
 		<div class="form-group">
 			<p>Código docente <span></span></p>
-			<span class="icon-case"></span>
+			<span class="icon-case"><img src="img/michi.png" height="20"></span>
                 <input type="text" name="codigo_crea" id="codigo_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Sujet' doit être renseigné."required/>
                 <div class="validation"></div>
 			</div>
@@ -472,73 +493,86 @@ a:link
 			
 			
 			
-		<!----------NOMBRE DEL DOCENTE--------------------->
+		<!----------NOMBRE DEL DOCENTE-------------------->
 			<div class="form-group">
-            <p>Nombres <span>*</span></p>
+            <p>Nombres </p>
             <span class="icon-case"><img src="img/male.png" height="15"></span>
 				<input type="text" name="nombres_crea" id="nombres_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Prénom' doit être renseigné."required/>
                 <div class="validation"></div>
 			</div>
 			
-		<!----------APELLIDO DOCENTE--------------------->
+		<!----------APELLIDO DOCENTE-------------------->
 
 			      <div class="form-group">
-			        <p>Apellidos<span>*</span></p>
+			        <p>Apellidos</p>
 			        <span class="icon-case"><img src="img/male.png" height="15"></span>
 				        <input type="text" name="apellidos_crea" id="apellidos_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Nom' doit être renseigné."required/>
                 <div class="validation"></div>
 				</div>
 
-		<!----------DNI DOCENTE--------------------->
+		<!----------DNI DOCENTE-------------------->
 
 			<div class="form-group">
-			<p>DNI <span>*</span></p>
+			<p>DNI</p>
 			<span class="icon-case"><img src="img/dni.svg" height="18"></span>
 				<input type="text" name="dni_crea" id="dni_crea" data-rule="maxlen:8" required pattern="[0-9]{8}" data-msg="El dni esta formado por 8 numeros"/>
                 <div class="validation"></div>
 			</div>
 			
-		<!----------DIRECCION DOCENTE--------------------->
+		<!----------DIRECCION DOCENTE-------------------->
 		
 		
 			<div class="form-group">
-			<p>Dirección <span>*</span></p>
+			<p>Dirección</p>
 			<span class="icon-case"><img src="img/direccion_fisica.png" height="15"></span>
 				<input type="text" name="direccion_crea" id="direccion_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Adresse' doit être renseigné." required/>
                 <div class="validation"></div>
 			</div>
 
-		<!----------EMAIL DOCENTE--------------------->
-		
+
 			<div class="form-group">
-			<p>E-mail <span>*</span></p>
-			<span class="icon-case"><img src="img/message_icon.png" height="15"></span>
-                <input type="email" name="email_crea" id="email_crea" required/>
+			<p>Grado académico<span></span></p>
+			<span class="icon-case"><img src="img/michi.png" height="20"></span>
+                <input type="text" name="grado_academico_crea" id="grado_academico_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Sujet' doit être renseigné."required/>
                 <div class="validation"></div>
 			</div>
+
 		
-		<!----------FECHA DE NACIMIENTO DOCENTE--------------------->
-		
-			<div class="form-group">
-			
-			<p>Fecha nacimiento <span>*</span></p>
-			<span class="icon-case"><img src="img/nacimiento.png" height="18"></span>
-				<input type="text" name="fecha_nacimiento_crea" id="fecha_nacimiento_crea"  placeholder="aaaa-mm-dd" required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné." required/>
-                <div class="validation"></div>
-			
-			</div>
 
 	</div>
 <!---------------FIN  ZONA IZQUIERDA------------------------->
 
-<!---------------INICIO ZONA DERECHA------------------------->
+<!--------------INICIO ZONA DERECHA------------------------>
 
 	
 		<div class="rightcontact">
 		
 		
+		
+
+		<!----------EMAIL DOCENTE-------------------->
+		
+			<div class="form-group">
+			<p>E-mail</p>
+			<span class="icon-case"><img src="img/message_icon.png" height="15"></span>
+                <input type="email" name="email_crea" id="email_crea" required/>
+                <div class="validation"></div>
+			</div>
+		
+		<!----------FECHA DE NACIMIENTO DOCENTE-------------------->
+		
+			<div class="form-group">
+			
+			<p>Fecha nacimiento</p>
+			<span class="icon-case"><img src="img/nacimiento.png" height="18"></span>
+				<input type="text" name="fecha_nacimiento_crea" id="fecha_nacimiento_crea"  placeholder="aaaa-mm-dd" required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné." required/>
+                <div class="validation"></div>
+			
+			</div>
+		
+		
 		<div class="form-group">
-			<p>Teléfono <span>*</span></p>
+			<p>Teléfono</p>
 			
 			
 			<span class="icon-case"><img src="img/direccion_fisica.png" height="15"></span>
@@ -550,21 +584,21 @@ a:link
 	
 			
 			
-		<!----------CONTRASEÑA DOCENTE--------------------->
+		<!----------CONTRASEÑA DOCENTE-------------------->
 		
 		
 			<div class="form-group">
-			<p>Contraseña <span>*</span></p>
+			<p>Contraseña</p>
 			<span class="icon-case"><img src="img/contrasenia.png" height="15"></span>
 				<input type="password" name="password_crea" id="password_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné." required/>
                 <div class="validation"></div>
 			</div>
 			
 			
-		<!----------TIPO DOCENTE--------------------->
+		<!----------TIPO DOCENTE-------------------->
 		
 			<div class="form-group">
-			<p>Tipo<span>*</span></p>
+			<p>Tipo</p>
 			<span class="icon-case"><img src="img/tipo_usuario.png" height="18"></span>
 				
 				<select name="tipo_crea">
@@ -575,18 +609,28 @@ a:link
                 <div class="validation"></div>
 			</div>
 			
-<!---------------FIN  ZONA DERECHA------------------------->
+<!---------------FIN  ZONA DERECHA------------------------>
 			
 </div>
+
+
+<div class="form-group">
+			<p>Título<span></span></p>
+			<span class="icon-case"><img src="img/michi.png" height="20"></span>
+                <input type="text" name="titulo_crea" id="titulo_crea" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Sujet' doit être renseigné."required/>
+                <div class="validation"></div>
+			</div>
+
+
 	</div>
 
-	<!--------------BOTON CREAR DOCENTE---------------------------------->
+	<!--------------BOTON CREAR DOCENTE-------------------------------->
  
 <button type="submit" name="insert" class="bouton-contact" onclick="valida_envia()">CREAR</button> 
 
 </form>
 
-<!-------------------FIN DE  FORMULARIO PARA CREAR DOCENTE----------------------------------------------------------->
+<!-------------------FIN DE  FORMULARIO PARA CREAR DOCENTE-------------------------------------------------------->
 
 	</div>
 	
@@ -614,11 +658,16 @@ a:link
         $pass=$_POST["password_crea"];
         $tipo=$_POST["tipo_crea"];
 		 $telefono=$_POST["telefono_crea"];
-        $insertar="INSERT INTO docente(Cod_docente,interno_docente,nombre,apellido,dni,direccion,tipo,email,fnacimiento,telefono_docente,password)
-         VALUES('$cod',NULL,'$nombre','$apellido','$dni','$direccion','$tipo','$email','$nacimiento','$telefono','$pass')";
+		 
+		 $grado_academico=$_POST["grado_academico_crea"];
+
+		$titulo=$_POST["titulo_crea"];
+
+        $insertar="INSERT INTO docente(Cod_docente,interno_docente,nombre,apellido,dni,direccion,tipo,email,fnacimiento,telefono_docente,password,grado_academico,titulo)
+         VALUES('$cod',NULL,'$nombre','$apellido','$dni','$direccion','$tipo','$email','$nacimiento','$telefono','$pass','$grado_academico','$titulo')";
 		
 	   $ejecutar = mysqli_query($con,$insertar);
-        if(!$ejecutar)
+        if($ejecutar)
 		{
 		
           ?>
@@ -628,12 +677,12 @@ a:link
 		
 	</script>
 	
-	<?
+	<?php
         }
 		
 		?>
 		
-		<?
+		<?php
       }
      ?>
 	 
@@ -642,8 +691,7 @@ a:link
 	  
 	<br><br><br><br><br><br><br><br><br><br>
 	<br><br><br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br>
+	
 
                     <h2 class="brand-before">
 					<center>

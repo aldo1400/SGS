@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>About - Business Casual - Start Bootstrap Theme</title>
+    <title>Universidad Nacional -   JORGE BASADRE GROHMANN</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -50,8 +50,6 @@ Ciudad Universitaria - Av. Miraflores S/N - Central Telefónica: 052-583000</div
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
                 <?php
 
-session_start();
-session_name('permiso');
 
 if(!$_SESSION)
 {
@@ -65,13 +63,14 @@ else
 {
 
 if(!$_SESSION['nombre_docente'])
+
 {
 $nombre_docente_verificado=$_SESSION['nombre_doc'];
 ?>
 						<a class="navbar-brand" href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>"><?php echo $nombre_docente_verificado ?></a>
                        
                     
-<?					
+<?php				
 }
 else
 {
@@ -83,14 +82,45 @@ $nombre_admin=$_SESSION['nombre_docente'];
 						
                     
 
-<?
+<?php
 }
 
-}
+
 ?>
 				
 				
             </div>
+			
+			<script>
+
+$('#bs-example-navbar-collapse-1 li a').on('click', function(){
+    $('li a.activo').removeClass('activo');
+    $(this).addClass('activo');
+});
+
+</script>
+
+<style>
+.activo {
+    text-decoration: underline;
+    background-color: red;
+}
+</style>
+<script>
+
+$('#bs-example-navbar-collapse-1 li a').on('click', function(){
+    $('li a.activo').removeClass('activo');
+    $(this).addClass('activo');
+});
+
+</script>
+
+<style>
+.activo {
+    text-decoration: underline;
+    background-color: rgba(123, 129, 129,0.6);
+}
+</style>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -105,19 +135,20 @@ if(!$_SESSION)
 <li>
                         <a href="index.php">Inicio</a>
                     </li>
-<?
+<?php
 }
 else
 {
 
-if(!$_SESSION['nombre_docente'])
+// if(!$_SESSION['nombre_docente'])
+if(!isset($_SESSION['nombre_docente']))
 {
 $nombre_docente_verificado=$_SESSION['nombre_doc'];
 ?>
 					<li>
                         <a href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>">Mi perfil</a>
                     </li>
-<?					
+<?php					
 }
 else
 {
@@ -128,14 +159,14 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?>">Mi perfil</a>
                     </li>
 
-<?
+<?php
 }
 
 }
 ?>
 
                     <li>
-                        <a href="about.php">Noticias</a>
+                        <a class="activo" href="about.php" class="activo">Noticias</a>
                     </li>
                     <li>
                         <a href="blog.php">Blog</a>
@@ -144,7 +175,7 @@ $nombre_admin=$_SESSION['nombre_docente'];
                         <a href="contact.php">Contactanos</a>
                     </li>
 					<li>
-                        <a href="silabo.php">Silabos</a>
+                        <a href="silabo.php">Sílabo</a>
                     </li>
                 </ul>
             </div>
@@ -168,24 +199,15 @@ $nombre_admin=$_SESSION['nombre_docente'];
                     <img class="img-responsive img-border-left" src="img/oasa.jpg" alt="">
                 </div>
                 <div class="col-md-6">
-                    <p>La Universidad Nacional Jorge Basadre Grohmann (Siglas UNJBG) es una comunidad académica, que desarrolla el conocimiento científico, tecnológico y humanístico, dedicada a la formación integral de profesionales calificados y competitivos,</p>
-                    <p> como agentes de cambio con capacidad para asumir y plantear alternativas frente a los problemas fundamentales de la sociedad. Está ubicada en el distrito Tacna en la Ciudad de Tacna, Perú.</p>
+                    <p>La Universidad Nacional Jorge Basadre Grohmann (Siglas UNJBG) es una comunidad académica, que desarrolla el conocimiento científico, tecnológico y humanístico, dedicada a la formación integral de profesionales calificados y competitivos, como agentes de cambio
+					con capacidad para asumir y plantear alternativas frente a los problemas fundamentales de la sociedad. Está ubicada en el distrito Tacna en la Ciudad de Tacna, Perú.</p>
                     <p>Fue fundada en 1971 según el decreto ley No.1894 </p>
                 </div>
                 <div class="clearfix"></div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-
-                    <hr>
-                </div>
-
-            </div>
-        </div>
+        
 
     </div>
     <!-- /.container -->
