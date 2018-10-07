@@ -1,23 +1,14 @@
-
-
 <?php
-
 session_start();
-session_name('permiso');
-
-if(!$_SESSION)
-{
-header("location:index.php");
-
-
+if(!isset($_SESSION['codigo_docente'])){
+	header("Location:index.php");
 }
-
+// if(isset($_GET['logout'])=='yes'){
+// 	session_destroy();
+// 	header("Location:index.php");
+// }
 $nombre_admin=$_SESSION['nombre_docente'];
-
-
 ?>
-<!------------------fin de metodo de seguridad-------------------------------------->
-
 
 
 

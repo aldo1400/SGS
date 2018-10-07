@@ -1,0 +1,13 @@
+.nav-link {
+    font-size: 1.2rem;
+}
+
+body {
+    background-image: url('../img/oasa.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fondo-unjbg {
+    height: 580px;
+}
