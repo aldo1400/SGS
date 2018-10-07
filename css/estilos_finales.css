@@ -2,7 +2,7 @@
     font-size: 1.2rem;
 }
 
-body {
+.pantalla-inicial {
     background-image: url('../img/oasa.jpg');
     background-repeat: no-repeat;
     background-size: cover;

@@ -24,7 +24,7 @@ include('../conexion/conexion.php');
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 	<link rel="stylesheet" type="text/css" href="../css/estilos.css">
-	
+	<link rel="stylesheet" type="text/css" href="../css/estilos_finales.css">
 
 <script>
  $.datepicker.regional['es'] = {
@@ -72,35 +72,7 @@ $("#fecha").datepicker();
 			<div class="mr-auto">
 			</div>
 		<ul class="navbar-nav">
-		<li class="nav-item active">
-				
-			
-		<?php
-
-		if(!isset($_SESSION))
-		{
-			?>
-						<a class="nav-link" href="index.php">Inicio 3<span class="sr-only">(current)</span></a>
-                                
-			<?php
-		}
-		else
-		{
-		if($_SESSION['tipo']=='docente')
-		{
-		?>
-						<a class="navbar-brand" href="docente.php"><?php echo $_SESSION['nombre']?></a>         
-		<?php			
-		}
-		else
-		{
-		?>
-					<a class="navbar-brand" href="administrador.php"><?php echo $_SESSION['nombre']?></a>   
-		<?php
-		}
-
-		}
-		?>
+			<li class="nav-item active">
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="about.php">Noticias</a>
@@ -114,18 +86,45 @@ $("#fecha").datepicker();
 			<li class="nav-item">
 				<a class="nav-link" href="contact.php">Silabos</a>
 			</li>
+			<?php
 
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Dropdown
-				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-				<a class="dropdown-item" href="#">Action</a>
-				<a class="dropdown-item" href="#">Another action</a>
-				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#">Something else here</a>
-				
+if(!isset($_SESSION))
+{
+	?>
+	<li class="nav-item active">
+		<a class="nav-link" href="index.php">Inicio 3<span class="sr-only">(current)</span></a>
+	</li>
+<?php }
+else{
+	?>
+	<li class="nav-item dropdown">
+<?php
+if($_SESSION['tipo']=='docente'){
+	?>
+	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<?php echo $_SESSION['nombre']?>
+			</a> 
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="docente.php">Mi perfil</a>
+	<?php
+}
+else{
+	?>
+	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<?php echo $_SESSION['nombre']?>
+			</a> 
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="administrador.php">Mi perfil</a>
+	<?php
+}
+?>
+<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#">Cerrar sesión</a>
 				</div>
+<?php
+}
+?>					
+				
 			</li>
 			</ul>
 			
@@ -148,7 +147,7 @@ $('#bs-example-navbar-collapse-1 li a').on('click', function(){
 <div class="container-fluid">
 	<div class="container">
 		<div class="row">
-			<div class="col-6 bg-primary mt-5 pt-5">
+			<div class="col-4 bg-primary mt-5 pt-5">
 				<div class="contenedor-menu1">
 					<li class="btn-menu1">Docente<i class="icono fa fa-bars"></i></li>
 					<ul class="menu1">
@@ -156,65 +155,29 @@ $('#bs-example-navbar-collapse-1 li a').on('click', function(){
 					<li><a href="#"><i class="icono izquierda fa fa-book"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 		<?php
+		// $q_extraer_interno_docente="select interno_docente from docente  where Cod_docente='$nombre_admin'";
+		// $e_extraer_interno_docente=mysqli_query($con,$q_extraer_interno_docente);
+		// $a_interno_docente1= mysqli_fetch_array($e_extraer_interno_docente);
 		
-		
-include('conexion.php');
-
-$q_extraer_interno_docente="select interno_docente from docente  where Cod_docente='$nombre_admin'";
-
-		$e_extraer_interno_docente=mysqli_query($con,$q_extraer_interno_docente);
-		
-		$a_interno_docente1= mysqli_fetch_array($e_extraer_interno_docente);
-		
-		$interno_docente=$a_interno_docente1['interno_docente'];
-		
+		$id_docente=$_SESSION['id'];
 		//En esta zona haremos que se creen tantos submenus como cursos tenga el docente seleecionado, por ejemplo si el docnete tiene 6 cursos asignados , aparecen 6 submenus con los nombre de los cursos, de maner dinamica.
-		
-		$q_CONSULTAR_CURSOS_ASIGNADOS_MENU="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.interno_docente='$interno_docente'";
+		$q_CONSULTAR_CURSOS_ASIGNADOS_MENU="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.interno_docente='$id_docente'";
 		$e_EJECUCION_CURSOS=mysqli_query($con,$q_CONSULTAR_CURSOS_ASIGNADOS_MENU);
 		$i=0;
 		while($CURSOS = mysqli_fetch_array($e_EJECUCION_CURSOS))
 		{
-		
 			$nombre=$CURSOS['nomb_asignatura'];
-			$id_asignatura=$CURSOS['cod_asignatura'];
-			
-			
+			$id_asignatura=$CURSOS['cod_asignatura'];	
 			$dt_fecha=$CURSOS['fecha_dicta'];
-			 $parte = explode("-", $dt_fecha);
-			//echo $parte[0];//año asignado //
+			$parte = explode("-", $dt_fecha);
 			$fecha_sistema=getdate();
-			//echo $fecha_sistema['year'];
-			
 			$i++;
 			if($fecha_sistema['year']==$parte[0])
 			{
 			?>
-	  
 	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
-	  
-		
-		
-        <li style="text-align:left;" ><a href="curso_docente.php?nombre_asig=<?php echo $id_asignatura ?>"><img src="img/flecha.png" width="30" height="30" name="flecha"><?php echo $nombre; ?></a></li>
-	
-		<?php }} ?>
-		
-				
-     
-	  <style>
-	  
-	  .flecha
-	  {
-	  margin-right:10px;
-	  margin-left:15px;
-	  }
-	  
-	  </style>
-
- 
- 		
-					
-					
+        <li style="text-align:left;" ><a href="../curso_docente.php?id_asig=<?php echo $id_asignatura ?>"><img src="img/flecha.png" width="30" height="30" name="flecha"><?php echo $nombre; ?></a></li>
+		<?php }} ?>				
 				</ul>
 			</li>
 			
@@ -222,138 +185,33 @@ $q_extraer_interno_docente="select interno_docente from docente  where Cod_docen
 	</div>
 
 	<div class="contenedor-menu">
-		
-		
-
-		<style type="text/css">   
-		a:link   
-		{   
-		 text-decoration:none;   
-		}   
-		</style>
-		
-		
-		
-				<li class="btn-menu">Administración<i class="icono fa fa-bars"></i></li>
-				<ul class="menu">
-				
-						
-					<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-folder-open"></i>Plan de estudios</a></li>
-					
-					
+		<li class="btn-menu">Administración<i class="icono fa fa-bars"></i></li>
+			<ul class="menu">	
+					<li><a href="asignaturas.php"><i class="icono izquierda fa fa-folder-open"></i>Plan de estudios</a></li>
 					<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-user-plus"></i>Crear docente</a></li>
-					
-					
 					<li><a href="#"><i class="icono izquierda fa fa-users"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
 						<ul>
-						
-						
 			<?php
-			  $q_lista_total_docentes ="SELECT * FROM docente";
+			  $q_lista_total_docentes ="SELECT * FROM docente where interno_docente!=$id_docente";
 			  $e_lista_total_docentes= mysqli_query($con,$q_lista_total_docentes);
-			  $i=0;
 			  while($a_lista_total_docentes = mysqli_fetch_array($e_lista_total_docentes))
 			  {
-				$nombre=$a_lista_total_docentes['nombre'];
-				$id_docente=$a_lista_total_docentes['Cod_docente'];
-				$interno_docente=$a_lista_total_docentes['interno_docente'];
-				
-				$i++;
-		
-			  ?>
-			  
-			  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
-			  
-			  <?php
-				
-				if($id_docente!=$nombre_admin)
-				{
-				?>
-				
-				<li style="text-align:left;"><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png"  width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
-				
-				
-				<?php
-				}
-				else
-				{}
-				
-				?>
-				
-				
-				
-			 
-			  <style>
-			  
-			  .flecha
-			  {
-			  margin-right:10px;
-			  margin-left:15px;
-			  }
-			  
-			  </style>
-		
-			  <?php } ?>
-		 
-				 
-							
-							
-						</ul>
+				?>			
+				<li style="text-align:left;"><a href="revisa_docente.php?nombre_profesor=<?php echo $a_lista_total_docentes['interno_docente'] ?>"><img src="img/flecha.png"  width="30" height="30" name="flecha">Ing.<?php echo $a_lista_total_docentes['nombre']; ?></a></li>
+				<?php } ?>						
+					</ul>
 					</li>
-					
 				</ul>
-			</div>
-
-			</div>
-
-			
-
-			<div class="col-6">
-			dfsdfsdf
-			</div>
-		</div>
 	</div>
-</div>
 
-    <div class="container">
+			</div>
 
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12 text-center">
-
-
-
-
-
-
-
-
-
-<div class="wrapper1234">
-
-<!-------LINK CERRAR SESION, LLAMA AL ARCHIVO LOGOUT.PHP QUE DESTRUIRA LA SESION Y POR ENDE SE REDIRIGIRA A INDEX---------------------->
-
-<div class="pull-right">
-<a href="logout.php" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-off"></span> Cerrar sesión</a>
-</div>
-
-
-
-<!----------------------EN ESTA PARTE MUESTRO LOS DATOS DEL ADMINISTRADOR QUE ES EXTRAIDO DE LA BASE DE DATOS ---------------------------->
-
-
-
-<div class="contenedor_presenta">
-
-
-<!--------<img src="img/profesor.jpg" width="200" height="200" >------><!-----IMAGEN DEL PROFESOR---------------->
-
-
-
-<?php
-      $q_datos_docente ="SELECT * FROM docente where Cod_docente='$nombre_admin' ";
+			<div class="col-8 bg-secondary">
+				
+		
+			<?php
+      	$q_datos_docente ="SELECT * FROM docente where interno_docente=$id_docente ";
       $e_datos_docente= mysqli_query($con,$q_datos_docente);
-	  
       $i=0;
       while($a_datos_docente = mysqli_fetch_array($e_datos_docente))
       {
@@ -370,51 +228,63 @@ $q_extraer_interno_docente="select interno_docente from docente  where Cod_docen
 		 $ruta_imagen=$a_datos_docente['ruta_imagen'];
 		 $grado_academico=$a_datos_docente['grado_academico'];
 		 $titulo=$a_datos_docente['titulo'];
-		 
-		
         $i++;
-
       ?>
-	<div>
-   <img src="<?php echo $ruta_imagen; ?>" width="250" height="250" alt="" align="RIGHT" />
-</div>
+	  <div class="container-fluid bg-primary mt-5 pt-5">
+	  <div class="container bg-success">
+	  <h2>Datos personales</h2>
+	  <hr>
+	  <div class="row">
+		<div class="col-md-4 col-12 my-auto">
+		<img class="img-fluid" src="../<?php echo $ruta_imagen; ?>"  />
+		</div>
+		<div class="col-md-4 col-6 text-bold">
+			<div>Codigo docente</div>
+			<div>Nombre</div>
+			<div>Apellido</div>
+			<div>Grado academico</div>
+			<div>Titulo</div>
+			<div>DNI</div>
+			<div>Tipo</div>
+			<div>Email</div>
+			<div>Fecha de nacimiento</div>
+			<div>Telefono</div>
+		</div>
+		<div class="col-md-4 col-6">
+		<div>Codigo docente</div>
+		<div><?php echo  $nombre; ?></div>
+		<div><?php echo  $apellido; ?></div>
+		<div><?php echo $grado_academico; ?></div>
+		<div><?php echo $titulo; ?></div>
+		<div><?php echo $dni; ?></div>
+		<div><?php echo $tipo; ?></div>
+		<div><?php echo $email; ?></div>
+		<div><?php echo $fnacimiento; ?></div>
+		<div><?php echo $telefono; ?></div>
+		</div>
+		<hr>
+		<div class="col-12">
+		
+		<div class="pull-right">
+			<a href="logout.php" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-off"></span> Cerrar sesión</a>
+		</div>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar_admin" >Editar datos</button>
+dsfsdf
 
-<br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
 
+		</div>
 
-	<TABLE cellpadding=5 >
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cod. Docente :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Cod_docente; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nombre         :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo  $nombre; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apellido       :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $apellido; ?></TD> </TR>
-
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Grado Ac. :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $grado_academico; ?></TD> </TR>
-
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Título        :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $titulo; ?></TD> </TR>
-
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI            :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $dni; ?></TD> </TR>
-
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tipo           :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $tipo; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-MAIL         :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $email; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fecha Nac.     :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $fnacimiento; ?></TD> </TR>
-	<TR><TH>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teléfono      :</TH>
-		<TD ALIGN="LEFT">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $telefono; ?></TD> </TR>
-	</TABLE>
-	<br>
-	<br>
-   
-      
-	 
+	  </div>
+	  </div>
+	  </div>
+			
+			</div>
+		</div>
+	</div>
+</div>	 
       <?php } ?>
-	    <style>
+	    <!-- <style>
 input[type=file] {
     display: block;
 	width:100%;
@@ -427,36 +297,11 @@ input[type=file] {
 	overflow: hidden;
 
 }
+</style> -->
 
-</style>
+	  <form action="" method="post" enctype="multipart/form-data" role="form">
 
-	
-
-	 
-
-	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_editar_admin" style=" position: relative; left:-150px">Editar datos</button>
-	  
-	  <!--<BUTTON  type="button"   name="boton_recargar" onclick="document.location.reload();" class="btn btn-warning btn-lg " style=" position: relative; left:-130px">Recargar datos</button>---->
-	  
-	  
-	  <br>
-	  <div align="rigth" style=" position: relative; margin:0px;left:430px; top:-50px; width:300px;">
-	  
-	  
-<style>
-.form-inline-3
-{
- max-width: 150px;
- margin:0px;
- width:100%;
- 
-}
-
-</style>
-	  
-	  <form action="" method="post" enctype="multipart/form-data" class="form-inline-3" role="form">
-
-<style>
+<!-- <style>
   div.fileinputs {
 	position: relative;
 }
@@ -476,23 +321,19 @@ input.file {
 	opacity: 0;
 	z-index: 2;
 }
-</style>
+</style> -->
   
 
 <div class="fileinputs">
 	<input name="foto1" type="file" class="file" id="foto1" style="width: 47px;"/>
 	<div style="width: 200px;">
 		<div class="fakefile">
-			<!--<input />-->
 			<img src="imagenes/upload.png" width="45" height="45"/>
 		</div>
 		<input name="guardar2" type="submit" class="btn btn-success btn-lg" value="subir foto" style="width: 100px;"/>
 
 	</div>
 </div>
-<!--<input name="foto1" type="file" id="foto1"  >-->
-
-
 
 </form>
 
@@ -578,23 +419,16 @@ while ($row=mysqli_fetch_array($result))
     $ruta_img = $row["ruta_imagen"]; 
 }
 ?>
-
-
-	  <BR>
 	  <!------------------------------------FIN DE MOSTRAR DATOS DEL DOCENTE ADMINISTRADOR------------------------------------------------>
 	  
 	 
 </div>
 
-<br>
-<br>
 
 
 <?php
   if(isset($_POST['fecha_limite_asignación']))
 {
-        
-		include('conexion.php');
         $cod_asig=$_POST["cod_asig"];
 		echo $cod_asig;
 		
@@ -625,11 +459,33 @@ while ($row=mysqli_fetch_array($result))
       }?>
 	</div>
 	
-	
+	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+	<div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Editar datos personales</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	  	<div class="form-group">
+			<label  class="control-label col-sm-4" for="CODIGO_DOCENTE">Código docente:</label>
+			<div  class="col-sm-4">
+				<input class="form-control-static" value="<?php echo $Cod_docente; ?>"" disabled="true"/>
+			</div>
+   	  	</div>
+			 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 	
 		<div class="container">
-  <!-- Trigger the modal with a button -->
-  <!-- Modal -->
   <div class="modal fade" id="myModal_editar_admin" role="dialog">
     <div class="modal-dialog">
     
@@ -663,13 +519,7 @@ while ($row=mysqli_fetch_array($result))
     <div class="contentform2">
     	<div id="sendmessage"> Has creado correctamente al docente </div>
 		
-		<div class="form-group">
-     
-      <label style="left: 25px;top: 30px" class="control-label col-sm-4" for="CODIGO_DOCENTE">Código docente:</label>
-      <div  class="col-sm-4">
-        <p style="position: relative; left: 115px; top: 15px" class="form-control-static"><?php echo $Cod_docente; ?></p>
-      </div>
-    </div>
+		
 	<!------------------------------------------------------------------------------------>
 	
 	<label style="position: relative;  right: 55px;top: -4px;  bottom: 20px;" class="control-label col-sm-6" for="email" >Nombre docente:</label>
@@ -788,13 +638,6 @@ while ($row=mysqli_fetch_array($result))
   
 </div>
 
-
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-
-
-
 <?php
 
 //esta funcion nos ayudara a guardar los cambios de los datos del docente en la base de datos al momento de editarlo
@@ -846,19 +689,8 @@ if(isset($_POST['update_admin']))
 	}
 	
       }?>
-		
-  
-		
-	
-	
-	
-	<br>
-	<br>
-	<br>
                     <h2 class="brand-before">
-					<center>
-                        <small>BIENVENIDOS</small>
-					</center>
+
                     </h2>
                     <h1 class="brand-name">UNJBG</h1>
                     <hr class="tagline-divider">

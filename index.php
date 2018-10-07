@@ -27,7 +27,7 @@ session_destroy();
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css"> -->
 </head>
 
-<body>
+<body class="pantalla-inicial">
 <div class="container-fluid fixed-top" style="background:#560000">
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-dark" style="background:#560000">
