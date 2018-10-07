@@ -1,6 +1,6 @@
 <?php
 session_start();
-$mysqli=new mysqli('localhost','root','','u122483761_dos');
+include './conexion/conexion.php';
 if(isset($_POST['usu_form']) && isset($_POST['pass_form'])){
     
     $cod_usuario_input=trim($_POST['usu_form']);
@@ -16,7 +16,6 @@ if(isset($_POST['usu_form']) && isset($_POST['pass_form'])){
         $_SESSION['nombre']=$nombre_bd;
         $_SESSION['codigo_docente']=$cod_docente_bd;
         $_SESSION['tipo']=$tipo_bd;
-
 
         if($_SESSION['tipo']=='admin'){
             echo "admin";

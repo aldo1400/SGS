@@ -1,34 +1,14 @@
 <?php
 session_start();
-if(!isset($_SESSION['codigo_docente'])){
+if((!isset($_SESSION['codigo_docente'])) && $_SESSION['tipo']!='admin' ){
 	header("Location:index.php");
 }
-// if(isset($_GET['logout'])=='yes'){
-// 	session_destroy();
-// 	header("Location:index.php");
-// }
-$nombre_admin=$_SESSION['nombre_docente'];
+$nombre_admin=$_SESSION['nombre'];
+include('../conexion/conexion.php');
 ?>
-
-
 
 <!DOCTYPE html>
 <html charset="utf-8">
-
-
-<!------recibo la variable nombre_admin, donde esta el nombre del administrador------------>
-
-<?php
-
-include('conexion.php');//en este archivo se encuentra la cadena de conexion
-
-
-
-		
-		
-?>
-
-
 <head>
 
     <meta charset="utf-8">
@@ -39,30 +19,12 @@ include('conexion.php');//en este archivo se encuentra la cadena de conexion
 
     <title>Universidad Nacional -   JORGE BASADRE GROHMANN</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/business-casual.css" rel="stylesheet">
-    <link type="text/css" href="./css/admin.css" rel="stylesheet" />
-
-	
+    <!-- <link type="text/css" href="../css/admin.css" rel="stylesheet" /> -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	<link rel="stylesheet" type="text/css" href="../css/estilos.css">
 	
-	
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="js/main.js"></script>
-
-	
-	
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-
-<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 
 <script>
  $.datepicker.regional['es'] = {
@@ -89,24 +51,8 @@ $("#fecha").datepicker();
 });
 </script>
 
-<style>
-body {
-    font-family: 'Roboto';font-size: 16px;
-}
-</style>
-
-
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
@@ -114,69 +60,82 @@ body {
  
  <!--------------título de la pagina------------------->
  
-    <div class="brand">UNJBG</div>
-    <div class="address-bar">Sistema de acceso para editar sílabos</div>
+ <div class="container-fluid fixed-top" style="background:#560000">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark" style="background:#560000">
+		<a class="navbar-brand" href="index.php"><img class="img-fluid" style="width:50px" src="../imagenes/logo-unjbg.png" />Sistema de silabos</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-	
-	<!-----------------MENU DE NAVEGACION HOME, NOTICIAS BLOG CONTACTANOS--------------------------------->
-	
-    <!-- Navigation -->
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent" >
+			<div class="mr-auto">
+			</div>
+		<ul class="navbar-nav">
+		<li class="nav-item active">
 				
+			
+		<?php
+
+		if(!isset($_SESSION))
+		{
+			?>
+						<a class="nav-link" href="index.php">Inicio 3<span class="sr-only">(current)</span></a>
+                                
+			<?php
+		}
+		else
+		{
+		if($_SESSION['tipo']=='docente')
+		{
+		?>
+						<a class="navbar-brand" href="docente.php"><?php echo $_SESSION['nombre']?></a>         
+		<?php			
+		}
+		else
+		{
+		?>
+					<a class="navbar-brand" href="administrador.php"><?php echo $_SESSION['nombre']?></a>   
+		<?php
+		}
+
+		}
+		?>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="about.php">Noticias</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="blog.php">Blog</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="contact.php">Contáctenos</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="contact.php">Silabos</a>
+			</li>
+
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Dropdown
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="#">Action</a>
+				<a class="dropdown-item" href="#">Another action</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#">Something else here</a>
 				
-				
+				</div>
+			</li>
+			</ul>
+			
+		</div>
+		</nav>
 
-                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                
-				<?php
 
-session_start();
-session_name('permiso');
+    </div>
+    </div>
 
-if(!$_SESSION)
-{
-?>
-						<a class="navbar-brand" href="index.php">unjbg</a>
-                        
-                    
-<?php
-}
-else
-{
-
-if(!$_SESSION['nombre_docente'])
-{
-$nombre_docente_verificado=$_SESSION['nombre_doc'];
-?>
-						<a class="navbar-brand" href="docente.php?nombre_doc=<?php echo $nombre_docente_verificado ?>"><?php echo $nombre_docente_verificado ?></a>
-                       
-                    
-<?php			
-}
-else
-{
-$nombre_admin=$_SESSION['nombre_docente'];
-?>
-
-					<a class="navbar-brand" href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?>"><?php echo $nombre_admin ?></a>
-                        
-						
-                    
-
-<?php
-}
-
-}
-?>
 <script>
 
 $('#bs-example-navbar-collapse-1 li a').on('click', function(){
@@ -186,83 +145,15 @@ $('#bs-example-navbar-collapse-1 li a').on('click', function(){
 
 </script>
 
-<style>
-.activo {
-    text-decoration: underline;
-    background-color: rgba(123, 129, 129,0.6);
-}
-</style>				
-				
-				
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-					
-                    
-					<li>
-                        <a  class="activo" href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> ">Mi perfil</a>
-					</li>
-					
-                    <li>
-                        <a href="about.php">Noticias</a>
-                    </li>
-                    <li>
-                        <a href="blog.php">Blog</a>
-                    </li>
-                    <li>
-                        <a href="contact.php">Contáctanos</a>
-                    </li>
-					<li>
-                        <a href="silabo.php">Sílabo</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-	
-	
-<!-----------------FIN DE NAVEGACION HOME, NOTICIAS BLOG CONTACTANOS--------------------------------->
-
-
-
-
-    <div class="container">
-
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12 text-center">
-
-
-<div class="wrapper123">
-
-		<br>
-		<br>
-		
-		
-		
-		
-		<div class="contenedor-menu1">
-		
-
-<style type="text/css">   
-a:link   
-{   
- text-decoration:none;   
-}   
-</style>
-
-
-
-		<li class="btn-menu1">Docente<i class="icono fa fa-bars"></i></li>
-		<ul class="menu1">
-		
-			<li><a href="administrador0.php?nombre_admin=<?php echo $nombre_admin ?> "><i class="icono izquierda fa fa-user"></i>Mi perfil</a></li>
-			
-			
-			<li><a href="#"><i class="icono izquierda fa fa-book"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
+<div class="container-fluid">
+	<div class="container">
+		<div class="row">
+			<div class="col-6 bg-primary mt-5 pt-5">
+				<div class="contenedor-menu1">
+					<li class="btn-menu1">Docente<i class="icono fa fa-bars"></i></li>
+					<ul class="menu1">
+					<li><a href="administrador.php"><i class="icono izquierda fa fa-user"></i>Mi perfil</a></li>
+					<li><a href="#"><i class="icono izquierda fa fa-book"></i>Mis cursos<i class="icono derecha fa fa-chevron-down"></i></a>
 				<ul>
 		<?php
 		
@@ -329,151 +220,112 @@ $q_extraer_interno_docente="select interno_docente from docente  where Cod_docen
 			
 		</ul>
 	</div>
+
+	<div class="contenedor-menu">
+		
+		
+
+		<style type="text/css">   
+		a:link   
+		{   
+		 text-decoration:none;   
+		}   
+		</style>
+		
+		
+		
+				<li class="btn-menu">Administración<i class="icono fa fa-bars"></i></li>
+				<ul class="menu">
 				
-
-				
-
-
-		<div class="contenedor-menu">
-		
-		
-
-<style type="text/css">   
-a:link   
-{   
- text-decoration:none;   
-}   
-</style>
-
-
-
-		<li class="btn-menu">Administración<i class="icono fa fa-bars"></i></li>
-		<ul class="menu">
-		
-				
-			<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-folder-open"></i>Plan de estudios</a></li>
-			
-			
-			<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-user-plus"></i>Crear docente</a></li>
-			
-			
-			<li><a href="#"><i class="icono izquierda fa fa-users"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
-				<ul>
-				
-				
-	<?php
-      $q_lista_total_docentes ="SELECT * FROM docente";
-      $e_lista_total_docentes= mysqli_query($con,$q_lista_total_docentes);
-      $i=0;
-      while($a_lista_total_docentes = mysqli_fetch_array($e_lista_total_docentes))
-      {
-        $nombre=$a_lista_total_docentes['nombre'];
-		$id_docente=$a_lista_total_docentes['Cod_docente'];
-		$interno_docente=$a_lista_total_docentes['interno_docente'];
-		
-        $i++;
-
-      ?>
-	  
-	  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
-	  
-      <?php
-		
-		if($id_docente!=$nombre_admin)
-		{
-		?>
-		
-        <li style="text-align:left;"><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png"  width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
-		
-		
-		<?php
-		}
-		else
-		{}
-		
-		?>
-		
-		
-        
-     
-	  <style>
-	  
-	  .flecha
-	  {
-	  margin-right:10px;
-	  margin-left:15px;
-	  }
-	  
-	  </style>
-
-      <?php } ?>
- 
- 		
+						
+					<li><a href="asignaturas.php" title=""><i class="icono izquierda fa fa-folder-open"></i>Plan de estudios</a></li>
 					
+					
+					<li><a href="administrador.php?nombre_admin=<?php echo $nombre_admin ?>"><i class="icono izquierda fa fa-user-plus"></i>Crear docente</a></li>
+					
+					
+					<li><a href="#"><i class="icono izquierda fa fa-users"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
+						<ul>
+						
+						
+			<?php
+			  $q_lista_total_docentes ="SELECT * FROM docente";
+			  $e_lista_total_docentes= mysqli_query($con,$q_lista_total_docentes);
+			  $i=0;
+			  while($a_lista_total_docentes = mysqli_fetch_array($e_lista_total_docentes))
+			  {
+				$nombre=$a_lista_total_docentes['nombre'];
+				$id_docente=$a_lista_total_docentes['Cod_docente'];
+				$interno_docente=$a_lista_total_docentes['interno_docente'];
+				
+				$i++;
+		
+			  ?>
+			  
+			  <!--------------EN ESTA PARTE SE ESTAN CREANDO LOS LINKS DE CADA PROFESOR, Y ACTUALIZANDO AUTOMATICAMENTE SI SE CREA UN DOCENTE--->
+			  
+			  <?php
+				
+				if($id_docente!=$nombre_admin)
+				{
+				?>
+				
+				<li style="text-align:left;"><a href="revisa_docente.php?nombre_profesor=<?php echo $interno_docente ?>"><img src="img/flecha.png"  width="30" height="30" name="flecha">Ing.<?php echo $nombre; ?></a></li>
+				
+				
+				<?php
+				}
+				else
+				{}
+				
+				?>
+				
+				
+				
+			 
+			  <style>
+			  
+			  .flecha
+			  {
+			  margin-right:10px;
+			  margin-left:15px;
+			  }
+			  
+			  </style>
+		
+			  <?php } ?>
+		 
+				 
+							
+							
+						</ul>
+					</li>
 					
 				</ul>
-			</li>
+			</div>
+
+			</div>
+
 			
-		</ul>
+
+			<div class="col-6">
+			dfsdfsdf
+			</div>
+		</div>
 	</div>
+</div>
 
+    <div class="container">
 
-
-	
-
-
-<br>
-
-
-		
-		
-		<br>
-		
- 
-	  
-	  
-<!-----------------------FIN DE NOMBRE DE PROFESORES------------------->
-
-
-<style>
-/*
-#menu ul {
-    list-style-type: none;
-    margin: 0px;
-    padding: 3px;
-    width: 200px;
-    font-family: Arial, sans-serif;
-    font-size: 12pt;
-}
-
-
-#menu ul li {
-    background-color: #fff;
-}
-
-#menu ul li a {
-    color: #000;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: block;
-    padding: 10px 10px 10px 20px;
-	font-size: 8pt;
-}
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12 text-center">
 
 
 
 
-#menu ul li a:hover {
-    background: #C70039;
-    border-left: 10px solid #333;
-    color: #fff;
-}
-
-*/
-</style>
 
 
-	</div>
 
 
 
@@ -486,9 +338,6 @@ a:link
 </div>
 
 
-<br>
-<br>
-<br>
 
 <!----------------------EN ESTA PARTE MUESTRO LOS DATOS DEL ADMINISTRADOR QUE ES EXTRAIDO DE LA BASE DE DATOS ---------------------------->
 
@@ -1045,19 +894,15 @@ if(isset($_POST['update_admin']))
         </div>
     </footer>
 
-    <!-- jQuery -->
-    </script>
+   <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Script to Activate the Carousel -->
-    <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-    </script>
-
+<script src="../js/main.js"></script>
 </body>
 
 </html>

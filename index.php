@@ -168,9 +168,8 @@ $(document).ready(function(){
     success:function(resp){
       console.log(resp);
       if(resp=="admin"){
-        console.log('XDS')
-        window.location.href="administrador0.php";
-        // console.log('adasdasd')
+        window.location.href="./administrador/administrador.php";
+      
       }
       else if(resp=="docente"){
         window.location.href="docente.php";
