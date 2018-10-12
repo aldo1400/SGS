@@ -81,7 +81,7 @@ $("#fecha").datepicker();
 				<a class="nav-link" href="blog.php">Blog</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="contact.php">Contáctenos</a>
+				<a class="nav-link" href="../docente_listado/index.php">Docente</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="contact.php">Silabos</a>
@@ -402,6 +402,9 @@ else{
 <script src="../js/main.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+
 
 <script>
 $(document).ready(function(){
@@ -409,10 +412,11 @@ $(document).ready(function(){
 	function hola(){
 	var id_docente=$('#id_docente').val();
 		$.ajax({
-      url:"test.php",
+      url:"obtener_datos.php",
 	  method:"post",
 	  data:{id_docente:id_docente},
       success:function(data){
+		
           $('#test').html(data);
       }
     	});
@@ -423,7 +427,7 @@ $(document).ready(function(){
 	var id_docente=$('#id_docente').val();
 
       $.ajax({
-          url:"fetch.php",
+          url:"modal_docente.php",
           method:"POST",
           data:{id_docente:id_docente},
           dataType:"json",
@@ -457,7 +461,8 @@ $(document).ready(function(){
 		rules:{
 			nombre_edita:{
 				required:true,
-				solo_letras:true
+				solo_letras:true,
+				string:true
 			},
 			apellido_edita:{
 				required:true,
@@ -488,7 +493,8 @@ $(document).ready(function(){
 		messages:{
 			nombre_edita:{
 				required:"Ingresa tu nombre",
-				solo_letras:"El nombre solo contiene letras"
+				solo_letras:"El nombre solo contiene letras",
+				string:"El nomsdbre solo contiene letras"
 			},
 			apellido_edita:{
 				required:"Ingresa tu apellido",
@@ -537,6 +543,7 @@ var tipo=$('#tipo_edita').val();
    processData:false,
 	success:function(data)
 	{
+		swal("Éxito", "Los datos han sido actualizados", "success");
 		$('#actualizar_docente')[0].reset();
 	  $('.bd-example-modal-lg').modal('hide');
 	//   $('#test').html(data);

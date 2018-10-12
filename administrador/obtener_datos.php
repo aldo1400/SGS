@@ -1,7 +1,7 @@
 <?php
 include('../conexion/conexion.php');
 $id=$_POST['id_docente'];
-$q_datos_docente ="SELECT * FROM docente where interno_docente='$id'";
+$q_datos_docente ="SELECT * FROM docente where id='$id'";
       $e_datos_docente= mysqli_query($con,$q_datos_docente);
       $i=0;
       $output='';

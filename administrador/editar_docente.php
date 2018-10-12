@@ -66,14 +66,14 @@ imagejpeg($lienzo, $destino1, 80);
 
 }
 else {
-	$resul=mysqli_query($con,"SELECT * FROM docente where interno_docente='$id_docente'");
+	$resul=mysqli_query($con,"SELECT * FROM docente where id='$id_docente'");
 	$imagen_actual=mysqli_fetch_array($resul);
     $destino1=$imagen_actual['ruta_imagen'];
 }
 
 $actualizar="UPDATE docente set nombre='$nombre_edita',apellido='$apellido_edita',dni='$DNI_edita',
 		tipo='$tipo_edita',email='$email_edita',fnacimiento='$fnacimiento_edita',telefono_docente='$telefono_edita',ruta_imagen='$destino1',grado_academico='$grado_edita',titulo='$titulo_edita'
-        WHERE interno_docente='$id_docente'";
+        WHERE id='$id_docente'";
         $ejecutar_actu_admin=mysqli_query($con,$actualizar);
 
 }

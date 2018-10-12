@@ -5,7 +5,7 @@ if(isset($_POST['usu_form']) && isset($_POST['pass_form'])){
     
     $cod_usuario_input=trim($_POST['usu_form']);
     $password_input=trim($_POST['pass_form']);
-    $consulta_login=$mysqli->prepare("SELECT Cod_docente,nombre,password,tipo,interno_docente FROM docente WHERE Cod_docente=?");
+    $consulta_login=$mysqli->prepare("SELECT Cod_docente,nombre,password,tipo,id FROM docente WHERE Cod_docente=?");
     $consulta_login->bind_param("s", $cod_usuario_input);
     $consulta_login->execute();
     $consulta_login->bind_result($cod_docente_bd, $nombre_bd,$password_bd,$tipo_bd,$interno_docente_bd);
