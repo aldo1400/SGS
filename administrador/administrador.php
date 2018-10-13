@@ -81,7 +81,7 @@ $("#fecha").datepicker();
 				<a class="nav-link" href="blog.php">Blog</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="../docente_listado/index.php">Docente</a>
+				<a class="nav-link" href="docente_listar.php">Docente</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="contact.php">Silabos</a>
@@ -149,7 +149,7 @@ else{
 		<?php
 		$id_docente=$_SESSION['id'];
 		//En esta zona haremos que se creen tantos submenus como cursos tenga el docente seleecionado, por ejemplo si el docnete tiene 6 cursos asignados , aparecen 6 submenus con los nombre de los cursos, de maner dinamica.
-		$q_CONSULTAR_CURSOS_ASIGNADOS_MENU="select * from docente inner join dicta on docente.interno_docente=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.interno_docente='$id_docente'";
+		$q_CONSULTAR_CURSOS_ASIGNADOS_MENU="select * from docente inner join dicta on docente.id=dicta.interno_docente inner join asignatura on dicta.cod_asignatura=asignatura.cod_asignatura where docente.id='$id_docente'";
 		$e_EJECUCION_CURSOS=mysqli_query($con,$q_CONSULTAR_CURSOS_ASIGNADOS_MENU);
 		$i=0;
 		while($CURSOS = mysqli_fetch_array($e_EJECUCION_CURSOS))
@@ -180,7 +180,7 @@ else{
 					<li><a href="#"><i class="icono izquierda fa fa-users"></i>Docentes<i class="icono derecha fa fa-chevron-down"></i></a>
 						<ul>
 			<?php
-			  $q_lista_total_docentes ="SELECT * FROM docente where interno_docente!=$id_docente";
+			  $q_lista_total_docentes ="SELECT * FROM docente where id!=$id_docente";
 			  $e_lista_total_docentes= mysqli_query($con,$q_lista_total_docentes);
 			  while($a_lista_total_docentes = mysqli_fetch_array($e_lista_total_docentes))
 			  {

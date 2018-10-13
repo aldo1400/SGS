@@ -38,9 +38,9 @@
 				<table id="user_data" class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<!-- <th width="10%">Image</th> -->
-							<th width="35%">Nombre</th>
-							<th width="35%">Apellido</th>
+							<th width="10%">Image</th>
+							<th width="35%">First Name</th>
+							<th width="35%">Last Name</th>
 							<th width="10%">Edit</th>
 							<th width="10%">Delete</th>
 						</tr>
@@ -84,6 +84,7 @@
 
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){
+	
 	$('#add_button').click(function(){
 		$('#user_form')[0].reset();
 		$('.modal-title').text("Add User");
@@ -92,17 +93,25 @@ $(document).ready(function(){
 		$('#user_uploaded_image').html('');
 	});
 	
+	// $.ajax({
+	// 			url:"fetch.php",
+	// 			method:'POST',
+	// 			data:{
+	// 				length:5,
+	// 				start:0
+	// 			}
+	// });
 	var dataTable = $('#user_data').DataTable({
 		"processing":true,
 		"serverSide":true,
 		"order":[],
 		"ajax":{
-			"url":"fetch.php",
-			"type":"POST"
+			url:"fetch.php",
+			type:"POST"
 		},
 		"columnDefs":[
 			{
-				// "targets":[0, 3, 4],
+				"targets":[0, 3, 4],
 				"orderable":false,
 			},
 		],

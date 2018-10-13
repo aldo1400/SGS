@@ -107,8 +107,8 @@ $(document).ready(function(){
   "serverSide":true,
   "order":[],
   "ajax":{
-   url:"fetch.php",
-   type:"POST"
+   "url":"fetch.php",
+   "type":"POST"
   },
   "columnDefs":[
    {

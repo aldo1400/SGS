@@ -4,7 +4,6 @@ include('function.php');
 $query = '';
 $output = array();
 $query .= "SELECT * FROM docente ";
-echo $_POST["length"];
 if(isset($_POST["search"]["value"]))
 {
 	$query .= 'WHERE nombre LIKE "%'.$_POST["search"]["value"].'%" ';
@@ -49,9 +48,9 @@ foreach($result as $row)
 }
 $output = array(
 	"draw"				=>	intval($_POST["draw"]),
-	"recordsTotal"		=> 	$filtered_rows,
-	"recordsFiltered"	=>	get_total_all_records(),
+	"recordsTotal"		=> 	get_total_all_records(),
+	"recordsFiltered"	=>	$filtered_rows,
 	"data"				=>	$data
 );
-echo json_encode($output);
+echo json_encode($output,JSON_UNESCAPED_UNICODE);
 ?>
