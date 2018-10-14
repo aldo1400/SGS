@@ -17,6 +17,7 @@
           <th width="35%">Precio</th>
           <th width="15">Edit</th>
           <th width="15">Edit</th>
+          <th width="15">Edit</th>
           <th width="15%">Visualizar</th>
           <th width="15%">Eliminar</th>
         </tr>
