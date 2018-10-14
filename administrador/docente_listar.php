@@ -29,52 +29,14 @@ include('../conexion/conexion.php');
 
         <div align="right">
 
-        <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span>Añadir plato</button>
+        <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span>Añadir docente</button>
 
         </div>
 
 
         <br/>
       <div id="plato_tabla">
-
-
-          <table class="table table-bordered">
-            <tr>
-              <th width="35%">Nombre </th>
-              <th width="25%">Apellido </th>
-              <th width="25%">DNI</th>
-              <th width="35%">Imagen del docente </th>
-              <th width="15%"><span class="glyphicon glyphicon-pencil"></span>Editar</th>
-              <th width="15%">Visualizar </th>
-              <th width="15%"><span class="glyphicon glyphicon-trash"></span>Eliminar </th>
-            </tr>
-
-            <?php
-session_start();
-            $id=$_SESSION['id'];
-            $query="SELECT * FROM docente where id!=$id";
-
-            $result=mysqli_query($con,$query);
-
-
-              while($row=mysqli_fetch_array($result))
-              {
-                ?>
-
-                <tr>  <td><?php echo $row["apellido"];?></td>
-                  <td><?php echo $row["nombre"];?></td>
-                  <td><?php echo $row["dni"];?></td>
-                  <td><img src="<?php echo $row["ruta_imagen"]; ?>" width="50" height="50" alt="" align="RIGHT" /></td>
-                  <td><input type="button" name="edit" value="Editar" id="<?php echo $row["id"];?>" class="btn btn-warning btn-xs edit_data" data-toggle="modal" data-target="#edit_data_Modal"> </td>
-                  <td><input type="button" name="view" value="visualizar" id="<?php echo $row["id"];?>" class="btn btn-info btn-xs view_data"></td>
-                  <td><input type="button" name="delete" value="eliminar" id="<?php echo $row["id"];?>" class="btn btn-danger btn-xs delete_data" onclick="return confirm('Estás seguro que deseas eliminar el registro?');"></td>
-                </tr>
-                <?php
-              }
-
-             ?>
-           </table>
-         </div>
+      </div>
       </div>
 
 
@@ -89,103 +51,7 @@ session_start();
 </html>
 
 
-
-
-
-<div id="dataModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="editar_doc">
-
-<div class="modal-dialog  modal-lg">
-  <div class="modal-content">
-
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Editar datos personales</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-    <div class="modal-body" id="plato_detalle">
-
-    </div>
-
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
-    </div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div id="add_data_Modal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Crear plato</h4>
-        </div>
-        <div class="modal-body">
-          <form method="post" id="insertar_formulario" enctype="multipart/form-data" >
-            <label>Ingresa el nombre del plato</label>
-            <input type="text" name="nombre_plato" id="nombre_plato" class="form-control" />
-            <br/>
-
-            <label>Ingresa el precio</label>
-            <input type="text" name="precio" id="precio" class="form-control"/>
-            <br/>
-
-
-           <br/>
-
-           <label>Ingresar descripción</label>
-           <textarea name="descripcion" id="descripcion" rows="8" cols="80" class="form-control" style="resize:none;"></textarea>
-           <br/>
-
-           <label>Selecciona la foto del plato</label>
-           <input name="foto1" type="file" class="file" id="foto1" />
-           <br/>
-           <label>Disponible</label>
-           <div class="panel panel-default">
-  <div class="panel-body">
-
-    <input type="radio" name="disponible" value="si">SI
-    <input type="radio" name="disponible" value="no">no
-  </div>
-</div>
-
-
-           <label>Oferta</label>
-
-           <div class="panel panel-default">
-  <div class="panel-body">
-
-    <input type="radio" name="oferta" value="si">SI
-    <input type="radio" name="oferta" value="no">no
-  </div>
-</div>
-
-
-
-
-           <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success">
-         </form>
-       </div>
-
-       <div class="modal-footer">
-         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-       </div>
-
-        </div>
-      </div>
-
-    </div>
-
-
-
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="edit_data_Modal">
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="edit_data_Modal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
 	<div class="modal-header">
@@ -278,31 +144,47 @@ session_start();
     </div>
   </div>
 </div>
-
-
-
-
 </div>
+
+<?php include('modal_view_docente.php');?>
+<?php include('modal_add_docente.php');?>
+<?php include('modal_edit_docente.php');?>
 
 <script>
 
 $(document).ready(function(){
   $(document).on('click','.delete_data',function(){
     var id_delete=$(this).attr("id");
-
-    $.ajax({
-        url:"delete.php",
+    console.log(id_delete);
+    if(confirm('¿Estas seguro de visitar esta url?')){
+      $.ajax({
+        url:"eliminar_docente.php",
         method:"POST",
         data:{id_delete:id_delete},
         dataType:"json",
         success:function(data)
         {
-            $('#plato_tabla').html(data);
-
+          console.log(data);
+          $('#plato_tabla').html(data);
+         
         }
     });
+    }
+   
 
     });
+
+  function hola(){
+		$.ajax({
+      url:"test.php",
+	  method:"post",
+      success:function(data){
+		
+          $('#plato_tabla').html(data);
+      }
+    	});
+	}
+	hola();
 
   $(document).on('click','.edit_data',function()
   {
@@ -317,6 +199,7 @@ $(document).ready(function(){
           {
 
             $('#edit_data_Modal').modal('show');
+            console.log(data);
             $('#cod_docente').val(data.Cod_docente);
             $('#nombre_edita').val(data.nombre);
             $('#apellido_edita').val(data.apellido);
@@ -339,43 +222,12 @@ $(document).ready(function(){
 
 
 
-  $('#insertar_formulario').on("submit",function(event){
+  $('#add_docente').on("submit",function(event){
 
     event.preventDefault();
-
-    var nombre=$('#nombre_plato').val();
-    var precio=$('#precio').val();
-var RE=/^\d{1,3}(\.\d{1,2})?$/;
-
-    if($('#nombre_plato').val()=="")
-    {
-      alert("Se requiere nombre de plato");
-    }
-
-    else if($('#precio').val()=="")
-    {
-        alert("precio es requerido");
-    }
-
-    else if(!(RE.test(precio)))
-    {
-        alert(" no fomato no party");
-    }
-    else if($('#descripcion').val()=="")
-    {
-        alert("La descripcion del plato es necesaria");
-    }
-
-    else if($('#foto1').val()=="")
-    {
-        alert("La foto no esta subida");
-    }
-
-    else{
-
-
+    console.log(object)
       var datos = $(this).serializeArray(); //datos serializados
-            var imagen = new FormData($("#insertar_formulario")[0]);
+            var imagen = new FormData($("#add_docente")[0]);
 
             //agergaremos los datos serializados al objecto imagen
             $.each(datos,function(key,input){
@@ -383,7 +235,7 @@ var RE=/^\d{1,3}(\.\d{1,2})?$/;
             });
 
       $.ajax({
-        url:"insert.php",
+        url:"insertar_docente.php",
         method:"POST",
         data:imagen, //enviamos imagen
        contentType:false,
@@ -391,20 +243,13 @@ var RE=/^\d{1,3}(\.\d{1,2})?$/;
         success:function(data)
         {
 
-
-          $('#insertar_formulario')[0].reset();
+          $('#add_docente')[0].reset();
           $('#add_data_Modal').modal('hide');
           $('#plato_tabla').html(data);
-
 
         }
 
       });
-
-
-
-    }
-
   });
 
 
