@@ -7,20 +7,95 @@ include('../conexion/conexion.php');
   <head>
     <meta charset="utf-8">
 
-    <title>Carta</title>
+    <title>Lista de docentes</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+
+           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>           
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script> 
+
 
   </head>
 
   <body>
     <div class="container-fluid main-container">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background:#560000">
+		<a class="navbar-brand" href="index.php"><img class="img-fluid" style="width:50px" src="../imagenes/logo-unjbg.png" />Sistema de silabos</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent" >
+			<div class="mr-auto">
+			</div>
+		<ul class="navbar-nav">
+			<li class="nav-item active">
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="asignatura_lista.php">Asignaturas</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="mis_cursos.php">Mis cursos</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="docente_listar.php">Docente</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="contact.php">Silabos</a>
+			</li>
+			<?php
+
+if(!isset($_SESSION))
+{
+	?>
+	<li class="nav-item active">
+		<a class="nav-link" href="index.php">Inicio 3<span class="sr-only">(current)</span></a>
+	</li>
+<?php }
+else{
+	?>
+	<li class="nav-item dropdown">
+<?php
+if($_SESSION['tipo']=='docente'){
+	?>
+	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<?php echo $_SESSION['nombre']?>
+			</a> 
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="docente.php">Mi perfil</a>
+	<?php
+}
+else{
+	?>
+	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<?php echo $_SESSION['nombre']?>
+			</a> 
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="administrador.php">Mi perfil</a>
+	<?php
+}
+?>
+<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#">Cerrar sesión</a>
+				</div>
+<?php
+}
+?>					
+				
+			</li>
+			</ul>
+			
+		</div>
+		</nav>
+
     <div class="col-md-10 content">
     <div class="panel panel-default">
   	<div class="panel-heading">
-  	Lista de platos
   	</div>
   	<div class="panel-body">
 
@@ -225,7 +300,7 @@ $(document).ready(function(){
   $('#add_docente').on("submit",function(event){
 
     event.preventDefault();
-    console.log(object)
+    console.log('object');
       var datos = $(this).serializeArray(); //datos serializados
             var imagen = new FormData($("#add_docente")[0]);
 

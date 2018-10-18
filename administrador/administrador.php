@@ -75,10 +75,10 @@ $("#fecha").datepicker();
 			<li class="nav-item active">
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="about.php">Noticias</a>
+				<a class="nav-link" href="asignatura_lista.php">Asignaturas</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="blog.php">Blog</a>
+				<a class="nav-link" href="mis_cursos.php">Mis cursos</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="docente_listar.php">Docente</a>
@@ -139,7 +139,7 @@ else{
 <div class="container-fluid">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4 bg-primary mt-5 pt-5">
+			<div class="col-md-4 mt-5 pt-5">
 				<div class="contenedor-menu1">
 					<li class="btn-menu1">Docente<i class="icono fa fa-bars"></i></li>
 					<ul class="menu1">
@@ -194,18 +194,18 @@ else{
 
 			</div>
 				
-			<div class="col-md-8 bg-secondary">
+			<div class="col-md-8 ">
 				
 		
 			
-	  <div class="container-fluid bg-primary mt-5 pt-5">
+	  <div class="container-fluid mt-5 pt-5">
 	  <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="administrador.php">Inicio</a></li>
     <li class="breadcrumb-item active" aria-current="mi perfil">Mi perfil</li>
   </ol>
 </nav>
-	  <div class="container bg-success">
+	  <div class="container" style="background:#560000;color:white">
 	  
 	  <h2>Datos personales</h2>
 
@@ -215,7 +215,7 @@ else{
 	  <div class="col-12">
 		
 		<div class="pull-right">
-			<a href="logout.php" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-off"></span> Cerrar sesión</a>
+			<a href="../logout.php" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-off"></span> Cerrar sesión</a>
 		</div>
 <button type="button" id="editar-modal-docente" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Editar datos</button>
 
