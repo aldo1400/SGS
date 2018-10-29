@@ -8,7 +8,7 @@ session_start();
 
             $output='';
             $output.='
-      <table class="table table-bordered">
+      <table class="table table-striped table-bordered">
       <tr>
       <th width="35%">Nombre </th>
       <th width="25%">Apellido </th>
