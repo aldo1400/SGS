@@ -1,0 +1,191 @@
+/* 
+AlPhaD UI - Posts UI
+
+* Version: 1.0
+* Build Date    :  07-04-2018 
+* Last Update   :  - []
+* Author: ALPhA D
+* Website: www.alphadsy.com
+* Github: www.github.com/alphadsy/
+* License : MIT 
+
+[Layout]
+
+[Color codes]
+
+[Typography]
+
+[content table]
+
+- post main css 
+  - post main css (lg)
+- #post1 css
+  - #post1 css (lg)
+.
+.
+.    
+- demo css (for demo purpose only)
+
+*/
+
+/* =======================================
+ post
+========================================*/
+.post {
+    position: relative;
+    width: 92vw;
+    height: auto;
+    margin: auto;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    margin-bottom: 3rem;
+}
+
+.post .caption {
+    position: relative;
+    height: inherit;
+    background-color: inherit;
+    padding: 10px;
+}
+
+.post .content {
+    position: relative;
+    height: inherit;
+    padding: 10px;
+}
+
+.post .content .img {
+    width: 100%;
+    height: auto;
+}
+
+.post .author {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.post .author .avatar {
+    position: relative;
+    float: left;
+    width: 3rem;
+    border-radius: 50%;
+}
+
+.post .author .name {
+    position: relative;
+    float: left;
+    font-size: 1rem;
+    font-weight: 500;
+    padding-left: 1rem;
+}
+
+.post .meta {
+    float: left;
+    padding-left: 1rem;
+    size: .6rem;
+    color: #000;
+}
+
+.post .caption .text {
+    margin: .5rem 0;
+}
+
+.post .category {
+    visibility: hidden;
+}
+
+/*=== Large devices (desktops, 992px and up) ===*/
+@media (min-width: 992px) {
+    .post {
+        width: 75vw;
+        height: 500px;
+    }
+
+    .post .caption {
+        float: left;
+        padding: 2rem;
+    }
+
+    .post .author {
+        margin-bottom: 5rem;
+    }
+
+    .post .author .avatar {}
+
+    .post .author .name {}
+
+    .post .caption .meta {}
+
+    .post .caption .text {
+        margin: 1rem 0;
+    }
+
+    .post .content {
+        float: left;
+        padding: 0;
+    }
+
+    .post .content .img {
+        height: 100%;
+    }
+
+    .post .category {
+        visibility: visible;
+    }
+}
+
+
+/* =======================================
+   post#5
+  ========================================*/
+#post5 {
+    background-color: #007bff;
+    background-color: white;
+    color: #fff;
+}
+
+#post5 .author .meta {
+    color: #fff;
+}
+
+#post5 .images {
+    overflow: hidden
+}
+
+#post5 .images .img {
+    float: left;
+    width: 50%;
+    height: 150px;
+    opacity: 1;
+}
+
+/*=== Large devices (desktops, 992px and up) ===*/
+@media (min-width: 992px) {
+    #post5 {}
+
+    #post5 .caption {
+        width: 30%;
+    }
+
+    #post5 .author {}
+
+    #post5 .caption .text {
+        color: #ddd;
+    }
+
+    #post5 .content {
+        width: 70%;
+        padding: 2rem;
+    }
+
+    #post5 .images .img {
+        height: 50%;
+        opacity: .6;
+    }
+
+    #post5 .images .img:hover {
+        opacity: 1;
+    }
+}

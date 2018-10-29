@@ -9,9 +9,9 @@
       </div>
       <div class="modal-body">
 
-                  <form id="editar_competencia">
+                  <form id="editar_estrategia">
               <input type="hidden" name="asignatura" id="asignatura">
-
+              <input type="hidden" name="codigo_estrategia" id="codigo_estrategia">
               <div class="form-group">
     <label for="exampleFormControlTextarea1">Descripción de la competencia</label>
     <input  type="text" name="estrategia_contenido" class="form-control" id="estrategia_contenido">

@@ -21,7 +21,7 @@ session_start();
         $output.=' 
             <tr>  
                  <td>'.$row["estrategia"].'</td>    
-                 <td><input type="button" name="edit" value="Editar" id="'.$row["cod_asignatura"].'" class="btn btn-warning btn-xs editar_estrategia"/></td>
+                 <td><input type="button" name="edit" value="Editar" id="'.$row["codigo_estrategia"].'" class="btn btn-warning btn-xs editar_estrategia"/></td>
             </tr>  
             ';  
        }  

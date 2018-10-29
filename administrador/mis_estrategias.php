@@ -41,7 +41,7 @@
                                echo '  
                                <tr>  
                                     <td>'.$row["estrategia"].'</td>    
-                                    <td><input type="button" name="edit" value="Editar" id="'.$row["cod_asignatura"].'" class="btn btn-warning btn-xs editar_estrategia"/></td>
+                                    <td><input type="button" name="edit" value="Editar" id="'.$row["codigo_estrategia"].'" class="btn btn-warning btn-xs editar_estrategia"/></td>
                                </tr>  
                                ';  
                           }  
@@ -57,7 +57,7 @@
 
 
 
-
+<?php include 'modal/editar_estrategia.php' ?>
 
 
 <script>
@@ -104,8 +104,8 @@ hola();
    $(document).on('click','.editar_estrategia',function(e){
     e.preventDefault();
     var estrategia_id=$(this).attr("id");
-    // var asignatura_id=$('#codigo_final_asignatura').val();
-    console.log(`${competencia_id}`);
+    var asignatura_id=$('#codigo_final_asignatura').val();
+    // console.log(`${competencia_id}`);
 
     $.ajax({
           url:"listar_estrategia.php",
@@ -115,9 +115,12 @@ hola();
           success:function(data)
           {
               console.log(data);
+              
             $('#editar_estrategia_modal').modal('show');
             // $('#competencia_id_editar').val(data.cod_competencia);
-            // $('#tipo').val(data.tipo_competencia);
+            $('#codigo_estrategia').val(data.codigo_estrategia);
+            $('#estrategia_contenido').val(data.estrategia);
+            $('#asignatura').val(asignatura_id);
             // $('#descripcion').val(data.competencia);
           }
 
@@ -125,6 +128,41 @@ hola();
 
 
   });
+
+  $( "#editar_estrategia" ).submit(function( e ) {
+    e.preventDefault();
+    var datos = $(this).serializeArray();
+    // console.log('apretaste');
+    $.ajax({
+          url:"edit_estrategia.php",
+          method:"POST",
+          data:datos,
+          success:function(data)
+          {
+            console.log(data);
+//             swal(
+//   'Estrategia actualizada',
+//   '',
+//   'success'
+// )
+
+ swal({
+        title: "Estrategia actualizada", 
+        type: "success"
+    }).then(function () {
+      location.reload();
+    })
+$('#editar_estrategia_modal').modal('hide');
+// hola();
+// $('misestrategias').DataTable().ajax.reload(null,false); - 
+
+
+            
+          }
+      });
+    
+  });
+
 
       $('#misestrategias').DataTable({
   "language": {

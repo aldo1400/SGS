@@ -13,7 +13,7 @@
       </head>  
       <body>  
       <?php include 'partes/navbar.php';?>
-           <div class="container mt-5">  
+           <div class="container mt-5 pt-5">  
                 <h3 align="center">Mis cursos</h3>  
                 <br />  
                 <div class="table-responsive">  
@@ -23,7 +23,9 @@
                                     <td>Nombre</td>  
                                     <td>Escuela</td>  
                                     <td>Ciclo</td>  
-                                    <td width="15%"><span class="glyphicon glyphicon-pencil"></span>Editar silabo</td> 
+                                    <td width="15%"><span class="glyphicon glyphicon-pencil"></span>Editar silabo</td>
+                                    <td>Ciclo</td>  
+                                    <td>Ciclo</td>   
                                     <!-- <td width="15%"><span class="glyphicon glyphicon-pencil"></span>Editar</td>
       <td width="15%">Visualizar </td>
       <td width="15%"><span class="glyphicon glyphicon-trash"></span>Eliminar </td> -->
