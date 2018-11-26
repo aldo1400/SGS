@@ -15,13 +15,13 @@
 			<li class="nav-item active">
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="asignatura_lista.php">Asignaturas</a>
+				<a class="nav-link" href="asignatura_lista.php"><i class="fas fa-book"></i> Asignaturas</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="mis_cursos.php">Mis cursos</a>
+				<a class="nav-link" href="mis_cursos.php"><i class="fas fa-book-reader"></i> Mis cursos</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="docente_listar.php">Docente</a>
+				<a class="nav-link" href="docente_listar.php"><i class="fas fa-users"></i> Docente</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="contact.php">Silabos</a>

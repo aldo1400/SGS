@@ -2,34 +2,38 @@
  include('../conexion/conexion.php');
  session_start();
     $id_asignatura=$_GET['id_curso'];
- $query ="SELECT * from banco_estrategia inner join estrategia_asignatura on banco_estrategia.codigo_estrategia=estrategia_asignatura.cod_estrategia inner join asignatura on estrategia_asignatura.cod_asignatura=asignatura.cod_asignatura where asignatura.cod_asignatura='$id_asignatura'";  
+ $query ="SELECT * from bibliografia inner join bibliografia_asignatura on bibliografia.id=bibliografia_asignatura.id_libro inner join asignatura on bibliografia_asignatura.id_asignatura=asignatura.cod_asignatura where asignatura.cod_asignatura='$id_asignatura'";  
  $result = mysqli_query($con, $query);  
  ?>  
  <!DOCTYPE html>  
  <html>  
       <head>  
-           <title>Estrategias</title>  
+           <title>Mis libros</title>  
           <?php  include 'partes/links.php'; ?>        
       </head>  
 
       <body >  
   
             <?php  include 'partes/navbar.php' ?>
+            
             <input type="hidden" value="<?php echo $_GET['id_curso']; ?>" id="codigo_final_asignatura">
            <div class="container mt-5 pt-5" >  
-                <h3 align="center">Estrategias del silabo</h3>  
-                <br /> 
-                <hr>
-                <?php  include 'agregar_estrategia.php' ?>
-                <hr>
+                <h3 align="center">Bibliografia del silabo</h3>  
+                <button class="btn btn-primary agregar_libro mb-5" id=""><i class="fas fa-plus-circle"></i> Añadir bibliografia</button>
+                <br />  
+                <br >
                 <br>
                 <div class="table-responsive">  
-                     <table id="misestrategias" class="table table-striped table-bordered">  
+                     <table id="mislibros" class="table table-striped table-bordered">  
                           <thead>  
                                <tr>   
-                               <td width="10%">Id</td>
-                                    <td width="75%">Estrategia</td>  
-                                    <!-- <td>Ciclo</td>   -->
+                               <td width="5%">Id</td>
+                               <td>Tipo</td> 
+                                    <td>Ubicación</td>  
+                                    <td>Autor</td>  
+                                    <td>Titulo</td> 
+                                    <td>Año</td>  
+                                    <td>Link</td>   
                                     <td width="15%"><span class="glyphicon glyphicon-pencil"></span>Editar</td> 
                                     <!-- <td width="15%"><span class="glyphicon glyphicon-pencil"></span>Editar</td>
       <td width="15%">Visualizar </td>
@@ -41,9 +45,14 @@
                           {  
                                echo '  
                                <tr>  
-                               <td>'.$row["codigo_estrategia"].'</td>       
-                               <td>'.$row["estrategia"].'</td>    
-                                    <td><a name="edit" id="'.$row["codigo_estrategia"].'" class="btn btn-warning btn-xs editar_estrategia text-white"><i class="fas fa-pen"></i></a></td>
+                               <td>'.$row["id"].'</td> 
+                               <td>'.$row["tipo"].'</td>
+                               <td>'.$row["ubicación"].'</td>      
+                               <td>'.$row["autor"].'</td>
+                               <td>'.$row["titulo"].'</td> 
+                               <td>'.$row["año"].'</td>  
+                               <td>'.$row["link"].'</td>  
+                                    <td><a name="edit" id="'.$row["id"].'" class="btn btn-warning btn-xs editar_libro text-white"><i class="fas fa-pen"></i></a></td>
                                </tr>  
                                ';  
                           }  
@@ -59,11 +68,21 @@
 
 
 
-<?php include 'modal/editar_estrategia.php' ?>
-
+<?php include 'modal/editar_libro.php' ?>
+<?php  include 'modal/crear_libro.php' ?>
 
 <script>
 $(document).ready(function(){
+
+ $(document).on('click','.agregar_libro',function(){
+    var asignatura=$('#codigo_final_asignatura').val();
+    console.log(asignatura);
+    
+    $('#crear_libro_modal').modal("show");
+    // $('#asignatura').val(asignatura);
+    $("input[id=asignatura]").val(asignatura);
+  });
+
 
 function hola(){
   var id_curso=$('#codigo_final_asignatura').val();
@@ -79,12 +98,13 @@ function hola(){
 	}
 	
 
-  $( "#nueva_estrategia" ).submit(function( e ) {
+  $( "#crear_libro" ).submit(function( e ) {
     e.preventDefault();
+    // console.log('apretaste pereo');
     var datos = $(this).serializeArray();
     // console.log('apretaste');
     $.ajax({
-          url:"add_estrategia.php",
+          url:"add_bibliografia.php",
           method:"POST",
           data:datos,
           success:function(data)
@@ -98,7 +118,7 @@ function hola(){
 // hola();
 
 swal({
-        title: "Estrategia creada", 
+        title: "Libro añadido", 
         type: "success"
     }).then(function () {
       location.reload();
@@ -111,27 +131,33 @@ swal({
     
   });
 
-   $(document).on('click','.editar_estrategia',function(e){
+   $(document).on('click','.editar_libro',function(e){
     e.preventDefault();
-    var estrategia_id=$(this).attr("id");
+    console.log('asa')
+    var libro_id=$(this).attr("id");
     var asignatura_id=$('#codigo_final_asignatura').val();
     // console.log(`${competencia_id}`);
 
     $.ajax({
-          url:"listar_estrategia.php",
+          url:"listar_libro.php",
           method:"POST",
-          data:{estrategia_id:estrategia_id},
+          data:{libro_id:libro_id},
           dataType:"json",
           success:function(data)
           {
               console.log(data);
               
-            $('#editar_estrategia_modal').modal('show');
+            $('#editar_libro_modal').modal('show');
             // $('#competencia_id_editar').val(data.cod_competencia);
-            $('#codigo_estrategia').val(data.codigo_estrategia);
-            $('#estrategia_contenido').val(data.estrategia);
+            $('#libro_id').val(data.id);
+            $('#tipo').val(data.tipo);
+            $('#ubicacion').val(data.ubicación);
+            $('#autor').val(data.autor);
+            $('#titulo').val(data.titulo);
+            $('#year').val(data.año);
+            $('#link').val(data.link);
             $('#asignatura').val(asignatura_id);
-            // $('#descripcion').val(data.competencia);
+            
           }
 
       });
@@ -139,12 +165,12 @@ swal({
 
   });
 
-  $( "#editar_estrategia" ).submit(function( e ) {
+  $( "#editar_libro" ).submit(function( e ) {
     e.preventDefault();
     var datos = $(this).serializeArray();
     // console.log('apretaste');
     $.ajax({
-          url:"edit_estrategia.php",
+          url:"edit_libro.php",
           method:"POST",
           data:datos,
           success:function(data)
@@ -157,7 +183,7 @@ swal({
 // )
 
  swal({
-        title: "Estrategia actualizada", 
+        title: "Bibliografia actualizada", 
         type: "success"
     }).then(function () {
       location.reload();
@@ -174,8 +200,9 @@ $('#editar_estrategia_modal').modal('hide');
   });
 
 
-      $('#misestrategias').DataTable({
+      $('#mislibros').DataTable({
         "stateSave": "true",
+        "autoWidth": false,
         "columnDefs":[
    {
     "targets":[1],
@@ -184,17 +211,17 @@ $('#editar_estrategia_modal').modal('hide');
   ],
   "language": {
     "search": "Buscar:",
-    "emptyTable":     "No hay estrategias",
-    "zeroRecords":    "No se ha encontrado la estrategia",
+    "emptyTable":     "No hay libros",
+    "zeroRecords":    "No se ha encontrado el libro",
     "paginate": {
         "first":      "Primero",
         "last":       "Último",
         "next":       "Siguiente",
         "previous":   "Anterior"
     },
-    "info":           "Mostrando _START_ to _END_ de _TOTAL_ estrategias",
-    "infoEmpty":      "Mostrando 0 to 0 of 0 estrategias",
-    "lengthMenu":     "Mostrando _MENU_ estrategias",
+    "info":           "Mostrando _START_ to _END_ de _TOTAL_ libros",
+    "infoEmpty":      "Mostrando 0 to 0 of 0 libros",
+    "lengthMenu":     "Mostrando _MENU_ libros",
   }
 });
       

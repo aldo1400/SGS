@@ -1,8 +1,8 @@
 <?php  
  include('../conexion/conexion.php');
  session_start();
-    $id_asignatura=$_GET['id_curso'];
- $query ="SELECT * from banco_competencia inner join competencia_asignatura on banco_competencia.cod_competencia=competencia_asignatura.cod_competencia inner join asignatura on competencia_asignatura.cod_asignatura=asignatura.cod_asignatura where asignatura.cod_asignatura='$id_asignatura'";  
+    $id_unidad=$_GET['id_unidad'];
+ $query ="SELECT * from unidades inner join contenido_unidad on unidades.id=contenido_unidad.id_unidad where contenido_unidad.id_unidad='$id_unidad'";  
  $result = mysqli_query($con, $query);  
  ?>  
  <!DOCTYPE html>  
@@ -14,19 +14,19 @@
       <body>  
          
          <?php include 'partes/navbar.php' ?>
-         <input type="hidden" value="<?php echo $_GET['id_curso']; ?>" id="codigo_final_asignatura">
+         <input type="hidden" value="<?php echo $_GET['id_unidad']; ?>" id="codigo_final_asignatura">
            <div class="container mt-5 pt-5">  
-                <h3 align="center">Competencias del silabo</h3>  
-                <button class="btn btn-primary agregar_competencia mb-3" id=""><i class="fas fa-plus-circle"></i> Añadir competencia</button>
-
+                <h3 align="center">Contenido de la unidad</h3>  
+                <button class="btn btn-primary agregar_competencia" id="">Añadir competencia</button>
                 <br />  
                 <div class="table-responsive">  
-                     <table id="miscompetencias" class="table table-striped table-bordered">  
+                     <table id="contenido_unidad" class="table table-striped table-bordered">  
                           <thead>  
                                <tr>  
-                                    <td>Competencia</td>  
-                                    <td>Tipo de competencia</td>  
-                                    <!-- <td>Ciclo</td>   -->
+                                    <td>Numero de semana</td>  
+                                    <td>Procedimientos</td>  
+                                    <td>Conceptos</td>  
+                                    <td>Metodo recursos</td> 
                                     <td width="15%"><span class="glyphicon glyphicon-pencil"></span>Editar</td> 
                                     <!-- <td width="15%"><span class="glyphicon glyphicon-pencil"></span>Editar</td>
       <td width="15%">Visualizar </td>
@@ -38,9 +38,11 @@
                           {  
                                echo '  
                                <tr>  
-                                    <td>'.$row["competencia"].'</td>  
-                                    <td>'.$row["tipo_competencia"].'</td>  
-                                    <td><a name="edit"  id="'.$row["cod_competencia"].'" class="btn btn-warning btn-xs editar_competencia text-white"><i class="fas fa-pen"></i></a></td>
+                                    <td>'.$row["numero_semana"].'</td>  
+                                    <td>'.$row["procedimientos"].'</td>  
+                                    <td>'.$row["conceptos"].'</td> 
+                                    <td>'.$row["metodo_recursos"].'</td> 
+                                    <td><input type="button" name="edit" value="Editar" id="'.$row["id"].'" class="btn btn-warning btn-xs editar_competencia"/></td>
                                </tr>  
                                ';  
                           }  
@@ -57,7 +59,7 @@
 
 
 
-<?php include 'modal/crear_competencia.php' ?>
+<?php include 'modal/crear_contenido.php' ?>
 <?php include 'modal/editar_competencia.php' ?>
 
 
@@ -65,18 +67,18 @@
 <script>
 $(document).ready(function(){  
   
-  function hola(){
-  var id_curso=$('#codigo_final_asignatura').val();
-		$.ajax({
-      url:"listar_all_competencias.php",
-	  method:"post",
-    data:{id_curso:id_curso},
-      success:function(data){
+//   function hola(){
+//   var id_curso=$('#codigo_final_asignatura').val();
+// 		$.ajax({
+//       url:"listar_all_competencias.php",
+// 	  method:"post",
+//     data:{id_curso:id_curso},
+//       success:function(data){
 		
-          $('#miscompetencias').html(data);
-      }
-    	});
-	}
+//           $('#miscompetencias').html(data);
+//       }
+//     	});
+// 	}
   
   $(document).on('click','.agregar_competencia',function(){
     var asignatura=$('#codigo_final_asignatura').val();
@@ -122,19 +124,12 @@ $(document).ready(function(){
             // console.log(data);
             // console.log('asdsadas')
             $('#crear_competencia_modal').modal("hide");
-//             swal(
-//   'Competencia creada',
-//   '',
-//   'success'
-// )    
-// hola();
-swal({
-        title: "Competencia creada", 
-        type: "success"
-    }).then(function () {
-      location.reload();
-    })
-
+            swal(
+  'Competencia creada',
+  '',
+  'success'
+)    
+hola();
           }
       });
     
@@ -152,19 +147,12 @@ swal({
             console.log(data);
             // console.log('asdsadas')
             $('#editar_competencia_modal').modal('hide');
-            // swal(
-            //     'Competencia actualizada',
-            //     '',
-            //     'success' 
-            // )
-            // hola();
-            swal({
-        title: "Competencia actualizada", 
-        type: "success"
-    }).then(function () {
-      location.reload();
-    })
-
+            swal(
+                'Competencia actualizada',
+                '',
+                'success' 
+            )
+            hola();
           }
       });
     
@@ -189,14 +177,7 @@ swal({
   }); 
 
 
-      $('#miscompetencias').DataTable({
-        "stateSave": "true",
-        "columnDefs":[
-   {
-    "targets":[2],
-    "orderable":false,
-   },
-  ],
+      $('#contenido_unidad').DataTable({
   "language": {
     "search": "Buscar:",
     "emptyTable":     "No hay competencias",

@@ -1,5 +1,10 @@
 <?php
 include('../conexion/conexion.php');
+session_start();
+$id=$_SESSION['id'];
+
+$query="SELECT * FROM docente where id!=$id";
+$result=mysqli_query($con,$query);
 
 ?>
 <!DOCTYPE html>
@@ -8,57 +13,58 @@ include('../conexion/conexion.php');
     <meta charset="utf-8">
 
     <title>Lista de docentes</title>
-
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-
-           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>           
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script> 
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.10/sweetalert2.all.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.10/sweetalert2.min.css"></script>
-
+<?php  include 'partes/links.php' ?>
   </head>
 
   <body>
 
     <?php  include 'partes/navbar.php';?>
-    <div class="container mt-5">
-    
+    <div class="container mt-5 pt-5">
+            <!-- Inicio de tabla -->
+           <h3 align="center">Docentes</h3>  
+            
+            <div class="table-responsive">  
+                     <table id="docentes_tabla" class="table table-striped table-bordered">  
+                          <thead>  
+                               <tr>  
+                                    <td>Nombre</td>  
+                                    <td>Apellido</td>  
+                                    <td>Dni</td>
+                                    <td>Imagen del docente</td>  
+                                    <td width="6%">Editar</td>
+                                    <td width="6%">Ver</td>                                
+                                    <td width="5%">Eliminar</td>
+                               </tr>  
+                          </thead> 
+                          
+                          
+                          <?php  
+                          while($row = mysqli_fetch_array($result))  
+                          {  
+                               echo '  
+                               <tr>  
+                                    <td>'.$row["nombre"].'</td>  
+                                    <td>'.$row["apellido"].'</td>  
+                                    <td>'.$row["dni"].'</td> 
+                                    <td><img src="'. $row["ruta_imagen"].'" width="50" height="50" alt="" align="RIGHT" /></td> 
+                                    <td><a  name="edit" id="'.$row["id"].'" class="btn btn-warning btn-xs edit_data text-white"/><i class="fas fa-pen"></i></a></td>
+                                    <td><a name="view"  id="'.$row["id"].'" class="btn btn-info btn-xs view_data text-white"/><i class="far fa-eye"></i></a></td>
+                                    <td><a name="delete" id="'.$row["id"].'"  class="btn btn-danger btn-xs delete_data text-white"/><i class="fas fa-trash-alt"></i></a></td>
+                               </tr>  
+                               ';  
+                          }  
+                          ?>  
 
-    <div class="col-md-10 content">
-    <div class="panel panel-default">
-  	<div class="panel-heading">
-  	</div>
-  	<div class="panel-body">
+                     </table>  
+                </div>  
+            <!-- fin de tabla -->
 
-
-      <div class="table-responsive">
-
-        <div align="right">
-
-        <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span>Añadir docente</button>
+        <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-warning"><i class="fas fa-plus-circle"></i> Añadir docente</button>
 
         </div>
-
-
-        <br/>
-      <div id="plato_tabla">
-      </div>
-      </div>
-
-
-  	</div>
-  </div>
-    		</div>
-    		
-    	</div>
+      <!-- <div id="plato_tabla">
+       
+      </div> -->
 
   </body>
 
@@ -194,11 +200,12 @@ $(document).ready(function(){
 	  method:"post",
       success:function(data){
 		
-          $('#plato_tabla').html(data);
+          // $('#plato_tabla').html(data);
+          $('#docentes_tabla').html(data);
       }
     	});
 	}
-	hola();
+	// hola();
 
   $(document).on('click','.edit_data',function()
   {
@@ -339,6 +346,29 @@ $(document).on('click','.view_data',function(){
   });
 
 
+});
+
+      $('#docentes_tabla').DataTable({
+        "columnDefs":[
+   {
+    "targets":[4, 5, 6],
+    "orderable":false,
+   },
+  ],
+  "language": {
+    "search": "Buscar:",
+    "emptyTable":     "No hay docentes",
+    "zeroRecords":    "No se ha encontrado el docente",
+    "paginate": {
+        "first":      "Primero",
+        "last":       "Último",
+        "next":       "Siguiente",
+        "previous":   "Anterior"
+    },
+    "info":           "Mostrando _START_ to _END_ de _TOTAL_ docentes",
+    "infoEmpty":      "Mostrando 0 to 0 of 0 docentes",
+    "lengthMenu":     "Mostrando _MENU_ docentes",
+  }
 });
 
 </script>

@@ -9,7 +9,8 @@
  <html>  
       <head>  
            <title>Mis cursos</title>  
-           <?php  include 'partes/links.php'; ?>               
+           <?php  include 'partes/links.php'; ?>  
+           
       </head>  
       <body>  
       <?php include 'partes/navbar.php';?>
@@ -22,10 +23,12 @@
                                <tr>  
                                     <td>Nombre</td>  
                                     <td>Escuela</td>  
+                                    <td>Ciclo</td> 
                                     <td>Ciclo</td>  
                                     <td width="15%"><span class="glyphicon glyphicon-pencil"></span>Editar silabo</td>
                                     <td>Ciclo</td>  
-                                    <td>Ciclo</td>   
+                                    <td>Ciclo</td>
+                                    <td>Exportar a pdf</td>  
                                     <!-- <td width="15%"><span class="glyphicon glyphicon-pencil"></span>Editar</td>
       <td width="15%">Visualizar </td>
       <td width="15%"><span class="glyphicon glyphicon-trash"></span>Eliminar </td> -->
@@ -38,10 +41,12 @@
                                <tr>  
                                     <td>'.$row["nomb_asignatura"].'</td>  
                                     <td>'.$row["escuela"].'</td>  
-                                    <td>'.$row["ciclo_academico"].'</td>  
-                                    <td><a href="mis_estrategias.php?id_curso='.$row["cod_asignatura"].'" name="edit"  id="'.$row["cod_asignatura"].'" class="btn btn-warning btn-xs"/>Estrategia silabo</a></td>
-                                    <td><a href="mis_competencias.php?id_curso='.$row["cod_asignatura"].'" name="edit"  id="'.$row["cod_asignatura"].'" class="btn btn-warning btn-xs"/>Competencia silabo</a></td>
-                                    <td><a href="mis_competencias.php?id_curso='.$row["cod_asignatura"].'" name="edit"  id="'.$row["cod_asignatura"].'" class="btn btn-warning btn-xs"/>Editar silabo</a></td>
+                                    <td>'.$row["ciclo_academico"].'</td>
+                                    <td><a href="mis_unidades.php?id_curso='.$row["cod_asignatura"].'" name="edit"  id="'.$row["cod_asignatura"].'" class="btn btn-warning btn-xs "/><i class="far fa-edit"></i> Unidades</a></td>  
+                                    <td><a href="mis_estrategias.php?id_curso='.$row["cod_asignatura"].'" name="edit"  id="'.$row["cod_asignatura"].'" class="btn btn-warning btn-xs "/><i class="far fa-edit"></i> Estrategias</a></td>
+                                    <td><a href="mis_competencias.php?id_curso='.$row["cod_asignatura"].'" name="edit"  id="'.$row["cod_asignatura"].'" class="btn btn-warning btn-xs"/><i class="far fa-edit"></i> Competencias</a></td>
+                                    <td><a href="mis_competencias.php?id_curso='.$row["cod_asignatura"].'" name="edit"  id="'.$row["cod_asignatura"].'" class="btn btn-warning btn-xs"/><i class="far fa-edit"></i> Editar silabo</a></td>
+                                    <td><a href="../for.php?cod_asignatura='.$row["cod_asignatura"].'" class="btn btn-success btn-xs"><i class="far fa-file-pdf"></i> Exportar</a></td>
                                </tr>  
                                ';  
                           }  
@@ -58,6 +63,12 @@
 <script>
 $(document).ready(function(){  
       $('#miscursos').DataTable({
+        "columnDefs":[
+   {
+    "targets":[3,4, 5, 6,7],
+    "orderable":false,
+   },
+  ],
   "language": {
     "search": "Buscar:",
     "emptyTable":     "No hay cursos",

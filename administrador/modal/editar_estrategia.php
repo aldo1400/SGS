@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Crear competencia</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Editar estrategia</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -13,7 +13,7 @@
               <input type="hidden" name="asignatura" id="asignatura">
               <input type="hidden" name="codigo_estrategia" id="codigo_estrategia">
               <div class="form-group">
-    <label for="exampleFormControlTextarea1">Descripción de la competencia</label>
+    <label for="exampleFormControlTextarea1">Descripción de la estrategia</label>
     <input  type="text" name="estrategia_contenido" class="form-control" id="estrategia_contenido">
   </div>
               <input type="submit" class="btn btn-primary" value="Insertar" />

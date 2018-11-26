@@ -13,7 +13,7 @@ session_start();
       <th width="35%">Nombre </th>
       <th width="25%">Apellido </th>
       <th width="25%">DNI</th>
-      <th width="35%">Imagen del docente </th>
+      <th width="35%">Imagen </th>
       <th width="15%"><span class="glyphicon glyphicon-trash"></span>Eliminar </th>
       </tr>
     ';

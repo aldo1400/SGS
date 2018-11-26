@@ -1,5 +1,6 @@
 <?php  
  include('../conexion/conexion.php');
+ session_start();
  $query ="SELECT * FROM asignatura";  
  $result = mysqli_query($con, $query);  
  ?>  
@@ -12,7 +13,7 @@
       </head>  
       <body>  
       <?php include 'partes/navbar.php';?>
-           <div class="container mt-5">
+           <div class="container mt-5 pt-5">
            
                 <h3 align="center">Asignaturas</h3>  
                 <br />  
@@ -24,9 +25,9 @@
                                     <td>Escuela</td>  
                                     <td>Ciclo</td>  
                                     <td width="15%"><span class="glyphicon glyphicon-pencil"></span>Acción</td> 
-                                    <td width="15%"><span class="glyphicon glyphicon-pencil"></span>Acción</td>
-      <td width="15%">Visualizar </td>
-      <td width="15%"><span class="glyphicon glyphicon-trash"></span>Eliminar </td>
+                                    <td width="6%">Editar</td>
+      <td width="6%">Ver </td>
+      <td width="4%">Eliminar </td>
                                </tr>  
                           </thead>  
                           <?php  
@@ -38,9 +39,9 @@
                                     <td>'.$row["escuela"].'</td>  
                                     <td>'.$row["ciclo_academico"].'</td>  
                                     <td><input type="button" name="edit" value="Asignar docente" id="'.$row["cod_asignatura"].'" class="btn btn-warning btn-xs define_teacher"/></td>
-                                    <td><input type="button" name="edit" value="Editar" id="'.$row["cod_asignatura"].'" class="btn btn-warning btn-xs edit_data"/></td>
-          <td><input type="button" name="view" value="Visualizar" id="'.$row["cod_asignatura"].'"class="btn btn-info btn-xs view_data"/></td>
-          <td><input type="button" name="delete" value="Eliminar" id="'.$row["cod_asignatura"].'"  class="btn btn-danger btn-xs delete_data"/></td>
+                                    <td><a name="edit" id="'.$row["cod_asignatura"].'" class="btn btn-warning btn-xs edit_data text-white" ><i class="fas fa-pen"></i></a></td>
+                                    <td><a name="view"  id="'.$row["cod_asignatura"].'" class="btn btn-info btn-xs view_data text-white" ><i class="far fa-eye"></i></a></td>
+                                    <td><a name="delete" id="'.$row["cod_asignatura"].'"  class="btn btn-danger btn-xs delete_data text-white" ><i class="fas fa-trash-alt"></i></a></td>
                                </tr>  
                                ';  
                           }  
@@ -184,14 +185,14 @@
 
  <div id="seleccionar_docente" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div class="modal-content px-5">
    <br />
-   <h3>Docente asignado</h3>
+   <h3 class="lead pb-3">Docentes asignados</h3>
    <table id="docentes_asignados" class="table table-striped table-bordered">  
     </table>
     <hr>
    <h2 align="center">Buscar docente</h2>
-   <input id="test_test" />
+   <input type="hidden" id="test_test" />
    <div class="form-group mb-2">
     <label for="staticEmail2" class="sr-only">Nombre docente</label>
     <input type="text" class="form-control" name="search_text" id="search_text" placeholder="Nombre">
@@ -378,6 +379,13 @@ console.log('xdxdxd');
 
 
       $('#employee_data').DataTable({
+        "stateSave": "true",
+        "columnDefs":[
+   {
+    "targets":[4, 5, 6],
+    "orderable":false,
+   },
+  ],
   "language": {
     "search": "Buscar:",
     "emptyTable":     "No hay cursos",
